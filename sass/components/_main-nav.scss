@@ -1,0 +1,39 @@
+.main-nav{
+    background-color: #211f4f;
+    border-radius: 2em;
+    overflow: hidden;
+    flex: 1 1 100%;
+    
+    &__list{
+        display: flex;
+        flex: 1 1 100%;
+        flex-direction: column;
+        height: 100%;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+    }
+
+    &__item {
+        text-align: center;
+        flex: 1;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5em 0.5em;
+        color: #fefefe;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 500;
+        height: 100%;
+
+        &:hover{
+            background-color: #69fbc4;
+            color: #211f4f;
+        }
+    }
+}
