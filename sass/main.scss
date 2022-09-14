@@ -17,13 +17,16 @@
 
 // 4. Layout-related sections
 @use 'layout/main-header';
-// @use 'layout/footer';
+@use 'layout/section-cards';
+@use 'layout/cards-container';
 
 // 5. Components
 // @use 'components/button';
 @use 'components/hamburger-button';
 @use 'components/main-nav-toggle';
 @use 'components/main-nav';
+@use 'components/banner';
+@use 'components/card';
 
 // 6. Page-specific styles
 // @use 'pages/home';

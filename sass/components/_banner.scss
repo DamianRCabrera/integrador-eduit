@@ -1,0 +1,50 @@
+.banner {
+    display: flex;
+    flex-direction: column;
+    background-color: #211f4f;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+    }
+}
+
+.banner-info {
+    flex: 1 1 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1em;
+    gap: 1em;
+
+    &__title {
+        font-size: 1.5em;
+        font-weight: 900;
+        color: #69fbc4;
+
+        @media (min-width: 768px) {
+            font-size: 2.5em;
+        }
+    }
+
+    &__description {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: #55c89c;
+
+        @media (min-width: 768px) {
+            font-size: 1.7em;
+        }
+    }
+}
+
+.banner-display {
+    display: flex;
+    flex: 1 1 70%;
+
+    &__image {
+        width: 100%;
+        height: 100%;
+    }
+}

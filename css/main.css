@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap"); /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -398,13 +400,8 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #38A18C;
-  padding: 1em 3em 2em 3em;
+  padding: 1em 1em 2em;
   gap: 1em;
-}
-@media (min-width: 768px) {
-  .main-header {
-    gap: 2em;
-  }
 }
 .main-header__logo-container {
   display: flex;
@@ -422,6 +419,15 @@ body {
 .main-header__logo-container__title {
   display: none;
 }
+@media (min-width: 768px) {
+  .main-header__logo-container__title {
+    display: block;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5em;
+    color: #2e2c59;
+    font-weight: 900;
+  }
+}
 .main-header__search-form-container {
   display: flex;
   justify-content: center;
@@ -431,7 +437,7 @@ body {
 .main-header__search-form-container__search-input {
   height: 2.5em;
   width: 100%;
-  max-width: 1000px;
+  max-width: 750px;
   outline: none;
   border: none;
   border-radius: 1em;
@@ -482,6 +488,35 @@ body {
   .main-header__main-nav-container {
     display: block;
   }
+}
+
+.section-cards {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.section-cards__header {
+  color: #211f4f;
+  padding-bottom: 1em;
+  border-bottom: 0.5em dotted #211f4f;
+  margin: 2em 0;
+}
+@media (min-width: 768px) {
+  .section-cards__header {
+    text-align: center;
+  }
+}
+.section-cards__header__title {
+  font-size: 2em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
 }
 
 .hamburger-button {
@@ -567,4 +602,120 @@ body {
 .main-nav__link:hover {
   background-color: #69fbc4;
   color: #211f4f;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  background-color: #211f4f;
+}
+@media (min-width: 768px) {
+  .banner {
+    flex-direction: row;
+  }
+}
+
+.banner-info {
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1em;
+  gap: 1em;
+}
+.banner-info__title {
+  font-size: 1.5em;
+  font-weight: 900;
+  color: #69fbc4;
+}
+@media (min-width: 768px) {
+  .banner-info__title {
+    font-size: 2.5em;
+  }
+}
+.banner-info__description {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #55c89c;
+}
+@media (min-width: 768px) {
+  .banner-info__description {
+    font-size: 1.7em;
+  }
+}
+
+.banner-display {
+  display: flex;
+  flex: 1 1 70%;
+}
+.banner-display__image {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid #2e2c59;
+  border-radius: 0.5em;
+  gap: 1em;
+}
+.card__article {
+  display: flex;
+  flex-direction: column;
+}
+.card__image-container {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card__image {
+  max-width: 100%;
+  border-radius: 0.5em;
+}
+.card__link-add {
+  order: 2;
+  background-color: #211f4f;
+  border: 3px solid #69fbc4;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-weight: 800;
+  min-height: 40px;
+  padding: 0.7em 1em;
+  text-align: center;
+  text-decoration: none;
+  margin: 0 0.5em 0.5em;
+}
+.card__link-add:hover {
+  background-color: #69fbc4;
+  border: 3px solid #211f4f;
+  color: #211f4f;
+}
+.card__link-add:active {
+  opacity: 0.5;
+}
+.card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.card__price {
+  text-align: center;
+  font-size: 1.2em;
+  color: #211f4f;
+  font-weight: 600;
+}
+.card__heading {
+  padding: 0 0.5em;
+  font-weight: 700;
+  color: #211f4f;
+}
+.card__description {
+  padding: 0 0.5em;
 }/*# sourceMappingURL=main.css.map */
