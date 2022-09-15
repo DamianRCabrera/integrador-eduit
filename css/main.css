@@ -426,26 +426,18 @@ body {
     font-size: 1.5em;
     color: #2e2c59;
     font-weight: 900;
+    text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #69fbc4;
   }
 }
 .main-header__search-form-container {
   display: flex;
+  background-color: #ffffff;
+  border-radius: 1em;
+  padding: 0.5em 0;
   justify-content: center;
   order: 4;
   flex: 1 1 100%;
-}
-.main-header__search-form-container__search-input {
-  height: 2.5em;
-  width: 100%;
-  max-width: 750px;
-  outline: none;
-  border: none;
-  border-radius: 1em;
-  padding: 0.3em 0 0.3em 2em;
-  background-image: url(../assets/img/search.svg);
-  background-repeat: no-repeat;
-  background-size: 1.5em;
-  background-position: left 5px center;
+  max-width: 800px;
 }
 @media (min-width: 768px) {
   .main-header__search-form-container {
@@ -490,8 +482,43 @@ body {
   }
 }
 
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  flex: 1 1 100%;
+  gap: 0.5em;
+}
+.search-form__label {
+  width: 2em;
+  flex-shrink: 0;
+  background-image: url(../assets/img/search.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+.search-form__input {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1.2em;
+}
+.search-form__search {
+  cursor: pointer;
+  text-align: center;
+  padding: 0.3em 1em;
+  border-radius: 0.5em;
+  border: none;
+  color: #ffffff;
+  background-color: #2e2c59;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+}
+.search-form__search:active {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
 .section-cards {
-  padding: 1em;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -512,11 +539,87 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
 }
+.section-cards__footer {
+  background-image: url(../assets/img/bg-footer.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 1em;
+  margin: 2em 0 0;
+}
 
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1em;
+  padding: 0 1em;
+}
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+.newsletter__label {
+  font-family: "Poppins", sans-serif;
+  font-size: 2em;
+  font-weight: 700;
+  color: #211f4f;
+  text-align: center;
+}
+.newsletter__email {
+  padding: 0.5em 2em;
+  border-radius: 1em;
+  border: none;
+  outline: none;
+  width: 100%;
+  max-width: 600px;
+}
+.newsletter__description {
+  font-weight: 500;
+  text-align: center;
+}
+
+.main-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  background-color: #f5f5f5;
+}
+@media (min-width: 768px) {
+  .main-footer {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+.main-footer__logo-container__logo {
+  width: 5em;
+}
+.main-footer__logo-container__logo:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.main-footer__data {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  color: #4a4b4a;
+  margin: 1em 0;
+}
+.main-footer__social {
+  display: flex;
+  gap: 1em;
+}
+.main-footer__social__logo {
+  width: 3em;
+  height: 3em;
+}
+.main-footer__social__logo:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .hamburger-button {
@@ -598,6 +701,7 @@ body {
   text-transform: uppercase;
   font-weight: 500;
   height: 100%;
+  text-decoration: none;
 }
 .main-nav__link:hover {
   background-color: #69fbc4;
@@ -677,6 +781,10 @@ body {
   max-width: 100%;
   border-radius: 0.5em;
 }
+.card__image:hover {
+  cursor: pointer;
+  transform: scale(0.97);
+}
 .card__link-add {
   order: 2;
   background-color: #211f4f;
@@ -691,6 +799,7 @@ body {
   text-align: center;
   text-decoration: none;
   margin: 0 0.5em 0.5em;
+  letter-spacing: 1px;
 }
 .card__link-add:hover {
   background-color: #69fbc4;
@@ -703,7 +812,7 @@ body {
 .card__content {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 1em;
 }
 .card__price {
   text-align: center;
@@ -718,4 +827,40 @@ body {
 }
 .card__description {
   padding: 0 0.5em;
+}
+
+.btn {
+  background-color: #211f4f;
+  border: 3px solid #69fbc4;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-weight: 600;
+  min-height: 40px;
+  padding: 0.7em 1em;
+  text-align: center;
+  text-decoration: none;
+  margin: 0 0.5em 0.5em;
+  letter-spacing: 1px;
+}
+.btn:hover {
+  background-color: #69fbc4;
+  border: 3px solid #211f4f;
+  color: #211f4f;
+}
+.btn:active {
+  opacity: 0.5;
+}
+
+.contact {
+  position: fixed;
+  right: 14px;
+  bottom: 100px;
+  z-index: 9;
+  width: auto;
+}
+.contact__link__image {
+  width: 3.5em;
+  height: 3.5em;
 }/*# sourceMappingURL=main.css.map */

@@ -21,6 +21,11 @@
     &__image {
         max-width: 100%;
         border-radius: 0.5em;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(0.97);
+        }
     }
 
     &__link-add {
@@ -37,6 +42,7 @@
         text-align: center;
         text-decoration: none;
         margin: 0 0.5em 0.5em;
+        letter-spacing: 1px;
 
         &:hover {
             background-color: #69fbc4;
@@ -52,7 +58,7 @@
     &__content {
         display: flex;
         flex-direction: column;
-        gap: 0.5em;
+        gap: 1em;
     }
 
     &__price {

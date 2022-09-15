@@ -18,7 +18,7 @@
 // 4. Layout-related sections
 @use 'layout/main-header';
 @use 'layout/section-cards';
-@use 'layout/cards-container';
+@use 'layout/main-footer';
 
 // 5. Components
 // @use 'components/button';
@@ -27,6 +27,8 @@
 @use 'components/main-nav';
 @use 'components/banner';
 @use 'components/card';
+@use 'components/btn';
+@use 'components/contact';
 
 // 6. Page-specific styles
 // @use 'pages/home';

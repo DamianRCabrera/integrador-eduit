@@ -11,13 +11,23 @@
 
     <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
 
+    <div class="contact">
+        <a class="contact__link" href="#">
+            <img class="contact__link__image" src="./assets/img/whatsapp.svg" alt="Icono para contacto por WhatsApp">
+        </a>
+    </div>
+
     <header class="main-header">
         <div class="main-header__logo-container">
             <img class="main-header__logo-container__logo" src="./assets/img/logo.svg" alt="Logo de Juguetería Cósmica">
             <h1 class="main-header__logo-container__title">Juguetería Cósmica</h1>
         </div>
         <div class="main-header__search-form-container">
-            <input class="main-header__search-form-container__search-input" type="search" placeholder="Buscar...">
+            <form class="search-form">
+                <label class="search-form__label" for="search"></label>
+                <input class="search-form__input" type="search" placeholder="Buscar..." id="search">
+                <button class="search-form__search">Buscar</button>
+            </form>
         </div>
         <div class="main-header__cart-button-container">
             <img class="main-header__cart-button-container__shopping-cart" src="./assets/img/shopping-cart.svg" alt="Carrito de Compra">
@@ -33,16 +43,16 @@
             <nav class="main-nav">
                 <ul class="main-nav__list">
                     <li class="main-nav__item">
-                        <a href="#" class="main-nav__link">Inicio</a>
+                        <a href="index.html" class="main-nav__link">Inicio</a>
                     </li>
                     <li class="main-nav__item">
-                        <a href="#" class="main-nav__link">Alta</a>
+                        <a href="alta.html" class="main-nav__link">Alta</a>
                     </li>
                     <li class="main-nav__item">
-                        <a href="#" class="main-nav__link">Contacto</a>
+                        <a href="contacto.html" class="main-nav__link">Contacto</a>
                     </li>
                     <li class="main-nav__item">
-                        <a href="#" class="main-nav__link">Nosotros</a>
+                        <a href="nosotros.html" class="main-nav__link">Nosotros</a>
                     </li>
                 </ul>
             </nav>
@@ -286,12 +296,38 @@
             </div>
 
             <footer class="section-cards__footer">
-                
+                <form class="newsletter">
+                    <label class="newsletter__label" for="newsletter-input">Conocé nuestras novedades</label>
+                    <input class="newsletter__email" type="email" name="newsletter-input" id="newsletter" placeholder="example@email.com">
+                    <input class="btn" type="submit" value="Suscribirme">
+                    <p class="newsletter__description">Recibí nuestras promociones y beneficios exclusivos para clientes</p>
+                </form>
             </footer>
         </section>
     </main>
 
-    <footer class="main-footer"></footer>
+    <footer class="main-footer">
+        <div class="main-footer__logo-container">
+            <img class="main-footer__logo-container__logo" src="./assets/img/logo.svg" alt="Logo de Juguetería Cósmica">
+        </div>
+        <div class="main-footer__data">
+            <p>Ituzaingo 651</p>
+            <p>Rosario, Santa Fe</p>
+        </div>
+        <div class="main-footer__data">
+            <p>+54 9 341-2275492</p>
+            <p>0800 999 3462</p>
+            <p>ventasonline@jugueteriacosmica.com.ar</p>
+        </div>
+        <div class="main-footer__social">
+            <a href="#">
+                <img class="main-footer__social__logo" src="./assets/img/facebook.svg" alt="Logo de Facebook">
+            </a>
+            <a href="#">
+                <img class="main-footer__social__logo" src="./assets/img/instagram.svg" alt="Logo de Instagram">
+            </a>
+        </div>
+    </footer>
 
 <script src="./js/main.js"></script>
 </body>

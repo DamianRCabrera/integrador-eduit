@@ -4,11 +4,9 @@
 // font-family: 'Poppins', sans-serif;
 
 .section-cards {
-    padding: 1em;
     display: flex;
     flex-direction: column;
     gap: 1em;
-    
 
     &__header{
         color: #211f4f;
@@ -30,5 +28,49 @@
         //     text-decoration: underline;
         // }
     }
+
+    &__footer {
+        background-image: url(../assets/img/bg-footer.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 1em;
+        margin: 2em 0 0;
+    }
 }
 
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+    padding: 0 1em;
+}
+
+.newsletter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+
+    &__label {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2em;
+        font-weight: 700;
+        color: #211f4f;
+        text-align: center;
+    }
+
+    &__email {
+        padding: 0.5em 2em;
+        border-radius: 1em;
+        border: none;
+        outline: none;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    &__description {
+        font-weight: 500;
+        text-align: center;
+    }
+}
