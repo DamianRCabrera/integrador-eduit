@@ -19,6 +19,7 @@
 @use 'layout/main-header';
 @use 'layout/section-cards';
 @use 'layout/main-footer';
+@use 'layout/form-container';
 
 // 5. Components
 // @use 'components/button';
@@ -29,9 +30,10 @@
 @use 'components/card';
 @use 'components/btn';
 @use 'components/contact';
+@use 'components/input-group';
 
 // 6. Page-specific styles
-// @use 'pages/home';
+// @use 'pages/home.scss';
 
 // 7. Themes
 // @use 'themes/default';

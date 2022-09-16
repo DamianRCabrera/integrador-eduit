@@ -1,0 +1,136 @@
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0.5em;
+    position: relative;
+
+    @media (min-width: 425px) {
+        flex-direction: row;
+    }
+
+    @media (min-width: 768px){
+        flex-direction: column;
+        flex-basis: 50%;
+    }
+
+    &-check {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5em;
+        padding: 0.5em;
+        position: relative;
+
+        @media (min-width: 425px) {
+            justify-content: flex-start;
+        }
+
+        @media (min-width: 768px){
+            justify-content: space-between;
+            flex: 1 0 50%;
+        }
+
+        &__label {
+            color: #ffffff;
+            letter-spacing: 1px;
+            font-weight: 500;
+
+            @media (min-width: 425px) {
+                flex-basis: 50%;
+                margin-bottom: 0;
+            }
+    
+            @media (min-width: 768px){
+                align-self: center;
+                padding-bottom: 0.5em;
+            }
+        }
+
+        &__checkbox {
+            width: 1.5em;
+            height: 1.5em;
+        }
+    }
+    
+    &__label {
+        color: #ffffff;
+        margin-bottom: 0.5em;
+        font-weight: 500;
+
+        @media (min-width: 425px) {
+            flex-basis: 50%;
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 768px){
+            align-self: flex-start;
+            padding-bottom: 0.5em;
+        }
+    }
+    
+    &__input {
+        background-color: #ffffff;
+        color: #000000;
+        border-radius: 0.5em;
+        outline: none;
+        padding: 0.5em;
+        border: 1px solid transparent;
+        &:focus {
+            border: 1px solid #5865f2;
+        }
+
+        @media (min-width: 425px){
+            flex-basis: 50%;
+            min-width: 0px;
+        }
+
+        @media (min-width: 768px) {
+            width: 100%;
+        }
+    }
+    
+    &__description {
+        letter-spacing: 1px;
+        font-weight: 500;
+        margin-bottom: 0.5em;
+
+        @media (min-width: 425px){
+            flex-basis: 50%;
+            margin-bottom: 0;
+        }
+
+        @media (min-width: 768px){
+            align-self: flex-start;
+        }
+    }
+    
+    &__textarea {
+        background-color: #ffffff;
+        color: #000000;
+        border-radius: 0.5em;
+        outline: none;
+        padding: 0.5em;
+        border: 1px solid transparent;
+        resize: none;
+
+        &:focus {
+            border: 1px solid #5865f2;
+        }
+
+        @media (min-width: 425px){
+            flex-basis: 50%;
+            min-width: 0px;
+        }
+
+        @media (min-width: 768px){
+            width: 100%;
+        }
+    }
+
+    &__file {
+        flex: 1 1 50%;
+        width: 100%;
+    }
+}

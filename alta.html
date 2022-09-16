@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alta de productos</title>
+    <title>Alta de productos - Damián R. Cabrera</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo.svg">
 </head>
 <body>
     <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
@@ -57,16 +58,119 @@
         </div>
     </header>
 
-    <main class="main-form">
-        <form action=""></form>
+
+
+    <main>
+        <div class="form-container">
+            <form class="main-form" action="post">
+
+                <div class="main-form-name">
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-name">
+                            Nombre del producto:<sup>&ast;</sup>
+                        </label>
+                        <input class="input-group__input" id="product-name" type="text" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-brand">
+                            Marca del producto:<sup>&ast;</sup>
+                        </label>
+                        <input class="input-group__input" list="product-brands" id="product-brand" name="product-brand" required/>
+                        <datalist id="product-brands">
+                            <option value="Hasbro">
+                            <option value="Mattel">
+                            <option value="Pinypon">
+                            <option value="Disney">
+                            <option value="Duravit">
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="main-form-quantity">
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-price">
+                            Precio<sup>&ast;</sup>
+                        </label>
+                        <input class="input-group__input" id="product-price" type="number" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-stock">
+                            Stock<sup>&ast;</sup>
+                        </label>
+                        <input class="input-group__input" id="product-stock" type="number" required>
+                    </div>
+                </div>
+
+                <div class="main-form-description">
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-brand">
+                            Categoría:<sup>&ast;</sup>
+                        </label>
+                        <input class="input-group__input" list="product-categories" id="product-category" name="product-category" required/>
+                        <datalist id="product-categories">
+                            <option value="Aire libre">
+                            <option value="Arte infantil">
+                            <option value="Juego de construcción">
+                            <option value="Cotillón">
+                            <option value="Figuras de acción">
+                            <option value="Juego de imitación">
+                            <option value="Juego de mesa">
+                            <option value="Rompecabezas">
+                            <option value="Pelotas">
+                            <option value="Muñecas y bebotes">
+                            <option value="Inflables">
+                            <option value="Peluches">
+                            <option value="Vehículos">
+                            <option value="Musicales">
+                            <option value="Regalería">
+                        </datalist>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-short-description">
+                            Descripción breve:<sup>&ast;</sup>
+                        </label>
+                        <input class="input-group__input" id="product-short-description" type="text" required>
+                    </div>
+                </div>
+
+                <div class="main-form-long-description">
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-long-description">Descripción larga</label>
+                        <textarea class="input-group__textarea" name="product-long-description" id="product-long-description" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+
+                <div class="main-form-aging">
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-age-from"> Edad desde:</label>
+                        <input class="input-group__input" id="product-age-from" type="number" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-age-to"> Edad hasta:</label>
+                        <input class="input-group__input" id="product-age-to" type="number" required>
+                    </div>
+                </div>
+
+                <div class="main-form-misc">
+                    <div class="input-group-check">
+                        <label class="input-group-check__label" for="product-free-ship">Envío gratis:</label>
+                        <input class="input-group-check__checkbox" type="checkbox" name="product-free-ship" id="product-free-ship" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-group__label" for="product-image">Añadir imagen del producto (min-max: 300px):</label>
+                        <input class="input-group__file" type="file" name="product-image" id="product-image" accept=".svg,.png,.jpg,.jpeg" required>
+                    </div>
+                </div>
+
+                <div class="main-form-buttons">
+                    <button class="btn">Agregar producto</button>
+                    <input class="btn btn__reset" type="reset" value="Resetear">
+                </div>
+
+            </form>
+        </div>
     </main>
-
-
-
-
-
-
-
 
     <footer class="main-footer">
         <div class="main-footer__logo-container">
@@ -74,7 +178,7 @@
         </div>
         <div class="main-footer__data">
             <p>Ituzaingo 651</p>
-            <p>Rosario, Santa Fe</p>
+            <p>Rosario, Santa Fe, Argentina - S2000</p>
         </div>
         <div class="main-footer__data">
             <p>+54 9 341-2275492</p>
