@@ -64,7 +64,7 @@
         <div class="form-container">
             <form class="main-form" action="post">
 
-                <div class="main-form-name">
+                <div class="main-form-group">
                     <div class="input-group">
                         <label class="input-group__label" for="product-name">
                             Nombre del producto:<sup>&ast;</sup>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
 
-                <div class="main-form-quantity">
+                <div class="main-form-group">
                     <div class="input-group">
                         <label class="input-group__label" for="product-price">
                             Precio<sup>&ast;</sup>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="main-form-description">
+                <div class="main-form-group">
                     <div class="input-group">
                         <label class="input-group__label" for="product-brand">
                             Categoría:<sup>&ast;</sup>
@@ -135,12 +135,12 @@
 
                 <div class="main-form-long-description">
                     <div class="input-group">
-                        <label class="input-group__label" for="product-long-description">Descripción larga</label>
+                        <label class="input-group__label" for="product-long-description">Descripción larga: (máx. 300 caracteres)</label>
                         <textarea class="input-group__textarea" name="product-long-description" id="product-long-description" cols="30" rows="10"></textarea>
                     </div>
                 </div>
 
-                <div class="main-form-aging">
+                <div class="main-form-group">
                     <div class="input-group">
                         <label class="input-group__label" for="product-age-from"> Edad desde:</label>
                         <input class="input-group__input" id="product-age-from" type="number" required>
@@ -151,21 +151,21 @@
                     </div>
                 </div>
 
-                <div class="main-form-misc">
+                <div class="main-form-group">
                     <div class="input-group-check">
                         <label class="input-group-check__label" for="product-free-ship">Envío gratis:</label>
                         <input class="input-group-check__checkbox" type="checkbox" name="product-free-ship" id="product-free-ship" required>
                     </div>
 
                     <div class="input-group">
-                        <label class="input-group__label" for="product-image">Añadir imagen del producto (min-max: 300px):</label>
+                        <label class="input-group__label" for="product-image">Añadir imagen del producto (max: 300px):</label>
                         <input class="input-group__file" type="file" name="product-image" id="product-image" accept=".svg,.png,.jpg,.jpeg" required>
                     </div>
                 </div>
 
                 <div class="main-form-buttons">
-                    <button class="btn">Agregar producto</button>
-                    <input class="btn btn__reset" type="reset" value="Resetear">
+                    <button class="btn" id="product-add">Agregar producto</button>
+                    <input class="btn btn__reset" id="product-reset" type="reset" value="Resetear">
                 </div>
 
             </form>

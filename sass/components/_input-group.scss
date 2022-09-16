@@ -51,6 +51,7 @@
         &__checkbox {
             width: 1.5em;
             height: 1.5em;
+            margin-right: 0.5em;
         }
     }
     
@@ -132,5 +133,6 @@
     &__file {
         flex: 1 1 50%;
         width: 100%;
+        color: #ffffff;
     }
 }

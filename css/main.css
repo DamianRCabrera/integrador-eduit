@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap"); /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -630,70 +631,70 @@ body {
   flex-direction: column;
   gap: 1.5em;
 }
-.main-form-name {
+.main-form-group {
   display: flex;
   flex-direction: column;
   gap: 1.5em;
 }
 @media (min-width: 768px) {
-  .main-form-name {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-  }
-}
-.main-form-quantity {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-}
-@media (min-width: 768px) {
-  .main-form-quantity {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-  }
-}
-.main-form-description {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-}
-@media (min-width: 768px) {
-  .main-form-description {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-  }
-}
-.main-form-aging {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-}
-@media (min-width: 768px) {
-  .main-form-aging {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
-  }
-}
-.main-form-misc {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-}
-@media (min-width: 768px) {
-  .main-form-misc {
+  .main-form-group {
     display: flex;
     flex-direction: row;
     gap: 1em;
   }
 }
 .main-form-buttons {
-  margin-top: 2em;
+  margin-top: 1em;
   display: flex;
   justify-content: space-evenly;
+}
+
+.about {
+  max-width: 1300px;
+  margin: auto;
+  padding: 3em 1em;
+}
+.about-title {
+  padding: 2em 0;
+}
+.about-title__heading {
+  font-family: "Poppins", sans-serif;
+  font-size: 2em;
+  color: #211F4F;
+  font-weight: 700;
+}
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+@media (min-width: 920px) {
+  .about-content {
+    flex-direction: row-reverse;
+  }
+}
+.about-content-image-container {
+  display: flex;
+  flex: 1 1 50%;
+}
+.about-content-image-container__img {
+  width: 100%;
+  height: auto;
+}
+.about-content-info {
+  flex: 1 1 50%;
+}
+.about-content-info__p {
+  line-height: 1.5;
+  margin-bottom: 1em;
+  font-size: 1.3em;
+  color: #211F4F;
+  font-weight: 500;
+}
+@media (min-width: 768px) {
+  .about-content-info__p {
+    text-align: justify;
+  }
 }
 
 .hamburger-button {
@@ -792,6 +793,13 @@ body {
     flex-direction: row;
   }
 }
+.banner__footer {
+  background-image: url(../assets/img/bg-footer.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 1em;
+  margin: 2em 0 0;
+}
 
 .banner-info {
   flex: 1 1 30%;
@@ -852,7 +860,7 @@ body {
   }
 }
 .card__image-container {
-  flex: 1 1 100%;
+  flex: 1 1 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -890,6 +898,7 @@ body {
   opacity: 0.5;
 }
 .card__content {
+  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1021,6 +1030,7 @@ body {
 .input-group-check__checkbox {
   width: 1.5em;
   height: 1.5em;
+  margin-right: 0.5em;
 }
 .input-group__label {
   color: #ffffff;
@@ -1103,4 +1113,5 @@ body {
 .input-group__file {
   flex: 1 1 50%;
   width: 100%;
+  color: #ffffff;
 }/*# sourceMappingURL=main.css.map */

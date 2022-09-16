@@ -18,51 +18,7 @@
     flex-direction: column;
     gap: 1.5em;
 
-    &-name {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5em;
-        @media (min-width: 768px){
-            display: flex;
-            flex-direction: row;
-            gap: 1em;
-        }
-    }
-
-    &-quantity {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5em;
-        @media (min-width: 768px){
-            display: flex;
-            flex-direction: row;
-            gap: 1em;
-        }
-    }
-
-    &-description {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5em;
-        @media (min-width: 768px){
-            display: flex;
-            flex-direction: row;
-            gap: 1em;
-        }
-    }
-
-    &-aging {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5em;
-        @media (min-width: 768px){
-            display: flex;
-            flex-direction: row;
-            gap: 1em;
-        }
-    }
-
-    &-misc {
+    &-group {
         display: flex;
         flex-direction: column;
         gap: 1.5em;
@@ -74,7 +30,7 @@
     }
 
     &-buttons {
-        margin-top: 2em;
+        margin-top: 1em;
         display: flex;
         justify-content: space-evenly;
     }
