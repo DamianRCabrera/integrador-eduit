@@ -72,19 +72,19 @@
         </header>
 
         <div class="form-container">
-            <form class="main-form" action="post">
+            <form class="main-form" id="form-add-comment" action="post">
                 <div class="main-form-group">
                     <div class="input-group">
                         <label class="input-group__label" for="user-name">
                             Nombre:<sup>&ast;</sup>
                         </label>
-                        <input class="input-group__input" id="user-name" type="text" required>
+                        <input class="input-group__input" id="user-name" type="text">
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="user-lastname">
                             Apellido:<sup>&ast;</sup>
                         </label>
-                        <input class="input-group__input" id="user-lastname" type="text" required>
+                        <input class="input-group__input" id="user-lastname" type="text">
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@
                         <label class="input-group__label" for="user-telephone">
                             Teléfono:<sup>&ast;</sup>
                         </label>
-                        <input class="input-group__input" id="user-telephone" type="text" required>
+                        <input class="input-group__input" id="user-telephone" type="text">
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="user-email">
@@ -141,15 +141,17 @@
             <p>ventasonline@jugueteriacosmica.com.ar</p>
         </div>
         <div class="main-footer__social">
-            <a href="#">
+            <a href="https://www.facebook.com/">
                 <img class="main-footer__social__logo" src="./assets/img/facebook.svg" alt="Logo de Facebook">
             </a>
-            <a href="#">
+            <a href="https://www.instagram.com/">
                 <img class="main-footer__social__logo" src="./assets/img/instagram.svg" alt="Logo de Instagram">
             </a>
         </div>
     </footer>
 
 <script src="./js/main.js"></script>
+<script src="./js/validation.js"></script>
+
 </body>
 </html>
