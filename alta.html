@@ -12,7 +12,7 @@
     <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
 
     <div class="contact">
-        <a class="contact__link" href="#">
+        <a class="contact__link" href="https://api.whatsapp.com/send?phone=3412275492">
             <img class="contact__link__image" src="./assets/img/whatsapp.svg" alt="Icono para contacto por WhatsApp">
         </a>
     </div>
@@ -67,21 +67,21 @@
                 <div class="main-form-group">
                     <div class="input-group">
                         <label class="input-group__label" for="product-name">
-                            Nombre del producto:<sup>&ast;</sup>
+                            Nombre del producto:
                         </label>
-                        <input class="input-group__input" id="product-name" type="text" required>
+                        <input class="input-group__input" id="product-name" type="text">
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="product-brand">
-                            Marca del producto:<sup>&ast;</sup>
+                            Marca del producto:
                         </label>
-                        <input class="input-group__input" list="product-brands" id="product-brand" name="product-brand" required/>
+                        <input class="input-group__input" list="product-brands" id="product-brand" name="product-brand"/>
                         <datalist id="product-brands">
-                            <option value="Hasbro">
-                            <option value="Mattel">
-                            <option value="Pinypon">
-                            <option value="Disney">
-                            <option value="Duravit">
+                            <option value="HASBRO">
+                            <option value="MATTEL">
+                            <option value="PINYPON">
+                            <option value="DISNEY">
+                            <option value="DURAVIT">
                         </datalist>
                     </div>
                 </div>
@@ -89,47 +89,47 @@
                 <div class="main-form-group">
                     <div class="input-group">
                         <label class="input-group__label" for="product-price">
-                            Precio<sup>&ast;</sup>
+                            Precio
                         </label>
-                        <input class="input-group__input" id="product-price" type="number" required>
+                        <input class="input-group__input" id="product-price" type="number" step=".01">
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="product-stock">
-                            Stock<sup>&ast;</sup>
+                            Stock
                         </label>
-                        <input class="input-group__input" id="product-stock" type="number" required>
+                        <input class="input-group__input" id="product-stock" type="number">
                     </div>
                 </div>
 
                 <div class="main-form-group">
                     <div class="input-group">
-                        <label class="input-group__label" for="product-brand">
-                            Categoría:<sup>&ast;</sup>
+                        <label class="input-group__label" for="product-category">
+                            Categoría:
                         </label>
-                        <input class="input-group__input" list="product-categories" id="product-category" name="product-category" required/>
+                        <input class="input-group__input" list="product-categories" id="product-category" name="product-category"/>
                         <datalist id="product-categories">
-                            <option value="Aire libre">
-                            <option value="Arte infantil">
-                            <option value="Juego de construcción">
-                            <option value="Cotillón">
-                            <option value="Figuras de acción">
-                            <option value="Juego de imitación">
-                            <option value="Juego de mesa">
-                            <option value="Rompecabezas">
-                            <option value="Pelotas">
-                            <option value="Muñecas y bebotes">
-                            <option value="Inflables">
-                            <option value="Peluches">
-                            <option value="Vehículos">
-                            <option value="Musicales">
-                            <option value="Regalería">
+                            <option value="AIRE LIBRE">
+                            <option value="ARTE INFANTIL">
+                            <option value="JUEGO DE CONSTRUCCION">
+                            <option value="COTILLON">
+                            <option value="FIGURAS DE ACCION">
+                            <option value="JUEGO DE IMITACION">
+                            <option value="JUEGO DE MESA">
+                            <option value="ROMPECABEZAS">
+                            <option value="PELOTAS">
+                            <option value="MUÑECAS Y BEBES">
+                            <option value="INFLABLES">
+                            <option value="PELUCHES">
+                            <option value="VEHICULOS">
+                            <option value="MUSICALES">
+                            <option value="REGALERIA">
                         </datalist>
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="product-short-description">
-                            Descripción breve:<sup>&ast;</sup>
+                            Descripción breve:
                         </label>
-                        <input class="input-group__input" id="product-short-description" type="text" required>
+                        <input class="input-group__input" id="product-short-description" type="text">
                     </div>
                 </div>
 
@@ -143,23 +143,23 @@
                 <div class="main-form-group">
                     <div class="input-group">
                         <label class="input-group__label" for="product-age-from"> Edad desde:</label>
-                        <input class="input-group__input" id="product-age-from" type="number" required>
+                        <input class="input-group__input" id="product-age-from" type="number">
                     </div>
                     <div class="input-group">
                         <label class="input-group__label" for="product-age-to"> Edad hasta:</label>
-                        <input class="input-group__input" id="product-age-to" type="number" required>
+                        <input class="input-group__input" id="product-age-to" type="number">
                     </div>
                 </div>
 
                 <div class="main-form-group">
                     <div class="input-group-check">
-                        <label class="input-group-check__label" for="product-free-ship">Envío gratis:</label>
-                        <input class="input-group-check__checkbox" type="checkbox" name="product-free-ship" id="product-free-ship" required>
+                        <label class="input-group-check__label" for="product-free-shipping">Envío gratis:</label>
+                        <input class="input-group-check__checkbox" type="checkbox" name="product-free-shipping" id="product-free-shipping">
                     </div>
 
                     <div class="input-group">
                         <label class="input-group__label" for="product-image">Añadir imagen del producto (max: 300px):</label>
-                        <input class="input-group__file" type="file" name="product-image" id="product-image" accept=".svg,.png,.jpg,.jpeg" required>
+                        <input class="input-group__file" type="file" name="product-image" id="product-image" accept=".svg,.png,.jpg,.jpeg">
                     </div>
                 </div>
 
@@ -194,5 +194,7 @@
             </a>
         </div>
     </footer>
+
+    <script src="./js/_validation.js"></script>
 </body>
 </html>

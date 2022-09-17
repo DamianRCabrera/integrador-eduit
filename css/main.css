@@ -1058,7 +1058,7 @@ body {
   border: 1px solid transparent;
 }
 .input-group__input:focus {
-  border: 1px solid #5865f2;
+  border: 1px solid #69fbc4;
 }
 @media (min-width: 425px) {
   .input-group__input {
@@ -1097,7 +1097,7 @@ body {
   resize: none;
 }
 .input-group__textarea:focus {
-  border: 1px solid #5865f2;
+  border: 1px solid #69fbc4;
 }
 @media (min-width: 425px) {
   .input-group__textarea {
@@ -1114,4 +1114,29 @@ body {
   flex: 1 1 50%;
   width: 100%;
   color: #ffffff;
+}
+
+.error-display__popup {
+  font-size: 0.9em;
+  color: #cb7678;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  padding: 0.5em;
+}
+@media (min-width: 425px) {
+  .error-display__popup {
+    top: 45px;
+  }
+  .error-display__popup--address {
+    top: 75px;
+  }
+}
+@media (min-width: 768px) {
+  .error-display__popup {
+    top: 70px;
+    font-size: 0.9em;
+  }
 }/*# sourceMappingURL=main.css.map */
