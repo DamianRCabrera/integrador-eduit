@@ -12,90 +12,146 @@ const productAgeTo = document.getElementById("product-age-to");
 const productFreeShipping = document.getElementById("product-free-shipping");
 const productImage = document.getElementById("product-image");
 
-// Initializing variables for buttons on alta.html
+// Initializing variable for form on alta.html
 
-const btnAddProduct = document.getElementById("product-add");
-const btnResetProduct = document.getElementById("product-reset");
+const formAddProduct = document.getElementById("form-add-product");
+const formForProducts = document.querySelector('.main-form');
 
-// RegExp for inputs on alta.html
+// RegExp for inputs on alta.html //
 
-const regExpProductName = /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{2,60}$/;
+const regExpProductName = /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{3,60}$/;
 const regExpProductBrand = /^[A-Za-z\dÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇ!ç&\s\.\,\-\(\)\'\"\°\/]{3,50}$/;
 const regExpProductPrice = /^(?![0])\d{1,7}([\.]\d{1,2})?$/;
 const regExpProductStock = /^(?![0])\d{1,5}$/;
-const regExpProductCategory = /^([a-zA-ZÁÉÍÓÚÑÜáéíóúñü][\s\.a-záéíóúñü\-\/]{2,25})$/;
-const regExpProductShortDescription = /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{30,80}$/;
+const regExpProductCategory = /^([a-zA-ZÁÉÍÓÚÑÜáéíóúñü][\s\.A-ZÁÉÍÓÚÑÜa-záéíóúñü\-\/]{3,25})$/;
+const regExpProductShortDescription = /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{20,80}$/;
 const regExpProductLongDescription = /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{30,300}$/;
 const regExpProductAgeFrom = /^(?![0])\d{1,2}$/;
 const regExpProductAgeTo = /^(?![0])\d{1,2}$/;
 
-// Core Functions
+// Core Functions //
 
-function validation(value, regExp) {
+const validation = (value, regExp) => {
     return regExp.test(value)
 }
 
-function clearInput(e) {
+const clearInput = (e) => {
     if(e.target.value === ''){
         e.target.style.backgroundImage = "none";
         e.target.style.backgroundColor = '#ffffff';
+        removeAllPopUps();
         return true
     } return false
 }
 
-function createError (msg, errName = '', popup = '') {
+const createError = (msg, errName = '', popup = '') => {
     let error = new Error(msg);
     error.name = errName;
     error.popup = popup;
     return error;
 }
 
-function trimValue (ev) {
+const trimValue = (ev) => {
     ev.target.value = ev.target.value.trim();
 }
 
-function displayWarningError (ev, err) {
+const displayWarningError = (ev, err) => {
     let divError = document.createElement('div');
     divError.classList.add('error-display__popup');
     divError.innerHTML = err.message;
     ev.target.insertAdjacentElement('afterend', divError);
-    setTimeout(() => divError.remove(), 3000);
     return divError
 }
 
-function displayCheckOnInput (ev) {
+const removeAllPopUps = () => {
+    let popUps = document.querySelectorAll('.error-display__popup');
+    popUps.forEach(popup => popup.remove());
+}
+
+const displayCheckOnInput = (ev) => {
     ev.target.style.background='url(./assets/img/check.svg) no-repeat right';
     ev.target.style.backgroundColor = '#ffffff';
     ev.target.style.backgroundSize = '1.2em';
-    ev.target.style.backgroundPosition = '98% center';
+    ev.target.style.backgroundPosition = 'right 1.5em center';
 }
 
-function modifyInputBackgroundOnError(e) {
+const modifyInputBackgroundOnError = (e) => {
     e.target.style.backgroundColor= '#d63c40';
     e.target.style.backgroundImage = "none";
 }
 
 
-function displayPopUpError(e, regExp, errMsg){
+const displayPopUpError = (e, regExp, errMsg) => {
     if(clearInput(e)){return}
 
     trimValue(e);
 
     if(validation(e.target.value, regExp) || (e.target.value === '')){
         displayCheckOnInput(e);
+        return true;
     } else {
         modifyInputBackgroundOnError(e);
         let error = createError (errMsg);
         displayWarningError(e, error);
+        return false;
     }
 }
 
-/////////////////////////// Events Handling /////////////////////////////////
+// Event Handlers for alta.html //
 
-const formForProducts = document.querySelector('.main-form');
-
-formForProducts.addEventListener('onerror', (e) => {
+formForProducts.addEventListener('change', (e) => {
     if (e.target.id === 'product-name') {
-        displayPopUpError(e, regExpProductName, 'El nombre del producto debe contener entre 3 y 10 caracteres, sin números ni caracteres especiales.');
-    }}
-);
+        displayPopUpError(e, regExpProductName, 'El nombre del producto debe contener entre 2 y 60 caracteres, sin caracteres especiales.');
+        return;
+    } else if (e.target.id === 'product-brand') {
+        displayPopUpError(e, regExpProductBrand, 'La marca del producto debe contener entre 3 y 50 caracteres, sin caracteres especiales.');
+        return;
+    } else if (e.target.id === 'product-price') {
+        displayPopUpError(e, regExpProductPrice, 'El precio del producto debe contener entre 1 y 7 números, sin caracteres especiales.');
+        return;
+    } else if (e.target.id === 'product-stock') {
+        displayPopUpError(e, regExpProductStock, 'El stock del producto debe contener entre 1 y 5 números, sin caracteres especiales.');
+        return;
+    } else if (e.target.id === 'product-category') {
+        displayPopUpError(e, regExpProductCategory, 'La categoría del producto debe contener entre 3 y 25 caracteres, sin números ni caracteres especiales.');
+        return;
+    } else if (e.target.id === 'product-short-description') {
+        displayPopUpError(e, regExpProductShortDescription, 'La descripción corta del producto debe contener entre 20 y 80 caracteres, sin caracteres especiales.');
+        return;
+    } else if (e.target.id === 'product-long-description') {
+        displayPopUpError(e, regExpProductLongDescription, 'La descripción larga del producto debe contener entre 30 y 300 caracteres, sin caracteres especiales.');
+        return;
+    } else if (e.target.id === 'product-age-from') {
+        displayPopUpError(e, regExpProductAgeFrom, 'La edad mínima del producto debe contener entre 1 y 2 números, sin caracteres especiales.');
+        return;
+    } else if (e.target.id === 'product-age-to') {
+        displayPopUpError(e, regExpProductAgeTo, 'La edad máxima del producto debe contener entre 1 y 2 números, sin caracteres especiales.');
+        return;
+    } else {
+        return;
+    }
+});
+
+formAddProduct.addEventListener('submit', (e) => {
+    if(validation(productName.value, regExpProductName) &&
+    validation(productBrand.value, regExpProductBrand) &&
+    validation(productPrice.value, regExpProductPrice) &&
+    validation(productStock.value, regExpProductStock) &&
+    validation(productCategory.value, regExpProductCategory) &&
+    validation(productShortDescription.value, regExpProductShortDescription) &&
+    validation(productLongDescription.value, regExpProductLongDescription) &&
+    validation(productAgeFrom.value, regExpProductAgeFrom) &&
+    validation(productAgeTo.value, regExpProductAgeTo)){
+        alert('El producto se ha agregado correctamente.');
+        return;
+    } else {
+        e.preventDefault();
+        alert('Por favor, complete todos los campos correctamente.');
+        return;
+    }
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
