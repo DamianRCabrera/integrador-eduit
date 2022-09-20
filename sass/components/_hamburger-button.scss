@@ -3,32 +3,32 @@
     cursor: pointer;
     width: 3em;
     height: 3em;
-    background-color: #222;
+    background-color: transparent;
     position: relative;
     border-radius: .2em;
 
     &:hover {
-        background-color: #2a2a2a;
+        transform: scale(1.05);
     }
 
     &__top-bread {
         display: block;
         position: absolute;
         width:80%;
-        height: 10%;
+        height: 12%;
         top:20%;
         left: 10%;
-        background-color: #eee;
+        background-color: #211f4f;
     }
 
     &__meat {
         display: block;
         position: absolute;
         width:80%;
-        height: 10%;
+        height: 12%;
         top: 50%;
         left: 10%;
-        background-color: #eee;
+        background-color: #211f4f;
         transform: translateY(-50%);
     }
 
@@ -36,9 +36,9 @@
         display: block;
         position: absolute;
         width:80%;
-        height: 10%;
+        height: 12%;
         bottom: 20%;
         left: 10%;
-        background-color: #eee;
+        background-color: #211f4f;
     }
 }
