@@ -87,11 +87,14 @@ const displayPopUpError = (e, regExp, errMsg) => {
 
     if(validation(e.target.value, regExp) || (e.target.value === '')){
         displayCheckOnInput(e);
+        e.target.parentElement.querySelector('.error-display__popup')?.remove();
         return true;
     } else {
         modifyInputBackgroundOnError(e);
+        if(e.target.parentElement.querySelector('.error-display__popup') === null){
         let error = createError (errMsg);
         displayWarningError(e, error);
+        }
         return false;
     }
 }
