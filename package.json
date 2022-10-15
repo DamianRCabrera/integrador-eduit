@@ -1,0 +1,31 @@
+{
+  "name": "integrador-eduit",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Proyecto Integrador del Bootcamp EducacionIT Fullstack",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node app.js",
+    "watch": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DamianRCabrera/integrador-eduit.git"
+  },
+  "keywords": [],
+  "author": "Damian Cabrera - https://github.com/DamianRCabrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DamianRCabrera/integrador-eduit/issues"
+  },
+  "homepage": "https://github.com/DamianRCabrera/integrador-eduit#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
+  }
+}

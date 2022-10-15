@@ -1,0 +1,114 @@
+<div class="form-container">
+  <form class="main-form" id="form-add-product" action="post" autocomplete="off">
+
+    <div class="main-form-group">
+      <div class="input-group">
+        <label class="input-group__label" for="product-name">
+          Nombre del producto:
+        </label>
+        <input class="input-group__input" id="product-name" type="text">
+      </div>
+      <div class="input-group">
+        <label class="input-group__label" for="product-brand">
+          Marca del producto:
+        </label>
+        <input class="input-group__input input-group__input__brand" list="product-brands" id="product-brand"
+          name="product-brand" />
+        <datalist id="product-brands">
+          <option value="HASBRO">
+          <option value="MATTEL">
+          <option value="PINYPON">
+          <option value="DISNEY">
+          <option value="DURAVIT">
+        </datalist>
+      </div>
+    </div>
+
+    <div class="main-form-group">
+      <div class="input-group">
+        <label class="input-group__label" for="product-price">
+          Precio
+        </label>
+        <input class="input-group__input" id="product-price" type="number" step=".01">
+      </div>
+      <div class="input-group">
+        <label class="input-group__label" for="product-stock">
+          Stock
+        </label>
+        <input class="input-group__input" id="product-stock" type="number">
+      </div>
+    </div>
+
+    <div class="main-form-group">
+      <div class="input-group">
+        <label class="input-group__label" for="product-category">
+          Categoría:
+        </label>
+        <input class="input-group__input" list="product-categories" id="product-category" name="product-category" />
+        <datalist id="product-categories">
+          <option value="AIRE LIBRE">
+          <option value="ARTE INFANTIL">
+          <option value="JUEGO DE CONSTRUCCION">
+          <option value="COTILLON">
+          <option value="FIGURAS DE ACCION">
+          <option value="JUEGO DE IMITACION">
+          <option value="JUEGO DE MESA">
+          <option value="ROMPECABEZAS">
+          <option value="PELOTAS">
+          <option value="MUÑECAS Y BEBES">
+          <option value="INFLABLES">
+          <option value="PELUCHES">
+          <option value="VEHICULOS">
+          <option value="MUSICALES">
+          <option value="REGALERIA">
+        </datalist>
+      </div>
+      <div class="input-group">
+        <label class="input-group__label" for="product-short-description">
+          Descripción breve:
+        </label>
+        <input class="input-group__input" id="product-short-description" type="text">
+      </div>
+    </div>
+
+    <div class="main-form-long-description">
+      <div class="input-group">
+        <label class="input-group__label" for="product-long-description">Descripción larga: (máx. 300
+          caracteres)</label>
+        <textarea class="input-group__textarea" name="product-long-description" id="product-long-description" cols="30"
+          rows="10"></textarea>
+      </div>
+    </div>
+
+    <div class="main-form-group">
+      <div class="input-group">
+        <label class="input-group__label" for="product-age-from"> Edad desde:</label>
+        <input class="input-group__input" id="product-age-from" type="number">
+      </div>
+      <div class="input-group">
+        <label class="input-group__label" for="product-age-to"> Edad hasta:</label>
+        <input class="input-group__input" id="product-age-to" type="number">
+      </div>
+    </div>
+
+    <div class="main-form-group">
+      <div class="input-group-check">
+        <label class="input-group-check__label" for="product-free-shipping">Envío gratis:</label>
+        <input class="input-group-check__checkbox" type="checkbox" name="product-free-shipping"
+          id="product-free-shipping">
+      </div>
+
+      <div class="input-group">
+        <label class="input-group__label" for="product-image">Añadir imagen del producto (max: 300px):</label>
+        <input class="input-group__file" type="file" name="product-image" id="product-image"
+          accept=".svg,.png,.jpg,.jpeg" required>
+      </div>
+    </div>
+
+    <div class="main-form-buttons">
+      <button class="btn" id="product-add">Agregar producto</button>
+      <input class="btn btn__reset" id="product-reset" type="reset" value="Limpiar campos">
+    </div>
+
+  </form>
+</div>

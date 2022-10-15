@@ -1,0 +1,65 @@
+<header class="banner">
+  <div class="banner-info">
+    <h1 class="banner-info__title">Juguetería Cósmica</h1>
+    <h2 class="banner-info__description">Envianos tus consultas y sugerencias</h2>
+  </div>
+  <div class="banner-display">
+    <img class="banner-display__image" src="./assets/img/banner.jpg" alt="Foto de niños jugando">
+  </div>
+</header>
+
+<div class="form-container">
+  <form class="main-form" id="form-add-comment" action="post">
+    <div class="main-form-group">
+      <div class="input-group">
+        <label class="input-group__label" for="user-name">
+          Nombre:<sup>&ast;</sup>
+        </label>
+        <input class="input-group__input" id="user-name" type="text">
+      </div>
+      <div class="input-group">
+        <label class="input-group__label" for="user-lastname">
+          Apellido:<sup>&ast;</sup>
+        </label>
+        <input class="input-group__input" id="user-lastname" type="text">
+      </div>
+    </div>
+
+    <div class="main-form-group">
+      <div class="input-group">
+        <label class="input-group__label" for="user-telephone">
+          Teléfono:<sup>&ast;</sup>
+        </label>
+        <input class="input-group__input" id="user-telephone" type="text">
+      </div>
+      <div class="input-group">
+        <label class="input-group__label" for="user-email">
+          Correo Electrónico:<sup>&ast;</sup>
+        </label>
+        <input type="email" class="input-group__input" id="user-email" name="user-email" required />
+      </div>
+    </div>
+
+    <div class="main-form-comment">
+      <div class="input-group">
+        <label class="input-group__label" for="user-comment">Dejanos tu comentario: (máx. 300 caracteres)</label>
+        <textarea class="input-group__textarea" name="user-comment" id="user-comment" cols="30" rows="10"></textarea>
+      </div>
+    </div>
+
+    <div class="main-form-buttons">
+      <button class="btn" id="send-comment">Enviar</button>
+    </div>
+
+  </form>
+</div>
+
+<footer class="banner__footer">
+  <form class="newsletter">
+    <label class="newsletter__label" for="newsletter-input">Conocé nuestras novedades</label>
+    <input class="newsletter__email" type="email" name="newsletter-input" id="newsletter-input"
+      placeholder="example@email.com">
+    <input class="btn" type="submit" value="Suscribirme">
+    <p class="newsletter__description">Recibí nuestras promociones y beneficios exclusivos para clientes</p>
+  </form>
+</footer>

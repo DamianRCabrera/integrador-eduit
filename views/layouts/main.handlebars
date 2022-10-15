@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosotros - Damián R. Cabrera</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo.svg">
+    <title>{{{title}}}</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/logo.svg">
 </head>
 <body>
 
     <input type="checkbox" class="main-nav-toggle" id="main-nav-toggle">
 
     <div class="contact">
-        <a class="contact__link" href="#">
+        <a class="contact__link" href="https://api.whatsapp.com/send?phone=3412275492">
             <img class="contact__link__image" src="./assets/img/whatsapp.svg" alt="Icono para contacto por WhatsApp">
         </a>
     </div>
@@ -43,53 +43,23 @@
             <nav class="main-nav">
                 <ul class="main-nav__list">
                     <li class="main-nav__item">
-                        <a href="index.html" class="main-nav__link">Inicio</a>
+                        <a href="#/" class="main-nav__link">Inicio</a>
                     </li>
                     <li class="main-nav__item">
-                        <a href="alta.html" class="main-nav__link">Alta</a>
+                        <a href="#/alta" class="main-nav__link">Alta</a>
                     </li>
                     <li class="main-nav__item">
-                        <a href="contacto.html" class="main-nav__link">Contacto</a>
+                        <a href="#/contacto" class="main-nav__link">Contacto</a>
                     </li>
                     <li class="main-nav__item">
-                        <a href="nosotros.html" class="main-nav__link">Nosotros</a>
+                        <a href="#/nosotros" class="main-nav__link">Nosotros</a>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <div class="about">
-
-            <div class="about-title">
-                <h2 class="about-title__heading">
-                    Sobre nosotros
-                </h2>
-            </div>
-
-            <div class="about-content">
-                <div class="about-content-image-container">
-                    <img class="about-content-image-container__img" src="./assets/img/about.jpg" alt="Niño observando vidriera de Juguetería Cósmica">
-                </div>
-                <div class="about-content-info">
-                    <p class="about-content-info__p">Te damos la bienvenida a la Juguetería Cósmica, el canal de venta minorista de Cósmico SA. Juguetería Cósmica nace en la ciudad de Rosario el 10 de enero de 1995, nutriéndose de la amplia experiencia en la distribución masiva de juguetes y papelería comercial y escolar. Nuestro objetivo es cumplir con las necesidades de nuestros clientes brindando, desde nuestros inicios, la mejor atención y un servicio de excelencia.</p>
-                    <p class="about-content-info__p">Nuestro local se encuentra ubicado en el centro rosarino, Ituzaingo 651, y mantiene un novedoso diseño arquitectónico. Guiados por nuestro deseo de brindarles a nuestros consumidores la mejor calidad y combinándolo con la calidez que caracteriza nuestra atención, hicimos de éste un punto de referencia en el país, a la altura de los mejores retails del mundo.</p>
-                    <p class="about-content-info__p">En la Juguetería Cósmica, encontrarás los mejores productos de juguetería, tecnología y productos escolares. Si estás buscando algo nuevo, ¡estás en el lugar correcto! Nos esforzamos por ser originales e innovadores, ofreciendo a nuestros clientes calidad y confianza, poniendo sus deseos en el primer lugar de nuestra lista de prioridades.</p>
-                </div>
-            </div>
-
-        </div>
-
-        <footer class="banner__footer">
-            <form class="newsletter">
-                <label class="newsletter__label" for="newsletter-input">Conocé nuestras novedades</label>
-                <input class="newsletter__email" type="email" name="newsletter-input" id="newsletter-input" placeholder="example@email.com">
-                <input class="btn" type="submit" value="Suscribirme">
-                <p class="newsletter__description">Recibí nuestras promociones y beneficios exclusivos para clientes</p>
-            </form>
-        </footer>
-    </main>
+    <main>{{{body}}}</main>
 
     <footer class="main-footer">
         <div class="main-footer__logo-container">
@@ -114,6 +84,6 @@
         </div>
     </footer>
 
-<script src="./js/main.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
