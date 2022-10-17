@@ -528,7 +528,7 @@ body {
   font-weight: 700;
 }
 .section-cards__footer {
-  background-image: url(../assets/img/bg-footer.png);
+  background-image: url(../assets/img/bg-footer.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   padding: 1em;
@@ -780,6 +780,10 @@ body {
   height: 100%;
   text-decoration: none;
 }
+.main-nav__link--active {
+  background-color: #69fbc4;
+  color: #211f4f;
+}
 .main-nav__link:hover {
   background-color: #69fbc4;
   color: #211f4f;
@@ -796,7 +800,7 @@ body {
   }
 }
 .banner__footer {
-  background-image: url(../assets/img/bg-footer.png);
+  background-image: url(../assets/img/bg-footer.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   padding: 1em;
@@ -1122,7 +1126,7 @@ body {
   font-size: 0.8em;
   color: #cb7678;
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
   position: absolute;
   top: 70px;
   left: 0px;
@@ -1141,4 +1145,28 @@ body {
     top: 70px;
     font-size: 0.9em;
   }
+}
+
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem;
+  min-height: 65vh;
+}
+.error-404__image {
+  width: 20rem;
+}
+.error-404__title {
+  font-size: 1.2rem;
+  color: #211f4f;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+.error-404__link {
+  color: #898989;
+  font-size: 1.2rem;
+  font-family: "Oxygen", "sans-serif";
 }/*# sourceMappingURL=main.css.map */

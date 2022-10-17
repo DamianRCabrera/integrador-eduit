@@ -12,7 +12,8 @@ class Main {
   }
 
   getViewUrlFromId(id) {
-    return `views/${id}.handlebars`;
+    console.log(id);
+    return `views/${id}`;
   }
 
   getModuleUrlFromId(id) {
@@ -51,12 +52,12 @@ class Main {
 
     const viewUrl = this.getViewUrlFromId(id);
 
-    console.log(viewUrl)
-
     const viewContent = await this.ajax(viewUrl);
     document.querySelector("main").innerHTML = viewContent;
 
     this.setActiveLink(id);
+
+    document.title = `Jugueteria cosmica - ${id}`;
 
     this.initJS(id);
   }
@@ -73,6 +74,3 @@ class Main {
 
 const main = new Main();
 main.start();
-
-
-fetch

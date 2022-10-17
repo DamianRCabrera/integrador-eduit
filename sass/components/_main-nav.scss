@@ -32,6 +32,11 @@
         height: 100%;
         text-decoration: none;
 
+        &--active {
+            background-color: #69fbc4;
+            color: #211f4f;
+        }
+
         &:hover{
             background-color: #69fbc4;
             color: #211f4f;

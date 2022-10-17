@@ -1,4 +1,4 @@
-// Initializing variables for inputs on alta.html
+// Initializing variables for inputs on page alta
 
 const productName = document.getElementById("product-name");
 const productBrand = document.getElementById("product-brand");
@@ -12,11 +12,11 @@ const productAgeTo = document.getElementById("product-age-to");
 const productFreeShipping = document.getElementById("product-free-shipping");
 const productImage = document.getElementById("product-image");
 
-// Initializing variable for form on alta.html
+// Initializing variable for form on page alta
 
 const formAddProduct = document.getElementById("form-add-product");
 
-// RegExp for inputs on alta.html //
+// RegExp for inputs on page alta //
 
 const regExpProductName = /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{3,60}$/;
 const regExpProductBrand = /^[A-Za-z\dÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇ!ç&\s\.\,\-\(\)\'\"\°\/]{3,50}$/;
@@ -99,7 +99,7 @@ const displayPopUpError = (e, regExp, errMsg) => {
     }
 }
 
-// Event Handlers for alta.html //
+// Event Handlers for page alta //
 
 if(formAddProduct){
     formAddProduct.addEventListener('change', (e) => {
@@ -159,25 +159,25 @@ if(formAddProduct){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Initializing variables for inputs on contacto.html
+// Initializing variables for inputs on page contacto
 
 const userName = document.getElementById('user-name');
 const userLastName = document.getElementById('user-last-name');
 const userTelephone = document.getElementById('user-telephone');
 const userComment = document.getElementById('user-comment');
 
-// Initializing variable for form on alta.html
+// Initializing variable for form on page alta
 
 const formAddComment = document.getElementById('form-add-comment');
 
-// Regular Expressions for inputs on contacto.html
+// Regular Expressions for inputs on page contacto
 
 const regExpUserName = /^([a-zA-ZÁÉÍÓÚÑÜáéíóúñü][a-záéíóúñü]{2,9})(\s[a-zA-ZÁÉÍÓÚÑÜáéíóúñü][a-záéíóúñü]{2,9})?$/;
 const regExpUserLastName = /^([a-zA-ZÁÉÍÓÚÑÜáéíóúñü][A-ZÁÉÍÓÚÑÜa-záéíóúñü']{1,19})(\s[a-zA-ZÁÉÍÓÚÑÜáéíóúñü][A-ZÁÉÍÓÚÑÜa-záéíóúñü']{1,19}$)?$/;
 const regExpTelephone = /^(\\+54|0)?(9[1-9]|[1-9][1-9]|[1-9][1-9][1-9])([0-9]{4}|[0-9]{3})([0-9]{4})$/;
 const regExpUserComment = /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{12,300}$/;
 
-// Event Handlers for contacto.html //
+// Event Handlers for page contacto //
 
 if(formAddComment){
     formAddComment.addEventListener('change', (e) => {
