@@ -12,7 +12,6 @@ class Main {
   }
 
   getViewUrlFromId(id) {
-    console.log(id);
     return `views/${id}`;
   }
 
@@ -57,7 +56,9 @@ class Main {
 
     this.setActiveLink(id);
 
-    document.title = `Jugueteria cosmica - ${id}`;
+    document.title = `Jugueteria Cósmica - ${id.charAt(0).toUpperCase() + id.slice(1)} - Damián Cabrera`;
+
+    console.log('Trajo la pagina esta mierda')
 
     this.initJS(id);
   }

@@ -6,8 +6,11 @@
     justify-content: space-between;
     align-items: center;
     background-color: #38A18C;
-    padding: 1em 1em 2em;
-    gap: 1em;
+    padding: 1em;
+    gap: 0.5em;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 
     &__logo-container {
         display: flex;
@@ -42,8 +45,12 @@
     }
 
     &__cart-button-container {
-        background-color: #F1F6F8;
-        padding: .7em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #F1F1F1;
+        width: 3.2rem;
+        height: 3.2rem;
         border-radius: 50%;
         order: 3;
 
@@ -53,8 +60,11 @@
         }
 
         &__shopping-cart {
-            width: 2em;
-            height: 2em;
+            display: block;
+            background-image: url(../assets/img/shopping-cart.svg);
+            background-size: cover;
+            width: 2.5em;
+            height: 2.5em;
         }
     }
 

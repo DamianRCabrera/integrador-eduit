@@ -401,8 +401,12 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #38A18C;
-  padding: 1em 1em 2em;
-  gap: 1em;
+  padding: 1em;
+  gap: 0.5em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 .main-header__logo-container {
   display: flex;
@@ -434,8 +438,12 @@ body {
   }
 }
 .main-header__cart-button-container {
-  background-color: #F1F6F8;
-  padding: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F1F1F1;
+  width: 3.2rem;
+  height: 3.2rem;
   border-radius: 50%;
   order: 3;
 }
@@ -444,8 +452,11 @@ body {
   background-color: #fefefe;
 }
 .main-header__cart-button-container__shopping-cart {
-  width: 2em;
-  height: 2em;
+  display: block;
+  background-image: url(../assets/img/shopping-cart.svg);
+  background-size: cover;
+  width: 2.5em;
+  height: 2.5em;
 }
 .main-header__hamburger-button-container {
   order: 1;
@@ -772,7 +783,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5em 0.5em;
+  padding: 1em 0.5em;
   color: #fefefe;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -784,7 +795,7 @@ body {
   background-color: #69fbc4;
   color: #211f4f;
 }
-.main-nav__link:hover {
+.main-nav__link:hover, .main-nav__link:focus {
   background-color: #69fbc4;
   color: #211f4f;
 }
@@ -941,7 +952,7 @@ body {
   cursor: pointer;
   font-weight: 600;
   min-height: 40px;
-  padding: 0.7em 1em;
+  padding: 0.5rem;
   text-align: center;
   text-decoration: none;
   margin: 0 0.5em 0.5em;
@@ -1168,5 +1179,5 @@ body {
 .error-404__link {
   color: #898989;
   font-size: 1.2rem;
-  font-family: "Oxygen", "sans-serif";
+  font-family: "Inter", "sans-serif";
 }/*# sourceMappingURL=main.css.map */
