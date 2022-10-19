@@ -1,26 +1,7 @@
 import express from "express";
 import { engine } from "express-handlebars";
-import fs from "fs";
-import dataBase from "./public/js/modules/fakeDB.js";
 import routerPage from "./routers/page.js";
-
-// const dir = './views';
-
-// async function getNumFiles(dir){
-//   const viewNames = new Set();
-
-//   const files = await fs.promises.readdir(dir)
-
-//   files.forEach(file => {
-//     if(file.includes('.handlebars')){
-//       viewNames.add(file.split('.')[0])
-//     }
-//   })
-
-//   return viewNames;
-// }
-
-// let allViews = await getNumFiles(dir).then((files) => files)
+import routerProducts from "./routers/products.js";
 
 const app = express();
 
@@ -31,19 +12,19 @@ app.set("views", "./views");
 
 app.use(express.static("public"));
 
+app.get("*", (req, res, next)=>{
+  console.log(req.url);
+  next()
+});
+
 app.get("/", (req, res) => {
   res.render("inicio", { title: "Juguetería Cósmica" });
 });
 
-app.get("/views/inicio", (req, res) => {
-  res.render("inicio", {
-    title: "Juguetería Cósmica",
-    products: dataBase,
-    layout: false,
-  });
-});
-
 app.use("/views", routerPage);
+
+app.use("/api/products", routerProducts);
+
 
 const PORT = 8080;
 const server = app.listen(PORT, () =>

@@ -1,6 +1,6 @@
 const alta = {
   init: function altaValidation() {
-    console.log('Ejecutando modulo de page: alta')
+    console.log("Ejecutando modulo de page: alta");
 
     const productName = document.getElementById("product-name");
     const productBrand = document.getElementById("product-brand");
