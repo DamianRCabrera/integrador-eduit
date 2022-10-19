@@ -136,3 +136,17 @@
         color: #ffffff;
     }
 }
+
+.input{
+    &__check{
+        background: "url(./assets/img/check.svg) no-repeat right";
+        background-color: "#ffffff";
+        background-size: "1.2em";
+        background-position: "right 1.5em center";
+    }
+
+    &__error{
+        background-color: #d63c40;
+        background-image: none;
+    }
+}

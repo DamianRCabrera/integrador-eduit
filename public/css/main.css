@@ -1133,6 +1133,17 @@ body {
   color: #ffffff;
 }
 
+.input__check {
+  background: "url(./assets/img/check.svg) no-repeat right";
+  background-color: "#ffffff";
+  background-size: "1.2em";
+  background-position: "right 1.5em center";
+}
+.input__error {
+  background-color: #d63c40;
+  background-image: none;
+}
+
 .error-display__popup {
   font-size: 0.8em;
   color: #cb7678;

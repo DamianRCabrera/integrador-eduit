@@ -1,3 +1,5 @@
+import regExpValidator from '../../src/modules/validation.js';
+
 const contacto = {
   init: function validationContacto() {
     console.log('Ejecutando modulo de page: contacto')
@@ -18,105 +20,31 @@ const contacto = {
     const regExpUserComment =
       /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{12,300}$/;
 
-    const validation = (value, regExp) => {
-      return regExp.test(value);
-    };
-
-    const clearInput = (e) => {
-      if (e.target.value === "") {
-        e.target.style.backgroundImage = "none";
-        e.target.style.backgroundColor = "#ffffff";
-        removeAllPopUps();
-        return true;
-      }
-      return false;
-    };
-
-    const createError = (msg, errName = "", popup = "") => {
-      let error = new Error(msg);
-      error.name = errName;
-      error.popup = popup;
-      return error;
-    };
-
-    const trimValue = (ev) => {
-      ev.target.value = ev.target.value.trim();
-    };
-
-    const displayWarningError = (ev, err) => {
-      let divError = document.createElement("div");
-      divError.classList.add("error-display__popup");
-      divError.innerHTML = err.message;
-      ev.target.insertAdjacentElement("afterend", divError);
-      return divError;
-    };
-
-    const removeAllPopUps = () => {
-      let popUps = document.querySelectorAll(".error-display__popup");
-      popUps.forEach((popup) => popup.remove());
-    };
-
-    const displayCheckOnInput = (ev) => {
-      ev.target.style.background =
-        "url(./assets/img/check.svg) no-repeat right";
-      ev.target.style.backgroundColor = "#ffffff";
-      ev.target.style.backgroundSize = "1.2em";
-      ev.target.style.backgroundPosition = "right 1.5em center";
-    };
-
-    const modifyInputBackgroundOnError = (e) => {
-      e.target.style.backgroundColor = "#d63c40";
-      e.target.style.backgroundImage = "none";
-    };
-
-    const displayPopUpError = (e, regExp, errMsg) => {
-      if (clearInput(e)) {
-        return;
-      }
-
-      trimValue(e);
-
-      if (validation(e.target.value, regExp) || e.target.value === "") {
-        displayCheckOnInput(e);
-        e.target.parentElement.querySelector(".error-display__popup")?.remove();
-        return true;
-      } else {
-        modifyInputBackgroundOnError(e);
-        if (
-          e.target.parentElement.querySelector(".error-display__popup") === null
-        ) {
-          let error = createError(errMsg);
-          displayWarningError(e, error);
-        }
-        return false;
-      }
-    };
-
     if (formAddComment) {
       formAddComment.addEventListener("change", (e) => {
         if (e.target.id === "user-name") {
-          displayPopUpError(
+          regExpValidator.displayPopUpError(
             e,
             regExpUserName,
             "El nombre debe contener entre 3 y 20 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "user-lastname") {
-          displayPopUpError(
+          regExpValidator.displayPopUpError(
             e,
             regExpUserLastName,
             "El apellido debe contener entre 3 y 20 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "user-telephone") {
-          displayPopUpError(
+          regExpValidator.displayPopUpError(
             e,
             regExpTelephone,
             "El teléfono debe contener entre 8 y 15 números, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "user-comment") {
-          displayPopUpError(
+          regExpValidator.displayPopUpError(
             e,
             regExpUserComment,
             "El comentario debe contener entre 12 y 300 caracteres, sin caracteres especiales."
@@ -129,10 +57,10 @@ const contacto = {
 
       formAddComment.addEventListener("submit", (e) => {
         if (
-          validation(userName.value, regExpUserName) &&
-          validation(userLastName.value, regExpUserLastName) &&
-          validation(userTelephone.value, regExpTelephone) &&
-          validation(userComment.value, regExpUserComment)
+          regExpValidator.validation(userName.value, regExpUserName) &&
+          regExpValidator.validation(userLastName.value, regExpUserLastName) &&
+          regExpValidator.validation(userTelephone.value, regExpTelephone) &&
+          regExpValidator.validation(userComment.value, regExpUserComment)
         ) {
           alert("El comentario se ha agregado correctamente.");
           return;
