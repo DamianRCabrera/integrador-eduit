@@ -52,13 +52,14 @@ class Main {
     const viewUrl = this.getViewUrlFromId(id);
 
     const viewContent = await this.ajax(viewUrl);
+
+    console.log(viewContent);
+
     document.querySelector("main").innerHTML = viewContent;
 
     this.setActiveLink(id);
 
     document.title = `Jugueteria Cósmica - ${id.charAt(0).toUpperCase() + id.slice(1)} - Damián Cabrera`;
-
-    console.log('Trajo la pagina esta mierda')
 
     this.initJS(id);
   }

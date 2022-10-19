@@ -2,25 +2,25 @@ import express from "express";
 import { engine } from "express-handlebars";
 import fs from "fs";
 import dataBase from "./public/js/modules/fakeDB.js";
+import routerPage from "./routers/page.js";
 
+// const dir = './views';
 
-const dir = './views';
+// async function getNumFiles(dir){
+//   const viewNames = new Set();
 
-async function getNumFiles(dir){
-  const viewNames = new Set();
-  
-  const files = await fs.promises.readdir(dir)
+//   const files = await fs.promises.readdir(dir)
 
-  files.forEach(file => {
-    if(file.includes('.handlebars')){
-      viewNames.add(file.split('.')[0])
-    }
-  })
+//   files.forEach(file => {
+//     if(file.includes('.handlebars')){
+//       viewNames.add(file.split('.')[0])
+//     }
+//   })
 
-  return viewNames;
-}
+//   return viewNames;
+// }
 
-let allViews = await getNumFiles(dir).then((files) => files)
+// let allViews = await getNumFiles(dir).then((files) => files)
 
 const app = express();
 
@@ -36,21 +36,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/views/inicio", (req, res) => {
-  res.render("inicio", { title: "Juguetería Cósmica", products: dataBase, layout: false });
+  res.render("inicio", {
+    title: "Juguetería Cósmica",
+    products: dataBase,
+    layout: false,
+  });
 });
 
-app.get("/views/:page", (req, res) => {
-  if (allViews.has(req.params.page)) {
-    res.render(req.params.page, { title: req.params.page, layout: false });
-  } else {
-    res.render("404", { title: "Página no existe", layout: false });
-  }
-});
-
-app.get("/:invalid?", (req, res) => {
-  let page = req.params.invalid;
-  res.redirect(`/#/${page}` );
-});
+app.use("/views", routerPage);
 
 const PORT = 8080;
 const server = app.listen(PORT, () =>
