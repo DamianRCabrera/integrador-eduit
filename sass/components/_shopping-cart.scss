@@ -185,6 +185,20 @@
       justify-self: flex-end;
     }
   }
+
+  &__empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 100%;
+
+    &__title{
+      font-size: 1.3rem;
+      color: #211f4f;
+    }
+  }
+
+
 }
 
 .like-is-active {

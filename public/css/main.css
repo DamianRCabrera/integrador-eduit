@@ -1362,6 +1362,16 @@ main {
 .shopping-cart__buy__button-container {
   justify-self: flex-end;
 }
+.shopping-cart__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 100%;
+}
+.shopping-cart__empty__title {
+  font-size: 1.3rem;
+  color: #211f4f;
+}
 
 .like-is-active {
   -webkit-animation-name: animate;

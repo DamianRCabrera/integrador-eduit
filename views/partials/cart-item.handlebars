@@ -1,0 +1,38 @@
+<div class="shopping-cart__item">
+  <div class="shopping-cart__item__buttons">
+    <span class="shopping-cart__item__buttons__like-btn"></span>
+    <span class="shopping-cart__item__buttons__delete"></span>
+  </div>
+
+  <img class="shopping-cart__item__image" src="{{image}}" alt="{{name}}" />
+
+  <div class="shopping-cart__item__description">
+    <span class="shopping-cart__item__description__name">{{name}}</span>
+    <span class="shopping-cart__item__description__info">{{shortDescription}}</span>
+  </div>
+
+  <div class="shopping-cart__item__quantity">
+    <button class="shopping-cart__item__quantity__plus-btn" type="button" name="button">
+      <img class="shopping-cart__item__quantity__plus-btn__image" src="./assets/img/plus.svg" alt="Botón para incrementar cantidad de productos">
+    </button>
+    <input class="shopping-cart__item__quantity__number" type="number" name="name" value="1">
+    <button class="shopping-cart__item__quantity__minus-btn" type="button" name="button">
+      <img class="shopping-cart__item__quantity__minus-btn__image" src="./assets/img/minus.svg" alt="Botón para disminuir cantidad de productos">
+    </button>
+  </div>
+
+  <div class="shopping-cart__item__price">
+    <span class="shopping-cart__item__price__number">Subtotal:</span>
+    <span class="shopping-cart__item__price__number">$<span class="shopping-cart__subtotal" id="shopping-cart__subtotal"></span></span>
+  </div>
+</div>
+
+<div class="shopping-cart__buy">
+  <div class="shopping-cart__buy-total">
+    <span class="shopping-cart__buy-total__title">Total:</span>
+    <span class="shopping-cart__buy-total__number">$<span id="shopping-cart__total"></span></span>
+  </div>
+  <div class="shopping-cart__buy__button-container">
+    <button class="shopping-cart__buy__button btn" type="button" name="button" id="buy-btn__modal">Comprar</button>
+  </div>
+</div>
