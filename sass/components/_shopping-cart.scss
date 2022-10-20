@@ -1,0 +1,140 @@
+.shopping-cart {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  opacity: 0;
+  width: 100%;
+  max-width: 1024px;
+  background-color: #ffffff;
+  border: 2px solid #211f4f;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 400px;
+  height: fit-content;
+  max-height: 60vh;
+  overflow-y: auto;
+
+  &-button {
+    display: block;
+    background-image: url('../assets/img/shopping-cart.svg');
+    background-size: cover;
+    width: 2.5em;
+    height: 2.5em;
+    cursor: pointer;
+  }
+
+  &__title {
+    border-bottom: 1px solid #d1d1d1;
+    padding: 1rem 1.5rem;
+    font-family: 'Poppins', 'sans-serif';
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #211f4f;
+  }
+
+  &__item{
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #d1d1d1;
+
+    @media (min-width: 768px) {
+      height: 300px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__buttons{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__delete{
+        display: block;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        background: url('../assets/img/delete.svg') no-repeat center;
+      }
+
+      &__like-btn{
+        display: block;
+        cursor: pointer;
+        background: url('../assets/img/twitter-heart.png');
+        width: 60px;
+        height: 60px;
+        background-size: 2900%;
+        background-repeat: no-repeat;
+      }
+    }
+
+    &__image{
+      height: 250px;
+      width: 250px;
+      align-self: center;
+
+      @media (min-width: 768px) {
+        height: 100%;
+        align-self: auto;
+      }
+    }
+
+    &__description{
+      display: flex;
+      flex-direction: column;
+      align-self: flex-start;
+      gap: 1rem;
+
+      @media (min-width: 768px) {
+        align-self: auto;
+      }
+
+      &__name {
+        font-size: 1.1rem;
+        color: #211f4f;
+        font-weight: 600;
+      }
+    }
+
+    &__quantity{
+      display: flex;
+      gap: 1rem;
+
+      &__plus-btn, &__minus-btn{
+        width: 2rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+      }
+
+      &__number {
+        border: 1px solid #bbbbbb;
+        text-align: center;
+        width: 45px;
+        outline: none;
+      }
+    }
+
+    &__price{
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-self: flex-start;
+
+      @media (min-width: 768px) {
+        flex-direction: column;
+        align-self: auto;
+      }
+
+      &__number{
+        font-size: 1.2rem;
+        color: #211f4f;
+      }
+    }
+  }
+}

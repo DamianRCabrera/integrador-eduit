@@ -1,0 +1,7 @@
+.main-cart-toggle{
+  display: none;
+
+  &:checked ~ .main-header .shopping-cart{
+    opacity: 1;
+  }
+}
