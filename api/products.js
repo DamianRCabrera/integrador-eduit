@@ -1,10 +1,12 @@
-import model from '../models/products.js';
+import ModelProducts from "../models/products.js";
 
-const getProducts = async () => {
-  const products = await model.readProducts();
-  return products;
-};
+const model = new ModelProducts();
 
-export default {
-  getProducts
+class ApiProducts {
+  async getProducts() {
+    const products = await model.readProducts();
+    return products;
+  }
 }
+
+export default ApiProducts;

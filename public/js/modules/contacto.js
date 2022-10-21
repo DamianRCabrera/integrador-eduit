@@ -1,8 +1,8 @@
-import regExpValidator from '../../src/modules/validation.js';
+import regExpValidator from "../../src/modules/validation.js";
 
 const contacto = {
   init: function validationContacto() {
-    console.log('Ejecutando modulo de page: contacto')
+    console.log("Ejecutando modulo de page: contacto");
 
     const userName = document.getElementById("user-name");
     const userLastName = document.getElementById("user-last-name");

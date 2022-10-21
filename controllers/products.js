@@ -1,10 +1,12 @@
-import api from '../api/products.js';
+import ApiProducts from "../api/products.js";
 
-const getProducts = async () => {
-  const products = await api.getProducts();
-  return products;
+const api = new ApiProducts();
+
+class ControllerProducts {
+  async getProducts() {
+    const products = await api.getProducts();
+    return products;
+  }
 }
 
-export default {
-  getProducts
-};
+export default ControllerProducts;

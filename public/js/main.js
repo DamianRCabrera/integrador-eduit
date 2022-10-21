@@ -59,7 +59,9 @@ class Main {
 
     this.setActiveLink(id);
 
-    document.title = `Jugueteria Cósmica - ${id.charAt(0).toUpperCase() + id.slice(1)} - Damián Cabrera`;
+    document.title = `Jugueteria Cósmica - ${
+      id.charAt(0).toUpperCase() + id.slice(1)
+    } - Damián Cabrera`;
 
     this.initJS(id);
   }

@@ -1,10 +1,12 @@
-import model from "../models/page.js";
+import ModelPage from "../models/page.js";
 
-async function getViews() {
-  let allViews = await model.getNumFiles().then((files) => files);
-  return allViews;
+const modelPage = new ModelPage();
+
+class ApiPage {
+  async getViews() {
+    let allViews = await modelPage.getNumFiles().then((files) => files);
+    return allViews;
+  }
 }
 
-export default {
-  getViews,
-};
+export default ApiPage;

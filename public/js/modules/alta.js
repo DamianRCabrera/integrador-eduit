@@ -1,4 +1,4 @@
-import regExpValidator from '../../src/modules/validation.js';
+import regExpValidator from "../../src/modules/validation.js";
 
 const alta = {
   init: function altaValidation() {
@@ -115,7 +115,10 @@ const alta = {
           regExpValidator.validation(productBrand.value, regExpProductBrand) &&
           regExpValidator.validation(productPrice.value, regExpProductPrice) &&
           regExpValidator.validation(productStock.value, regExpProductStock) &&
-          regExpValidator.validation(productCategory.value, regExpProductCategory) &&
+          regExpValidator.validation(
+            productCategory.value,
+            regExpProductCategory
+          ) &&
           regExpValidator.validation(
             productShortDescription.value,
             regExpProductShortDescription
@@ -124,7 +127,10 @@ const alta = {
             productLongDescription.value,
             regExpProductLongDescription
           ) &&
-          regExpValidator.validation(productAgeFrom.value, regExpProductAgeFrom) &&
+          regExpValidator.validation(
+            productAgeFrom.value,
+            regExpProductAgeFrom
+          ) &&
           regExpValidator.validation(productAgeTo.value, regExpProductAgeTo)
         ) {
           alert("El producto se ha agregado correctamente.");

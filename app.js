@@ -12,9 +12,9 @@ app.set("views", "./views");
 
 app.use(express.static("public"));
 
-app.get("*", (req, res, next)=>{
+app.get("*", (req, res, next) => {
   console.log(req.url);
-  next()
+  next();
 });
 
 app.get("/", (req, res) => {
@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
 app.use("/views", routerPage);
 
 app.use("/api/products", routerProducts);
-
 
 const PORT = 8080;
 const server = app.listen(PORT, () =>

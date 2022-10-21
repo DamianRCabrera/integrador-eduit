@@ -37,13 +37,13 @@ const removeAllPopUps = () => {
 };
 
 const displayCheckOnInput = (ev) => {
-  ev.target.classList.remove("input__error")
+  ev.target.classList.remove("input__error");
   ev.target.classList.add("input__check");
 };
 
 const modifyInputBackgroundOnError = (ev) => {
   ev.target.classList.remove("input__check");
-  ev.target.classList.add("input__error")
+  ev.target.classList.add("input__error");
 };
 
 const displayPopUpError = (e, regExp, errMsg) => {
