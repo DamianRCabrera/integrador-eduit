@@ -5,7 +5,6 @@ const router = express.Router();
 const controller = new ControllerProducts();
 
 router.get("", async (req, res) => {
-  console.log("intentando enroutar");
   const products = await controller.getProducts();
   res.json(products);
 });

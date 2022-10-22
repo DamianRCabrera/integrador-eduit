@@ -53,8 +53,6 @@ class Main {
 
     const viewContent = await this.ajax(viewUrl);
 
-    console.log(viewContent);
-
     document.querySelector("main").innerHTML = viewContent;
 
     this.setActiveLink(id);

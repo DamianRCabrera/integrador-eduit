@@ -1,0 +1,15 @@
+{{#if products.length}}
+
+{{#each products}}
+{{> cart-item}}
+{{/each}}
+
+
+
+{{else}}
+
+<div class="shopping-cart__empty">
+  <h2 class="shopping-cart__empty__title">El carrito está vacío</h2>
+</div>
+
+{{/if}}

@@ -2,8 +2,12 @@ import express from "express";
 import { engine } from "express-handlebars";
 import routerPage from "./routers/page.js";
 import routerProducts from "./routers/products.js";
+import routerCart from "./routers/cart.js";
 
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.engine("handlebars", engine());
 
@@ -24,6 +28,8 @@ app.get("/", (req, res) => {
 app.use("/views", routerPage);
 
 app.use("/api/products", routerProducts);
+
+app.use("/api/cart", routerCart);
 
 const PORT = 8080;
 const server = app.listen(PORT, () =>
