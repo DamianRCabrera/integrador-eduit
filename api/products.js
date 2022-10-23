@@ -7,6 +7,11 @@ class ApiProducts {
     const products = await model.readProducts();
     return products;
   }
+
+  async getProductById(id) {
+    const product = await model.readProduct(id);
+    return product;
+  }
 }
 
 export default ApiProducts;

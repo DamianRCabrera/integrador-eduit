@@ -9,4 +9,9 @@ router.get("", async (req, res) => {
   res.json(products);
 });
 
+router.get("/product/:id", async (req, res) => {
+  const product = await controller.getProductById(req.params.id);
+  res.json(product);
+});
+
 export default router;

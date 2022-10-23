@@ -7,6 +7,11 @@ class ControllerProducts {
     const products = await api.getProducts();
     return products;
   }
+
+  async getProductById(id) {
+    const product = await api.getProductById(id);
+    return product;
+  }
 }
 
 export default ControllerProducts;

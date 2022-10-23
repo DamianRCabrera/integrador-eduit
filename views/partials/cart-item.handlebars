@@ -1,7 +1,7 @@
 <div class="shopping-cart__item">
   <div class="shopping-cart__item__buttons">
-    <span class="shopping-cart__item__buttons__like-btn"></span>
-    <span class="shopping-cart__item__buttons__delete"></span>
+    <span class="shopping-cart__item__buttons__like" data-fav-id="{{id}}"></span>
+    <span class="shopping-cart__item__buttons__delete" data-delete-id="{{id}}"></span>
   </div>
 
   <img class="shopping-cart__item__image" src="{{image}}" alt="{{name}}" />
@@ -9,20 +9,17 @@
   <div class="shopping-cart__item__description">
     <span class="shopping-cart__item__description__name">{{name}}</span>
     <span class="shopping-cart__item__description__info">{{shortDescription}}</span>
+    <span class="shopping-cart__item__description__price">${{price}} x unidad</span>
   </div>
 
   <div class="shopping-cart__item__quantity">
-    <button class="shopping-cart__item__quantity__plus-btn" type="button" name="button">
-      <img class="shopping-cart__item__quantity__plus-btn__image" src="./assets/img/plus.svg" alt="Botón para incrementar cantidad de productos">
-    </button>
-    <input class="shopping-cart__item__quantity__number" type="number" name="name" value="1">
-    <button class="shopping-cart__item__quantity__minus-btn" type="button" name="button">
-      <img class="shopping-cart__item__quantity__minus-btn__image" src="./assets/img/minus.svg" alt="Botón para disminuir cantidad de productos">
-    </button>
+    <button class="shopping-cart__item__quantity__plus-btn" data-id="{{id}}" type="button" name="button">+</button>
+    <input class="shopping-cart__item__quantity__number" type="number" value="1" data-quantity-id="{{id}}" disabled>
+    <button class="shopping-cart__item__quantity__minus-btn" data-id="{{id}}" type="button" name="button">-</button>
   </div>
 
   <div class="shopping-cart__item__price">
     <span class="shopping-cart__item__price__number">Subtotal:</span>
-    <span class="shopping-cart__item__price__number">$<span class="shopping-cart__subtotal" id="shopping-cart__subtotal"></span></span>
+    <span class="shopping-cart__item__price__number">$<span class="shopping-cart__subtotal" id="shopping-cart__subtotal" data-subtotal-id="{{id}}"></span></span>
   </div>
 </div>
