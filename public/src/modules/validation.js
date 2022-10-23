@@ -5,8 +5,8 @@ class Validation {
 
   clearInput(e) {
     if (e.target.value === "") {
-      e.target.style.backgroundImage = "none";
-      e.target.style.backgroundColor = "#ffffff";
+      e.target.classList.remove("input__error");
+      e.target.classList.remove("input__check");
       this.removeAllPopUps();
       return true;
     }

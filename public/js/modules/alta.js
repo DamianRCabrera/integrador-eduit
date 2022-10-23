@@ -22,24 +22,22 @@ const alta = {
     const productFreeShipping = document.getElementById(
       "product-free-shipping"
     );
+    const productAgeFormat = document.getElementById("product-age-format");
+
     const productImage = document.getElementById("product-image");
 
     const formAddProduct = document.getElementById("form-add-product");
 
-    const regExpProductName =
-      /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,30}$/;
-    const regExpProductBrand =
-      /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,40}$/;
+    const regExpProductName = /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,30}$/;
+    const regExpProductBrand = /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,40}$/;
     const regExpProductPrice = /^(?![0])\d{1,7}([\.]\d{1,2})?$/;
     const regExpProductStock = /^\d{1,8}$/;
-    const regExpProductCategory =
-      /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,50}$/;
-    const regExpProductShortDescription =
-      /^.{3,80}$/;
-    const regExpProductLongDescription =
-      /^.{3,2000}$/;
-    const regExpProductAgeFrom = /^(?![0])\d{1,2}$/;
-    const regExpProductAgeTo = /^(?![0])\d{1,2}$/;
+    const regExpProductCategory = /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,50}$/;
+    const regExpProductShortDescription = /^.{3,80}$/;
+    const regExpProductLongDescription = /^.{3,2000}$/;
+    const regExpProductAgeYears = /^(?![0])\d{1,2}$/;
+
+    const regExpProductAgeMonths = /^([0-1][0-8]|(\d))$/;
 
     if (formAddProduct) {
       formAddProduct.addEventListener("change", (e) => {
@@ -47,65 +45,83 @@ const alta = {
           validation.displayPopUpError(
             e,
             regExpProductName,
-            "El nombre del producto debe contener entre 2 y 60 caracteres, sin caracteres especiales."
+            "El nombre del producto debe contener entre 3 y 30 caracteres"
           );
           return;
         } else if (e.target.id === "product-brand") {
           validation.displayPopUpError(
             e,
             regExpProductBrand,
-            "La marca del producto debe contener entre 3 y 50 caracteres, sin caracteres especiales."
+            "La marca del producto debe contener entre 3 y 40 caracteres."
           );
           return;
         } else if (e.target.id === "product-price") {
           validation.displayPopUpError(
             e,
             regExpProductPrice,
-            "El precio del producto debe contener entre 1 y 7 números, sin caracteres especiales."
+            "El precio debe contener entre 1 y 7 números, solo el punto es permitido."
           );
           return;
         } else if (e.target.id === "product-stock") {
           validation.displayPopUpError(
             e,
             regExpProductStock,
-            "El stock del producto debe contener entre 1 y 5 números, sin caracteres especiales."
+            "El stock del producto debe contener entre 1 y 8 números, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-category") {
           validation.displayPopUpError(
             e,
             regExpProductCategory,
-            "La categoría del producto debe contener entre 3 y 25 caracteres, sin números ni caracteres especiales."
+            "La categoría del producto debe contener entre 3 y 50 caracteres."
           );
           return;
         } else if (e.target.id === "product-short-description") {
           validation.displayPopUpError(
             e,
             regExpProductShortDescription,
-            "La descripción corta del producto debe contener entre 20 y 80 caracteres, sin caracteres especiales."
+            "La descripción corta del producto debe contener entre 3 y 80 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-long-description") {
           validation.displayPopUpError(
             e,
             regExpProductLongDescription,
-            "La descripción larga del producto debe contener entre 30 y 300 caracteres, sin caracteres especiales."
+            "La descripción larga del producto debe contener entre 3 y 2000 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-age-from") {
-          validation.displayPopUpError(
-            e,
-            regExpProductAgeFrom,
-            "La edad mínima del producto debe contener entre 1 y 2 números, sin caracteres especiales."
-          );
-          return;
+          if (productAgeFormat.value == "years") {
+            validation.displayPopUpError(
+              e,
+              regExpProductAgeYears,
+              "La edad debe contener entre 1 y 2 números"
+            );
+            return;
+          } else if (productAgeFormat.value == "months") {
+            validation.displayPopUpError(
+              e,
+              regExpProductAgeMonths,
+              "La edad en meses debe ser como máximo 18"
+            );
+            return;
+          }
         } else if (e.target.id === "product-age-to") {
-          validation.displayPopUpError(
-            e,
-            regExpProductAgeTo,
-            "La edad máxima del producto debe contener entre 1 y 2 números, sin caracteres especiales."
-          );
-          return;
+          if (productAgeFormat.value == "years") {
+            validation.displayPopUpError(
+              e,
+              regExpProductAgeYears,
+              "La edad debe contener entre 1 y 2 números"
+            );
+            return;
+          } else if (productAgeFormat.value == "months") {
+            validation.displayPopUpError(
+              e,
+              regExpProductAgeMonths,
+              "La edad en meses debe ser como máximo 18"
+            );
+            return;
+          }
         } else {
           return;
         }
@@ -117,10 +133,7 @@ const alta = {
           validation.validation(productBrand.value, regExpProductBrand) &&
           validation.validation(productPrice.value, regExpProductPrice) &&
           validation.validation(productStock.value, regExpProductStock) &&
-          validation.validation(
-            productCategory.value,
-            regExpProductCategory
-          ) &&
+          validation.validation(productCategory.value, regExpProductCategory) &&
           validation.validation(
             productShortDescription.value,
             regExpProductShortDescription
@@ -129,10 +142,7 @@ const alta = {
             productLongDescription.value,
             regExpProductLongDescription
           ) &&
-          validation.validation(
-            productAgeFrom.value,
-            regExpProductAgeFrom
-          ) &&
+          validation.validation(productAgeFrom.value, regExpProductAgeFrom) &&
           validation.validation(productAgeTo.value, regExpProductAgeTo)
         ) {
           alert("El producto se ha agregado correctamente.");
