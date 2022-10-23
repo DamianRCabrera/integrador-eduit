@@ -1025,6 +1025,7 @@ main {
   color: #ffffff;
   letter-spacing: 1px;
   font-weight: 500;
+  cursor: pointer;
 }
 @media (min-width: 425px) {
   .input-group-check__label {
@@ -1047,6 +1048,7 @@ main {
   color: #ffffff;
   margin-bottom: 0.5em;
   font-weight: 500;
+  cursor: pointer;
 }
 @media (min-width: 425px) {
   .input-group__label {
@@ -1068,9 +1070,6 @@ main {
   padding: 0.5em;
   border: 1px solid transparent;
 }
-.input-group__input:focus {
-  border: 1px solid #69fbc4;
-}
 @media (min-width: 425px) {
   .input-group__input {
     flex-basis: 50%;
@@ -1080,6 +1079,19 @@ main {
 @media (min-width: 768px) {
   .input-group__input {
     width: 100%;
+  }
+}
+.input-group__select {
+  flex: 1 1 100%;
+  padding: 0.3rem;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+}
+@media (min-width: 425px) {
+  .input-group__select {
+    flex: 1 1 50%;
+    min-width: 0;
   }
 }
 .input-group__description {
@@ -1107,9 +1119,6 @@ main {
   border: 1px solid transparent;
   resize: none;
 }
-.input-group__textarea:focus {
-  border: 1px solid #69fbc4;
-}
 @media (min-width: 425px) {
   .input-group__textarea {
     flex-basis: 50%;
@@ -1128,12 +1137,14 @@ main {
 }
 
 .input__check {
-  background: "url(./assets/img/check.svg) no-repeat right";
-  background-color: "#ffffff";
-  background-size: "1.2em";
-  background-position: "right 1.5em center";
+  background-image: url("../assets/img/check.svg");
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+  background-size: 1.2em;
+  background-position: right 1rem center;
 }
 .input__error {
+  border: 1px solid #de0e15;
   background-color: #d63c40;
   background-image: none;
 }

@@ -1,4 +1,6 @@
-import regExpValidator from "../../src/modules/validation.js";
+import Validation from "../../src/modules/validation.js";
+
+const validation = new Validation();
 
 const alta = {
   init: function altaValidation() {
@@ -25,80 +27,80 @@ const alta = {
     const formAddProduct = document.getElementById("form-add-product");
 
     const regExpProductName =
-      /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{3,60}$/;
+      /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,30}$/;
     const regExpProductBrand =
-      /^[A-Za-z\dÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇ!ç&\s\.\,\-\(\)\'\"\°\/]{3,50}$/;
+      /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,40}$/;
     const regExpProductPrice = /^(?![0])\d{1,7}([\.]\d{1,2})?$/;
-    const regExpProductStock = /^(?![0])\d{1,5}$/;
+    const regExpProductStock = /^\d{1,8}$/;
     const regExpProductCategory =
-      /^([a-zA-ZÁÉÍÓÚÑÜáéíóúñü][\s\.A-ZÁÉÍÓÚÑÜa-záéíóúñü\-\/]{3,25})$/;
+      /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,50}$/;
     const regExpProductShortDescription =
-      /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{20,80}$/;
+      /^.{3,80}$/;
     const regExpProductLongDescription =
-      /^(?!\s)(?!.\s$)(?=.[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç])[a-zA-Z0-9ÁÉÍÓÚÑÜáéíóúñüÀÂÃÊÓÔÕàâãêôõÇç :°='\.\\¡$#"@¿*&%\/,+\-\(\)~?!]{30,300}$/;
+      /^.{3,2000}$/;
     const regExpProductAgeFrom = /^(?![0])\d{1,2}$/;
     const regExpProductAgeTo = /^(?![0])\d{1,2}$/;
 
     if (formAddProduct) {
       formAddProduct.addEventListener("change", (e) => {
         if (e.target.id === "product-name") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductName,
             "El nombre del producto debe contener entre 2 y 60 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-brand") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductBrand,
             "La marca del producto debe contener entre 3 y 50 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-price") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductPrice,
             "El precio del producto debe contener entre 1 y 7 números, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-stock") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductStock,
             "El stock del producto debe contener entre 1 y 5 números, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-category") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductCategory,
             "La categoría del producto debe contener entre 3 y 25 caracteres, sin números ni caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-short-description") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductShortDescription,
             "La descripción corta del producto debe contener entre 20 y 80 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-long-description") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductLongDescription,
             "La descripción larga del producto debe contener entre 30 y 300 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-age-from") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductAgeFrom,
             "La edad mínima del producto debe contener entre 1 y 2 números, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "product-age-to") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpProductAgeTo,
             "La edad máxima del producto debe contener entre 1 y 2 números, sin caracteres especiales."
@@ -111,27 +113,27 @@ const alta = {
 
       formAddProduct.addEventListener("submit", (e) => {
         if (
-          regExpValidator.validation(productName.value, regExpProductName) &&
-          regExpValidator.validation(productBrand.value, regExpProductBrand) &&
-          regExpValidator.validation(productPrice.value, regExpProductPrice) &&
-          regExpValidator.validation(productStock.value, regExpProductStock) &&
-          regExpValidator.validation(
+          validation.validation(productName.value, regExpProductName) &&
+          validation.validation(productBrand.value, regExpProductBrand) &&
+          validation.validation(productPrice.value, regExpProductPrice) &&
+          validation.validation(productStock.value, regExpProductStock) &&
+          validation.validation(
             productCategory.value,
             regExpProductCategory
           ) &&
-          regExpValidator.validation(
+          validation.validation(
             productShortDescription.value,
             regExpProductShortDescription
           ) &&
-          regExpValidator.validation(
+          validation.validation(
             productLongDescription.value,
             regExpProductLongDescription
           ) &&
-          regExpValidator.validation(
+          validation.validation(
             productAgeFrom.value,
             regExpProductAgeFrom
           ) &&
-          regExpValidator.validation(productAgeTo.value, regExpProductAgeTo)
+          validation.validation(productAgeTo.value, regExpProductAgeTo)
         ) {
           alert("El producto se ha agregado correctamente.");
           return;

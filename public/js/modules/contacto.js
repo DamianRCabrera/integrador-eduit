@@ -1,4 +1,6 @@
-import regExpValidator from "../../src/modules/validation.js";
+import Validation from "../../src/modules/validation.js";
+
+const validation = new Validation();
 
 const contacto = {
   init: function validationContacto() {
@@ -12,7 +14,7 @@ const contacto = {
     const formAddComment = document.getElementById("form-add-comment");
 
     const regExpUserName =
-      /^([a-zA-ZÁÉÍÓÚÑÜáéíóúñü][a-záéíóúñü]{2,9})(\s[a-zA-ZÁÉÍÓÚÑÜáéíóúñü][a-záéíóúñü]{2,9})?$/;
+      /^([a-zA-ZÁÉÍÓÚÑÜáéíóúñü][a-záéíóúñü]{2,15})(\s[a-zA-ZÁÉÍÓÚÑÜáéíóúñü][a-záéíóúñü]{2,15})?$/;
     const regExpUserLastName =
       /^([a-zA-ZÁÉÍÓÚÑÜáéíóúñü][A-ZÁÉÍÓÚÑÜa-záéíóúñü']{1,19})(\s[a-zA-ZÁÉÍÓÚÑÜáéíóúñü][A-ZÁÉÍÓÚÑÜa-záéíóúñü']{1,19}$)?$/;
     const regExpTelephone =
@@ -23,28 +25,28 @@ const contacto = {
     if (formAddComment) {
       formAddComment.addEventListener("change", (e) => {
         if (e.target.id === "user-name") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpUserName,
             "El nombre debe contener entre 3 y 20 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "user-lastname") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpUserLastName,
             "El apellido debe contener entre 3 y 20 caracteres, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "user-telephone") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpTelephone,
             "El teléfono debe contener entre 8 y 15 números, sin caracteres especiales."
           );
           return;
         } else if (e.target.id === "user-comment") {
-          regExpValidator.displayPopUpError(
+          validation.displayPopUpError(
             e,
             regExpUserComment,
             "El comentario debe contener entre 12 y 300 caracteres, sin caracteres especiales."
@@ -57,10 +59,10 @@ const contacto = {
 
       formAddComment.addEventListener("submit", (e) => {
         if (
-          regExpValidator.validation(userName.value, regExpUserName) &&
-          regExpValidator.validation(userLastName.value, regExpUserLastName) &&
-          regExpValidator.validation(userTelephone.value, regExpTelephone) &&
-          regExpValidator.validation(userComment.value, regExpUserComment)
+          validation.validation(userName.value, regExpUserName) &&
+          validation.validation(userLastName.value, regExpUserLastName) &&
+          validation.validation(userTelephone.value, regExpTelephone) &&
+          validation.validation(userComment.value, regExpUserComment)
         ) {
           alert("El comentario se ha agregado correctamente.");
           return;

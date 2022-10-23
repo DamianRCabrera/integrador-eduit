@@ -162,6 +162,11 @@ class ShopCart {
         }
       } else if (e.target.className.includes("card__link-add")) {
         e.preventDefault();
+        const btn = e.target;
+        btn.innerHTML = "Agregado";
+        setTimeout(() => {
+          btn.innerHTML = "Agregar";
+        }, 2000);
         const id = Number(e.target.getAttribute("data-id"));
         await this.addProductToCart(id);
         await this.renderProductsToCart();
