@@ -26,6 +26,22 @@
     width: 2.5em;
     height: 2.5em;
     cursor: pointer;
+
+    &__bubble {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e63946;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      box-sizing: border-box;
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+      color: #ffffff;
+      display: none;
+    }
   }
 
   &__close{

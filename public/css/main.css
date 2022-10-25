@@ -448,6 +448,7 @@ main {
   border-radius: 50%;
   order: 3;
   border: 2px solid #2e2c59;
+  position: relative;
 }
 .main-header__cart-button-container:hover {
   cursor: pointer;
@@ -1229,6 +1230,21 @@ main {
   width: 2.5em;
   height: 2.5em;
   cursor: pointer;
+}
+.shopping-cart-button__bubble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e63946;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  color: #ffffff;
+  display: none;
 }
 .shopping-cart__close {
   align-self: flex-end;
