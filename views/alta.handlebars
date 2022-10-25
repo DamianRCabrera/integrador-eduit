@@ -6,14 +6,14 @@
         <label class="input-group__label" for="product-name" required>
           Nombre del producto:
         </label>
-        <input class="input-group__input" id="product-name" type="text">
+        <input class="input-group__input" id="product-name" type="text" placeholder="Ej: Pelota Mundial Qatar 2022">
       </div>
       <div class="input-group">
         <label class="input-group__label" for="product-brand">
           Marca del producto:
         </label>
         <input class="input-group__input input-group__input__brand" list="product-brands" id="product-brand"
-          name="product-brand" />
+          name="product-brand" placeholder="Ej: Mattel, Hasbro, etc"/>
         <datalist id="product-brands">
           <option value="HASBRO">
           <option value="MATTEL">
@@ -29,13 +29,13 @@
         <label class="input-group__label" for="product-price">
           Precio
         </label>
-        <input class="input-group__input" id="product-price" type="number" step=".01" required>
+        <input class="input-group__input" id="product-price" type="number" step=".01" placeholder="Ej: 15000" required>
       </div>
       <div class="input-group">
         <label class="input-group__label" for="product-stock">
           Stock
         </label>
-        <input class="input-group__input" id="product-stock" type="number" required>
+        <input class="input-group__input" id="product-stock" type="number" placeholder="Ej: 100" required>
       </div>
     </div>
 
@@ -44,7 +44,7 @@
         <label class="input-group__label" for="product-category">
           Categoría:
         </label>
-        <input class="input-group__input" list="product-categories" id="product-category" name="product-category" />
+        <input class="input-group__input" list="product-categories" id="product-category" name="product-category" placeholder="Ej: Juego de Construcción"/>
         <datalist id="product-categories">
           <option value="AIRE LIBRE">
           <option value="ARTE INFANTIL">
@@ -67,7 +67,7 @@
         <label class="input-group__label" for="product-short-description">
           Descripción breve:
         </label>
-        <input class="input-group__input" id="product-short-description" type="text" required>
+        <input class="input-group__input" id="product-short-description" type="text" placeholder="Ingrese una descripción corta" required>
       </div>
     </div>
 
@@ -75,7 +75,7 @@
       <div class="input-group">
         <label class="input-group__label" for="product-long-description">Descripción larga: (máx. 2000
           caracteres)</label>
-        <textarea class="input-group__textarea" name="product-long-description" id="product-long-description" cols="30"
+        <textarea class="input-group__textarea" name="product-long-description" placeholder="Ingrese la descripción completa del producto" id="product-long-description" cols="30"
           rows="10" required></textarea>
       </div>
     </div>
@@ -92,11 +92,11 @@
       </div>
       <div class="input-group">
         <label class="input-group__label" for="product-age-from"> Edad desde:</label>
-        <input class="input-group__input" id="product-age-from" type="number" required>
+        <input class="input-group__input" id="product-age-from" type="number" placeholder="Ej: 0" required>
       </div>
       <div class="input-group">
         <label class="input-group__label" for="product-age-to"> Edad hasta:</label>
-        <input class="input-group__input" id="product-age-to" type="number" required>
+        <input class="input-group__input" id="product-age-to" type="number" placeholder="Ej: 12" required>
       </div>
     </div>
 

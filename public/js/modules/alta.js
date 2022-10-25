@@ -128,27 +128,32 @@ const alta = {
       });
 
       formAddProduct.addEventListener("submit", (e) => {
+        e.preventDefault();
         if (
-          validation.validation(productName.value, regExpProductName) &&
-          validation.validation(productBrand.value, regExpProductBrand) &&
-          validation.validation(productPrice.value, regExpProductPrice) &&
-          validation.validation(productStock.value, regExpProductStock) &&
-          validation.validation(productCategory.value, regExpProductCategory) &&
-          validation.validation(
+          validation.validate(productName.value, regExpProductName) &&
+          validation.validate(productBrand.value, regExpProductBrand) &&
+          validation.validate(productPrice.value, regExpProductPrice) &&
+          validation.validate(productStock.value, regExpProductStock) &&
+          validation.validate(productCategory.value, regExpProductCategory) &&
+          validation.validate(
             productShortDescription.value,
             regExpProductShortDescription
           ) &&
-          validation.validation(
+          validation.validate(
             productLongDescription.value,
             regExpProductLongDescription
           ) &&
-          validation.validation(productAgeFrom.value, regExpProductAgeFrom) &&
-          validation.validation(productAgeTo.value, regExpProductAgeTo)
+          ((validation.validate(productAgeFrom.value, regExpProductAgeYears) &&
+            validation.validate(productAgeTo.value, regExpProductAgeYears)) ||
+            (validation.validate(
+              productAgeFrom.value,
+              regExpProductAgeMonths
+            ) &&
+              validation.validate(productAgeTo.value, regExpProductAgeMonths)))
         ) {
           alert("El producto se ha agregado correctamente.");
           return;
         } else {
-          e.preventDefault();
           alert("Por favor, complete todos los campos correctamente.");
           return;
         }

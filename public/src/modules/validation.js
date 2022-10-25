@@ -68,6 +68,11 @@ class Validation {
       return false;
     }
   }
+
+  checkInput(evento,regExp, errMsg) {
+    this.displayPopUpError(evento,regExp,errMsg);
+    return;
+  }
 }
 
 export default Validation;

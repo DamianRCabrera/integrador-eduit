@@ -128,6 +128,7 @@ class ShopCart {
           return;
         } else if (!e.target.className.includes("shopping-cart")) {
           e.preventDefault();
+          console.log(e.target.className)
           modalCheckbox.checked = false;
           return;
         } else if (

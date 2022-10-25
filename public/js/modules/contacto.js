@@ -7,7 +7,7 @@ const contacto = {
     console.log("Ejecutando modulo de page: contacto");
 
     const userName = document.getElementById("user-name");
-    const userLastName = document.getElementById("user-last-name");
+    const userLastName = document.getElementById("user-lastname");
     const userTelephone = document.getElementById("user-telephone");
     const userComment = document.getElementById("user-comment");
 
@@ -58,13 +58,14 @@ const contacto = {
       });
 
       formAddComment.addEventListener("submit", (e) => {
+        e.preventDefault();
         if (
-          validation.validation(userName.value, regExpUserName) &&
-          validation.validation(userLastName.value, regExpUserLastName) &&
-          validation.validation(userTelephone.value, regExpTelephone) &&
-          validation.validation(userComment.value, regExpUserComment)
+          validation.validate(userName.value, regExpUserName) &&
+          validation.validate(userLastName.value, regExpUserLastName) &&
+          validation.validate(userTelephone.value, regExpTelephone) &&
+          validation.validate(userComment.value, regExpUserComment)
         ) {
-          alert("El comentario se ha agregado correctamente.");
+          alert("El mensaje se ha enviado correctamente.");
           return;
         } else {
           e.preventDefault();
