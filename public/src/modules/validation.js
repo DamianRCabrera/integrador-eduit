@@ -69,8 +69,8 @@ class Validation {
     }
   }
 
-  checkInput(evento,regExp, errMsg) {
-    this.displayPopUpError(evento,regExp,errMsg);
+  checkInput(evento, regExp, errMsg) {
+    this.displayPopUpError(evento, regExp, errMsg);
     return;
   }
 }

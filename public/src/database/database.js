@@ -30,12 +30,19 @@ DataBase.push(
   )
 );
 DataBase.push(
-  new Producto("Monopatin Negro", "Monopatin Rocker Pro 4 Ruedas Negro", 13175, 4)
+  new Producto(
+    "Monopatin Negro",
+    "Monopatin Rocker Pro 4 Ruedas Negro",
+    13175,
+    4
+  )
 );
 DataBase.push(
-  new Producto("Cocina de juguete", "Cocina plástica Duravit en caja", 6230,3)
+  new Producto("Cocina de juguete", "Cocina plástica Duravit en caja", 6230, 3)
 );
-DataBase.push(new Producto("Pistola X", "Pistola X Shot Excel Hawk Eye", 5860,0));
+DataBase.push(
+  new Producto("Pistola X", "Pistola X Shot Excel Hawk Eye", 5860, 0)
+);
 DataBase.push(
   new Producto(
     "Hot Wheels Parking",
@@ -53,13 +60,14 @@ DataBase.push(
   )
 );
 DataBase.push(
-  new Producto("Disfraz Marvel", "Disfraz Spiderman talle '1'", 3550,1)
+  new Producto("Disfraz Marvel", "Disfraz Spiderman talle '1'", 3550, 1)
 );
 DataBase.push(
   new Producto(
     "Vehiculo Paw Patrol",
     "Vehiculo Paw Patrol Rescue Knights con figura Marshall",
-    10250,5
+    10250,
+    5
   )
 );
 DataBase.push(new Producto("Metegol", "Metegol de mesa madera", 12500, 6));

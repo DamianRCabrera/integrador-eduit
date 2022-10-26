@@ -105,7 +105,7 @@ class ShopCart {
     total.innerHTML = this.total;
   }
 
-  getNumberOfItemsInCartBubble(){
+  getNumberOfItemsInCartBubble() {
     let accumulator = 0;
     for (let id in this.cart) {
       accumulator += this.cart[id].quantity;
@@ -114,18 +114,17 @@ class ShopCart {
     return this.itemsOnCart;
   }
 
-  displayNumberOfItemsInCartBubble(){
+  displayNumberOfItemsInCartBubble() {
     const cartBubble = document.getElementById("cart-bubble");
     let itemsOnCart = this.getNumberOfItemsInCartBubble();
 
-    if(itemsOnCart > 0){
+    if (itemsOnCart > 0) {
       cartBubble.style.display = "flex";
       cartBubble.innerHTML = itemsOnCart;
     } else {
       cartBubble.style.display = "none";
     }
   }
-
 
   updateQuantityAndSubtotal(id) {
     this.displaySubtotal(id);
@@ -153,7 +152,6 @@ class ShopCart {
           return;
         } else if (!e.target.className.includes("shopping-cart")) {
           e.preventDefault();
-          console.log(e.target.className)
           modalCheckbox.checked = false;
           return;
         } else if (
