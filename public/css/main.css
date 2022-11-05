@@ -408,6 +408,7 @@ main {
   position: sticky;
   top: 0;
   z-index: 100;
+  min-height: 10vh;
 }
 .main-header__logo-container {
   display: flex;
@@ -582,6 +583,7 @@ main {
   gap: 1em;
   padding: 1em;
   background-color: #f5f5f5;
+  min-height: 10vh;
 }
 @media (min-width: 768px) {
   .main-footer {
@@ -704,6 +706,10 @@ main {
   .about-content-info__p {
     text-align: justify;
   }
+}
+
+.content {
+  min-height: 80vh;
 }
 
 .hamburger-button {

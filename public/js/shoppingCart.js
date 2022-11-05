@@ -47,6 +47,7 @@ class ShopCart {
   }
 
   async getProductFromApi(id) {
+    console.log(id);
     let url = `http://localhost:8080/api/products/product`;
     let product = await fetch(`${url}/${id}`).then((res) => res.json());
     return product;
@@ -170,12 +171,12 @@ class ShopCart {
           e.target.className.includes("shopping-cart__item__buttons__like")
         ) {
           e.target.classList.toggle("like-is-active");
-          let id = Number(e.target.getAttribute("data-fav-id"));
+          let id = e.target.getAttribute("data-fav-id");
           this.cart[id].favourite = !this.cart[id].favourite;
         } else if (
           e.target.className.includes("shopping-cart__item__buttons__delete")
         ) {
-          let id = Number(e.target.getAttribute("data-delete-id"));
+          let id = e.target.getAttribute("data-delete-id");
           delete this.cart[id];
           let index = this.cartIDs.productsID.findIndex((obj) => obj.id === id);
           this.cartIDs.productsID.splice(index, 1);
@@ -192,7 +193,7 @@ class ShopCart {
         setTimeout(() => {
           btn.innerHTML = "Agregar";
         }, 2000);
-        const id = Number(e.target.getAttribute("data-id"));
+        const id = e.target.getAttribute("data-id");
         await this.addProductToCart(id);
         await this.renderProductsToCart();
         this.updateQuantitiesSubtotalsAndBubble();

@@ -17,7 +17,6 @@ app.set("views", "./views");
 app.use(express.static("public"));
 
 app.get("*", (req, res, next) => {
-  console.log(req.url);
   next();
 });
 

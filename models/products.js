@@ -1,48 +1,107 @@
-import products from "../public/src/database/database.js";
-import Producto from "../public/src/modules/productfactory.js";
+import mongoose from 'mongoose';
+import DBMongoDB from './DB/MongoDB.js';
 
-class ModelProducts {
-  async createProduct(product) {
-    let newProduct = await new Producto(
-      product.id,
-      product.name,
-      product.shortDescription,
-      product.image,
-      product.price
-    );
-    products.push(newProduct);
-    return newProduct;
-  }
+const productSchema = mongoose.Schema({
+    name: String,
+    shortDescription: String,
+    image: String,
+    price: Number,
+    stock: Number,
+});
 
-  async readProducts() {
-    return await products;
-  }
+// Modelo del documento almacenado en la colección
+const ProductsModel = mongoose.model('products', productSchema);
 
-  async readProduct(id) {
-    return (await products.find((product) => product.id == id)) || {};
-  }
+class ProductModelMongoDB {
 
-  updateProduct(id, product) {
-    product.id = id;
-    const index = products.findIndex((product) => product.id === id);
+    ////////////////////////////////////////////////////////////////////////////////
+    //                              CRUD - C: Create                              //
+    ////////////////////////////////////////////////////////////////////////////////`
 
-    if (index === -1) {
-      return {};
-    }
-    products[index] = product;
-    return product;
-  }
-
-  deleteProduct(id) {
-    const index = products.findIndex((product) => product.id === id);
-
-    if (index === -1) {
-      return {};
+    async createProduct (product) {
+        if (! await DBMongoDB.connectDB()) {
+            return {};
+        }
+        try {
+            const newProduct = new ProductsModel(product);
+            await newProduct.save();
+            return DBMongoDB.getObjectWithId(newProduct.toObject());
+        } catch (error) {
+            console.error('Error al intentar dar de alta el producto:', error.message);
+            return {};
+        }
     }
 
-    const removedProduct = products.splice(index, 1)[0];
-    return removedProduct;
-  }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //                               CRUD - R: Read                               //
+    ////////////////////////////////////////////////////////////////////////////////
+
+    async readProducts () {
+        if (! await DBMongoDB.connectDB()) {
+            return [];
+        }
+        try {
+            const products = await ProductsModel.find({}).lean();
+            return DBMongoDB.getObjectWithId(products);
+        } catch (error) {
+            console.error('Error al intentar leer los productos:', error.message);
+            return [];
+        }
+        
+    }
+
+    async readProduct (id) {
+        if (! await DBMongoDB.connectDB()) {
+            return {};
+        }
+        try {
+            const product = await ProductsModel.findById(id).lean() || {};
+            return DBMongoDB.getObjectWithId(product);
+        } catch (error) {
+            console.error(`Error al intentar leer el producto #:${id}`, error.message);
+        }
+        return {};
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //                              CRUD - U: Update                              //
+    ////////////////////////////////////////////////////////////////////////////////`
+
+    async updateProduct (id, product) {
+        if (! await DBMongoDB.connectDB()) {
+            return {};
+        }
+        try {
+            const updatedProduct = await ProductsModel.findByIdAndUpdate(id, {$set: product}, {
+                returnDocument: 'after'
+            }).lean() || {};
+            return DBMongoDB.getObjectWithId(updatedProduct);
+        } catch (error) {
+            console.error(`Error al intentar actualizar el producto #:${id}`, error.message);
+            return {};
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //                              CRUD - D: Delete                              //
+    ////////////////////////////////////////////////////////////////////////////////
+
+    async deleteProduct (id) {
+        if (! await DBMongoDB.connectDB()) {
+            return {};
+        }
+        try {
+            // await ProductsModel.deleteOne({_id: id});
+            const deletedProduct = await ProductsModel.findByIdAndDelete(id).lean() || {};
+            return DBMongoDB.getObjectWithId(deletedProduct);
+        } catch (error) {
+            console.error(`Error al intentar eliminar el producto #:${id}`, error.message);
+            return {};
+        }
+    }
+    
 }
 
-export default ModelProducts;
+export default ProductModelMongoDB;

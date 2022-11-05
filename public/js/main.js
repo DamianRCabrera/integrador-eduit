@@ -51,6 +51,10 @@ class Main {
 
     const viewUrl = this.getViewUrlFromId(id);
 
+    //Cargar loader
+    document.querySelector("main").innerHTML = `<h1>Cargando</h1>`;
+    //
+
     const viewContent = await this.ajax(viewUrl);
 
     document.querySelector("main").innerHTML = viewContent;
