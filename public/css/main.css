@@ -626,7 +626,6 @@ main {
   border-radius: 1em;
   width: 90%;
   max-width: 1300px;
-  align-self: center;
   margin: 3em auto;
 }
 @media (min-width: 768px) {
@@ -656,6 +655,7 @@ main {
   margin-top: 1em;
   display: flex;
   justify-content: space-evenly;
+  gap: 0.5rem;
 }
 
 .about {
@@ -944,6 +944,12 @@ main {
   padding: 0 0.5em;
   color: #211f4f;
 }
+.card__nothing {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #211f4f;
+}
 
 .btn {
   background-color: #211f4f;
@@ -958,6 +964,8 @@ main {
   text-align: center;
   text-decoration: none;
   letter-spacing: 1px;
+  flex-grow: 1;
+  max-width: 150px;
 }
 .btn:hover {
   background-color: #69fbc4;
@@ -981,13 +989,13 @@ main {
 .contact {
   position: fixed;
   right: 14px;
-  bottom: 100px;
+  bottom: 80px;
   z-index: 9;
   width: auto;
 }
 .contact__link__image {
-  width: 3.5em;
-  height: 3.5em;
+  width: 3em;
+  height: 3em;
 }
 
 .input-group {
@@ -1456,4 +1464,89 @@ main {
 }
 .main-cart-toggle:checked ~ main {
   filter: brightness(0.5);
+}
+
+.products-table {
+  width: 100%;
+  vertical-align: middle;
+}
+.products-table__title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  background-color: #2E2C59;
+  color: #ffffff;
+  padding: 0.5rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .products-table__title {
+    text-align: center;
+  }
+}
+.products-table__head__column {
+  padding: 0.5rem;
+  background-color: #38a18c;
+  color: #ffffff;
+  font-weight: 500;
+}
+.products-table__body__column {
+  padding: 0.5rem;
+  vertical-align: middle;
+}
+.products-table__body__column__image {
+  width: 3rem;
+}
+.products-table__body__btn__edit {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("../assets/img/edit.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.products-table__body__btn__edit:hover {
+  transform: scale(1.15);
+}
+.products-table__body__btn__delete {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("../assets/img/delete.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.products-table__body__btn__delete:hover {
+  transform: scale(1.15);
+}
+.products-table__foot__row {
+  background-color: #2E2C59;
+}
+.products-table__foot__column {
+  padding: 0.5rem;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+@media (min-width: 768px) {
+  .products-table__foot__column {
+    text-align: center;
+  }
+}
+.products-table-container {
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 1300px;
+  margin: 3rem auto;
+  overflow-x: auto;
+  border: 2px solid #666666;
 }/*# sourceMappingURL=main.css.map */

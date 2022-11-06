@@ -1,0 +1,40 @@
+{{#if products.length }}
+    <table class="products-table">
+        <caption class="products-table__title">Todos los productos</caption>
+        <thead class="products-table__head">
+            <tr class="products-table__head__row">
+                <th class="products-table__head__column" scope="column">ID</th>
+                <th class="products-table__head__column" scope="column">IMAGEN</th>
+                <th class="products-table__head__column" scope="column">NOMBRE</th>
+                <th class="products-table__head__column" scope="column">PRECIO</th>
+                <th class="products-table__head__column" scope="column">DESCRIPCIÓN</th>
+                <th class="products-table__head__column" scope="column">ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody class="products-table__body">
+            {{#each products}}
+                <tr class="products-table__body__row">
+                    <td class="products-table__body__column" data-product-property="id">{{id}}</td>
+                    <td class="products-table__body__column u-text-align-center" data-product-property="image"><img class="products-table__body__column__image" src="{{image}}" alt="Foto de {{name}}"></td>
+                    <td class="products-table__body__column" data-product-property="name">{{name}}</td>
+                    <td class="products-table__body__column u-text-align-center" data-product-property="price">{{price}}</td>
+                    <td class="products-table__body__column" data-product-property="description">{{shortDescription}}</td>
+                    <td class="products-table__body__column u-text-align-center">
+                        <button title="Editar producto" class="products-table__body__btn__edit"></button>
+                        <button title="Eliminar producto" class="products-table__body__btn__delete"></button>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+        <tfoot class="products-table__foot">
+            <tr class="products-table__foot__row">
+                <td class="products-table__foot__column" colspan="6">Se encontraron {{products.length}} productos</td>
+            </tr>
+        </tfoot>
+    </table>
+{{else}}
+    <div class="products-table__empty">
+        <h2 class="products-table__empty__title">No se encontraron productos</h2>
+    </div>
+    
+{{/if}}

@@ -3,10 +3,18 @@ import DBMongoDB from './DB/MongoDB.js';
 
 const productSchema = mongoose.Schema({
     name: String,
-    shortDescription: String,
-    image: String,
+    brand: String,
     price: Number,
     stock: Number,
+    category: String,
+    shortDescription: String,
+    longDescription: String,
+    ageFormat: String,
+    ageFrom: Number,
+    ageTo: Number,
+    image: String,
+    freeShipping: Boolean,
+    image: String
 });
 
 // Modelo del documento almacenado en la colección

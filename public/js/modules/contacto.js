@@ -1,4 +1,4 @@
-import Validation from "../../src/modules/validation.js";
+import Validation from "../services/validation.js";
 
 const validation = new Validation();
 

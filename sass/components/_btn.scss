@@ -11,6 +11,8 @@
     text-align: center;
     text-decoration: none;
     letter-spacing: 1px;
+    flex-grow: 1;
+    max-width: 150px;
 
     &:hover {
         background-color: #69fbc4;

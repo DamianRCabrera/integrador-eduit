@@ -5,7 +5,6 @@
     border-radius: 1em;
     width: 90%;
     max-width: 1300px;
-    align-self: center;
     margin: 3em auto;
 
     @media (min-width: 768px){
@@ -33,5 +32,6 @@
         margin-top: 1em;
         display: flex;
         justify-content: space-evenly;
+        gap: 0.5rem;
     }
 }

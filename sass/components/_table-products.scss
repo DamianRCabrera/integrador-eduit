@@ -1,0 +1,100 @@
+.products-table{
+  width: 100%;
+  vertical-align: middle;
+
+  &__title{
+    font-weight: 700;
+    font-size: 1.3rem;
+    background-color: #2E2C59;
+    color: #ffffff;
+    padding: 0.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    text-align: left;
+
+    @media (min-width: 768px) {
+      text-align: center;
+    }
+  }
+
+  &__head{
+    &__column{
+      padding: 0.5rem;
+      background-color: #38a18c;
+      color: #ffffff;
+      font-weight: 500;
+    }
+  }
+
+  &__body{
+    &__column{
+      padding: 0.5rem;
+      vertical-align: middle;
+
+      &__image{
+        width: 3rem;
+      }
+    }
+
+    &__btn__edit{
+      width: 1.5rem;
+      height: 1.5rem;
+      background-image: url("../assets/img/edit.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover{
+        transform: scale(1.15);
+      }
+    }
+
+    &__btn__delete{
+      width: 1.5rem;
+      height: 1.5rem;
+      background-image: url("../assets/img/delete.svg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover{
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  &__foot{
+    &__row{
+      background-color: #2E2C59;
+    }
+    &__column{
+      padding: 0.5rem;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.3rem;
+
+      @media (min-width: 768px) {
+        text-align: center;
+      }
+    }
+  }
+
+
+  &-container{
+    // padding: 1rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 1300px;
+    margin: 3rem auto;
+    overflow-x: auto;
+    border: 2px solid #666666;
+  }
+}

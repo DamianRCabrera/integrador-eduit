@@ -1,165 +1,230 @@
-import Validation from "../../src/modules/validation.js";
+// import Validation from "../services/validation.js";
+import productController from "../controllers/product.js";
 
-const validation = new Validation();
+// const validation = new Validation();
 
-const alta = {
-  init: function altaValidation() {
-    console.log("Ejecutando modulo de page: alta");
+class PageAlta {
+  static productsTableContainer;
+  static productForm;
+  static fields;
+  static btnCreate;
+  static btnUpdate;
+  static btnCancel;
 
-    const productName = document.getElementById("product-name");
-    const productBrand = document.getElementById("product-brand");
-    const productPrice = document.getElementById("product-price");
-    const productStock = document.getElementById("product-stock");
-    const productCategory = document.getElementById("product-category");
-    const productShortDescription = document.getElementById(
-      "product-short-description"
-    );
-    const productLongDescription = document.getElementById(
-      "product-long-description"
-    );
-    const productAgeFrom = document.getElementById("product-age-from");
-    const productAgeTo = document.getElementById("product-age-to");
-    const productFreeShipping = document.getElementById(
-      "product-free-shipping"
-    );
-    const productAgeFormat = document.getElementById("product-age-format");
+  static validators = {
+    id: /^[\da-f]{24}$/,
+    name: /^[\wáéíóúüÁÉÍÓÚÜ .,-]{1,30}$/,
+    price: /^\d+$/,
+    description: /^[\wáéíóúüÁÉÍÓÚÜ ¿?¡!.,:-]{1,200}$/,
+  };
 
-    const productImage = document.getElementById("product-image");
-
-    const formAddProduct = document.getElementById("form-add-product");
-
-    const regExpProductName = /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,30}$/;
-    const regExpProductBrand = /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,40}$/;
-    const regExpProductPrice = /^(?![0])\d{1,7}([\.]\d{1,2})?$/;
-    const regExpProductStock = /^\d{1,8}$/;
-    const regExpProductCategory = /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,50}$/;
-    const regExpProductShortDescription = /^.{3,80}$/;
-    const regExpProductLongDescription = /^.{3,2000}$/;
-    const regExpProductAgeYears = /^(?![0])\d{1,2}$/;
-
-    const regExpProductAgeMonths = /^([0-1][0-8]|(\d))$/;
-
-    if (formAddProduct) {
-      formAddProduct.addEventListener("change", (e) => {
-        if (e.target.id === "product-name") {
-          validation.displayPopUpError(
-            e,
-            regExpProductName,
-            "El nombre del producto debe contener entre 3 y 30 caracteres"
-          );
-          return;
-        } else if (e.target.id === "product-brand") {
-          validation.displayPopUpError(
-            e,
-            regExpProductBrand,
-            "La marca del producto debe contener entre 3 y 40 caracteres."
-          );
-          return;
-        } else if (e.target.id === "product-price") {
-          validation.displayPopUpError(
-            e,
-            regExpProductPrice,
-            "El precio debe contener entre 1 y 7 números, solo el punto es permitido."
-          );
-          return;
-        } else if (e.target.id === "product-stock") {
-          validation.displayPopUpError(
-            e,
-            regExpProductStock,
-            "El stock del producto debe contener entre 1 y 8 números, sin caracteres especiales."
-          );
-          return;
-        } else if (e.target.id === "product-category") {
-          validation.displayPopUpError(
-            e,
-            regExpProductCategory,
-            "La categoría del producto debe contener entre 3 y 50 caracteres."
-          );
-          return;
-        } else if (e.target.id === "product-short-description") {
-          validation.displayPopUpError(
-            e,
-            regExpProductShortDescription,
-            "La descripción corta del producto debe contener entre 3 y 80 caracteres, sin caracteres especiales."
-          );
-          return;
-        } else if (e.target.id === "product-long-description") {
-          validation.displayPopUpError(
-            e,
-            regExpProductLongDescription,
-            "La descripción larga del producto debe contener entre 3 y 2000 caracteres, sin caracteres especiales."
-          );
-          return;
-        } else if (e.target.id === "product-age-from") {
-          if (productAgeFormat.value == "years") {
-            validation.displayPopUpError(
-              e,
-              regExpProductAgeYears,
-              "La edad debe contener entre 1 y 2 números"
-            );
-            return;
-          } else if (productAgeFormat.value == "months") {
-            validation.displayPopUpError(
-              e,
-              regExpProductAgeMonths,
-              "La edad en meses debe ser como máximo 18"
-            );
-            return;
-          }
-        } else if (e.target.id === "product-age-to") {
-          if (productAgeFormat.value == "years") {
-            validation.displayPopUpError(
-              e,
-              regExpProductAgeYears,
-              "La edad debe contener entre 1 y 2 números"
-            );
-            return;
-          } else if (productAgeFormat.value == "months") {
-            validation.displayPopUpError(
-              e,
-              regExpProductAgeMonths,
-              "La edad en meses debe ser como máximo 18"
-            );
-            return;
-          }
-        } else {
-          return;
-        }
-      });
-
-      formAddProduct.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (
-          validation.validate(productName.value, regExpProductName) &&
-          validation.validate(productBrand.value, regExpProductBrand) &&
-          validation.validate(productPrice.value, regExpProductPrice) &&
-          validation.validate(productStock.value, regExpProductStock) &&
-          validation.validate(productCategory.value, regExpProductCategory) &&
-          validation.validate(
-            productShortDescription.value,
-            regExpProductShortDescription
-          ) &&
-          validation.validate(
-            productLongDescription.value,
-            regExpProductLongDescription
-          ) &&
-          ((validation.validate(productAgeFrom.value, regExpProductAgeYears) &&
-            validation.validate(productAgeTo.value, regExpProductAgeYears)) ||
-            (validation.validate(
-              productAgeFrom.value,
-              regExpProductAgeMonths
-            ) &&
-              validation.validate(productAgeTo.value, regExpProductAgeMonths)))
-        ) {
-          alert("El producto se ha agregado correctamente.");
-          return;
-        } else {
-          alert("Por favor, complete todos los campos correctamente.");
-          return;
-        }
-      });
+  static async deleteProduct(e) {
+    if (!confirm("¿Estás seguro de querer eliminar el producto?")) {
+      return false;
     }
-  },
-};
+    const row = e.target.closest("tr");
+    const id = row.querySelector('td[data-product-property="id"]').innerHTML;
+    const deletedProduct = await productController.deleteProduct(id);
+    PageAlta.loadTable();
+    return deletedProduct;
+  }
 
-export default alta;
+  static getProductFromRow(row) {
+    const rowCells = row.children;
+    const product = {};
+    for (const cell of rowCells) {
+      if (cell.dataset.productProperty) {
+        product[cell.dataset.productProperty] = cell.innerHTML;
+      }
+    }
+    return product;
+  }
+
+  static emptyForm() {
+    PageAlta.fields.forEach((field) => (field.value = ""));
+  }
+
+  static async completeForm(e) {
+    const row = e.target.closest("tr");
+    const productToEdit = PageAlta.getProductFromRow(row);
+    console.log("productToEdit:", productToEdit);
+
+    PageAlta.fields.forEach((field) => {
+      field.value = productToEdit[field.name];
+    });
+  }
+
+  static async addTableEvents() {
+    PageAlta.productsTableContainer.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("btn-delete")) {
+        const deletedProduct = await PageAlta.deleteProduct(e);
+        console.log("deletedProduct:", deletedProduct);
+        if (PageAlta.objectIsEmpty(deletedProduct)) {
+          console.error("No se pudo eliminar el producto");
+        }
+
+        return;
+      }
+      if (e.target.classList.contains("btn-edit")) {
+        PageAlta.prepareFormForEditing();
+        PageAlta.completeForm(e);
+        return;
+      }
+    });
+  }
+
+  static async renderTemplateTable(products) {
+
+    PageAlta.productsTableContainer.innerHTML = "<h2>Cargando productos...</h2>";
+    const table = await fetch("http://localhost:8080/api/table").then(r => r.text());
+    // console.log(table);
+    PageAlta.productsTableContainer.innerHTML = table;
+  }
+
+  static async loadTable() {
+    const products = await productController.getProducts();
+    console.log(`Se encontraron ${products.length} productos.`);
+    PageAlta.renderTemplateTable(products);
+  }
+
+  static async prepareTable() {
+    PageAlta.productsTableContainer = document.querySelector(
+      ".products-table-container"
+    );
+    await PageAlta.loadTable();
+    PageAlta.addTableEvents();
+  }
+
+  static prepareFormForEditing() {
+    PageAlta.productForm.querySelector('[name]:not([name="id"])').focus();
+    PageAlta.btnCreate.disabled = true;
+    PageAlta.btnUpdate.disabled = false;
+    PageAlta.btnCancel.disabled = false;
+  }
+
+  static prepareFormForCreating() {
+    PageAlta.btnCreate.disabled = false;
+    PageAlta.btnUpdate.disabled = true;
+    PageAlta.btnCancel.disabled = true;
+  }
+
+  static validate(value, validator) {
+    return validator.test(value);
+  }
+
+  static validateForm(validators) {
+    let allValidated = true;
+    const productToSave = {};
+    console.log("\n\n");
+
+    for (const field of PageAlta.fields) {
+      if (!validators[field.name]) {
+        continue;
+      }
+      const validated = PageAlta.validate(field.value, validators[field.name]);
+      console.warn(field.name);
+      console.log(
+        `value: ${field.value}\nvalidator: ${
+          validators[field.name]
+        }\nvalidated: ${validated}`
+      );
+      if (!validated) {
+        field.focus();
+        allValidated = false;
+        break;
+      } else {
+        productToSave[field.name] = field.value;
+      }
+    }
+    console.log("allValidated:", allValidated);
+    if (!allValidated) {
+      return false;
+    }
+    return productToSave;
+  }
+
+  static async saveProduct(product) {
+    const savedProduct = await productController.saveProduct(product);
+    return savedProduct;
+  }
+
+  static async updateProduct(product) {
+    const updatedProduct = await productController.updateProduct(
+      product.id,
+      product
+    );
+    return updatedProduct;
+  }
+
+  static async addFormEvents() {
+    PageAlta.btnCreate.addEventListener("click", async (e) => {
+      console.error("btn-create");
+      const validators = { ...PageAlta.validators };
+      delete validators.id;
+      // console.log(validators);
+      // console.log(PageAlta.validators);
+      const productToSave = PageAlta.validateForm(validators);
+      console.log("productToSave:", productToSave);
+      if (productToSave) {
+        const savedProduct = await PageAlta.saveProduct(productToSave);
+        console.log("savedProduct:", savedProduct);
+        if (PageAlta.objectIsEmpty(savedProduct)) {
+          console.error("No se pudo crear el producto");
+          return;
+        }
+        const products = await productController.getProducts();
+        console.log(`Ahora hay ${products.length} productos`);
+        PageAlta.renderTemplateTable(products);
+
+        PageAlta.emptyForm();
+      }
+    });
+
+    PageAlta.btnUpdate.addEventListener("click", async (e) => {
+      console.error("btn-update");
+      const productToSave = PageAlta.validateForm(PageAlta.validators);
+      if (productToSave) {
+        const updatedProduct = await PageAlta.updateProduct(productToSave);
+        console.log("updatedProduct:", updatedProduct);
+        if (PageAlta.objectIsEmpty(updatedProduct)) {
+          console.error("No se pudo guardar el producto");
+          return;
+        }
+        const products = await productController.getProducts();
+        console.log(`Ahora hay ${products.length} productos`);
+        PageAlta.renderTemplateTable(products);
+        PageAlta.emptyForm();
+        PageAlta.prepareFormForCreating();
+      }
+    });
+
+    PageAlta.btnCancel.addEventListener("click", (e) => {
+      console.error("btn-cancel");
+
+      PageAlta.emptyForm();
+      PageAlta.prepareFormForCreating();
+    });
+  }
+
+  static objectIsEmpty(object) {
+    return Object.entries(object).length === 0;
+  }
+
+  static prepareForm() {
+    PageAlta.productForm = document.getElementById("form-add-product");
+    PageAlta.fields = PageAlta.productForm.querySelectorAll("[name]");
+    PageAlta.btnCreate = document.getElementById("product-add");
+    PageAlta.btnUpdate = document.getElementById("product-edit");
+    PageAlta.btnCancel = document.getElementById("product-reset");
+    PageAlta.addFormEvents();
+  }
+
+  static async init() {
+    console.log("PageAlta.init()");
+
+    PageAlta.prepareTable();
+    PageAlta.prepareForm();
+  }
+}
+
+export default PageAlta;

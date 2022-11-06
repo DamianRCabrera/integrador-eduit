@@ -1,14 +1,14 @@
 .contact {
     position: fixed;
     right: 14px;
-    bottom: 100px;
+    bottom: 80px;
     z-index: 9;
     width: auto;
 
     &__link{
         &__image {
-            width: 3.5em;
-            height: 3.5em;
+            width: 3em;
+            height: 3em;
         }
     }
 }
