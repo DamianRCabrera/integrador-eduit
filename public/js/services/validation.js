@@ -13,7 +13,7 @@ class Validation {
     return false;
   }
   createError(msg, errName = "", popup = "") {
-    let error = new Error(msg);
+    const error = new Error(msg);
     error.name = errName;
     error.popup = popup;
     return error;
@@ -24,7 +24,7 @@ class Validation {
   }
 
   displayWarningError(ev, err) {
-    let divError = document.createElement("div");
+    const divError = document.createElement("div");
     divError.classList.add("error-display__popup");
     divError.innerHTML = err.message;
     ev.target.insertAdjacentElement("afterend", divError);
@@ -32,7 +32,7 @@ class Validation {
   }
 
   removeAllPopUps() {
-    let popUps = document.querySelectorAll(".error-display__popup");
+    const popUps = document.querySelectorAll(".error-display__popup");
     popUps.forEach((popup) => popup.remove());
   }
 

@@ -13,9 +13,15 @@ class PageAlta {
 
   static validators = {
     id: /^[\da-f]{24}$/,
-    name: /^[\wáéíóúüÁÉÍÓÚÜ .,-]{1,30}$/,
-    price: /^\d+$/,
-    description: /^[\wáéíóúüÁÉÍÓÚÜ ¿?¡!.,:-]{1,200}$/,
+    name: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,30}$/,
+    brand: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,40}$/,
+    price: /^(?![0])\d{1,7}([\.]\d{1,2})?$/,
+    stock: /^\d{1,8}$/,
+    category: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,50}$/,
+    shortDescription: /^.{3,80}$/,
+    longDescription: /^.{3,2000}$/,
+    ageYears: /^(?![0])\d{1,2}$/,
+    ageMonths: /^([0-1][0-8]|(\d))$/,
   };
 
   static async deleteProduct(e) {
@@ -24,8 +30,10 @@ class PageAlta {
     }
     const row = e.target.closest("tr");
     const id = row.querySelector('td[data-product-property="id"]').innerHTML;
+    console.log(id)
     const deletedProduct = await productController.deleteProduct(id);
     PageAlta.loadTable();
+    console.log(deletedProduct)
     return deletedProduct;
   }
 
@@ -56,7 +64,7 @@ class PageAlta {
 
   static async addTableEvents() {
     PageAlta.productsTableContainer.addEventListener("click", async (e) => {
-      if (e.target.classList.contains("btn-delete")) {
+      if (e.target.classList.contains("products-table__body__btn__delete")) {
         const deletedProduct = await PageAlta.deleteProduct(e);
         console.log("deletedProduct:", deletedProduct);
         if (PageAlta.objectIsEmpty(deletedProduct)) {
@@ -74,9 +82,10 @@ class PageAlta {
   }
 
   static async renderTemplateTable(products) {
-
-    PageAlta.productsTableContainer.innerHTML = "<h2>Cargando productos...</h2>";
-    const table = await fetch("http://localhost:8080/api/table").then(r => r.text());
+    PageAlta.productsTableContainer.innerHTML = `<h2 class="products-table__loading">Cargando productos...</h2>`;
+    const table = await fetch("http://localhost:8080/api/table").then((r) =>
+      r.text()
+    );
     // console.log(table);
     PageAlta.productsTableContainer.innerHTML = table;
   }

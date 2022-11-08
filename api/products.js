@@ -1,6 +1,7 @@
-import ModelProducts from "../models/products.js";
+import config from "../config.js";
+import Model from "../models/products.js";
 
-const model = new ModelProducts();
+const model = new Model();
 
 class ApiProducts {
   async getProducts() {
@@ -8,9 +9,24 @@ class ApiProducts {
     return products;
   }
 
-  async getProductById(id) {
+  async getProduct(id) {
     const product = await model.readProduct(id);
     return product;
+  }
+
+  async createProduct(product) {
+    const createdProduct = await model.createProduct(product);
+    return createdProduct;
+  }
+
+  async updateProduct(id, product) {
+    const updatedProduct = await model.updateProduct(id, product);
+    return updatedProduct;
+  }
+
+  async deleteProduct(id) {
+    const removedProduct = await model.deleteProduct(id);
+    return removedProduct;
   }
 }
 

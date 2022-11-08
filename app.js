@@ -3,9 +3,12 @@ import { engine } from "express-handlebars";
 import routerPage from "./routers/page.js";
 import routerProducts from "./routers/products.js";
 import routerCart from "./routers/cart.js";
-import routerTable from "./routers/table.js"
+import routerTable from "./routers/table.js";
+import DBMongoDB from "./models/DB/MongoDB.js";
 
 const app = express();
+
+DBMongoDB.connectDB();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

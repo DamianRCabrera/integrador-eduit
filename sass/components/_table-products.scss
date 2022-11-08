@@ -87,6 +87,14 @@
     }
   }
 
+  &__loading{
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #2E2C59;
+    padding: 8rem 2rem;
+  }
+
 
   &-container{
     // padding: 1rem;

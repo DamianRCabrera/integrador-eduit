@@ -25,7 +25,7 @@ class CartItem {
 }
 
 class ShopCart {
-  static url = "http://localhost:8080/api/cart/";
+  static url = "/api/cart/";
 
   constructor() {
     this.cartIDs = {
@@ -48,15 +48,15 @@ class ShopCart {
 
   async getProductFromApi(id) {
     console.log(id);
-    let url = `http://localhost:8080/api/products/product`;
-    let product = await fetch(`${url}/${id}`).then((res) => res.json());
+    const url = `/api/products/`;
+    const product = await fetch(`${url}/${id}`).then((res) => res.json());
     return product;
   }
 
   async addProductToCart(id) {
     if (!this.cart[id]) {
       this.cartIDs.productsID.push({ id: id });
-      let product = await this.getProductFromApi(id);
+      const product = await this.getProductFromApi(id);
       this.cart[id] = new CartItem(id, product.price);
     } else {
       this.cart[id].addOne();
@@ -65,7 +65,7 @@ class ShopCart {
 
   async loadProductToCart() {
     const container = document.querySelector(".shopping-cart-item-container");
-    let ids = JSON.stringify(this.cartIDs);
+    const ids = JSON.stringify(this.cartIDs);
     const viewContent = await this.ajax(ShopCart.url, "post", ids);
     container.innerHTML = viewContent;
   }
@@ -176,9 +176,9 @@ class ShopCart {
         } else if (
           e.target.className.includes("shopping-cart__item__buttons__delete")
         ) {
-          let id = e.target.getAttribute("data-delete-id");
+          const id = e.target.getAttribute("data-delete-id");
           delete this.cart[id];
-          let index = this.cartIDs.productsID.findIndex((obj) => obj.id === id);
+          const index = this.cartIDs.productsID.findIndex((obj) => obj.id === id);
           this.cartIDs.productsID.splice(index, 1);
           this.displayNumberOfItemsInCartBubble();
           await this.renderProductsToCart();
