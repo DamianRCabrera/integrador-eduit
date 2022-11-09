@@ -972,9 +972,6 @@ main {
   border: 1px solid #211f4f;
   color: #211f4f;
 }
-.btn:active {
-  opacity: 0.5;
-}
 .btn__reset {
   background-color: #ff5a5f;
   color: #ffffff;
@@ -984,6 +981,12 @@ main {
   background-color: #c81d25;
   border: 1px solid #ff5a5f;
   color: #ffffff;
+}
+.btn:disabled {
+  background-color: #cccccc;
+  color: #878787;
+  border-color: #cccccc;
+  cursor: not-allowed;
 }
 
 .contact {

@@ -2,9 +2,9 @@ class Http {
   /* GET */
   async get(url, id) {
     try {
+      // console.log(url + (id))
       return await fetch(url + (id || ""), { method: "get" }).then((r) =>
-        r.json()
-      );
+      r.json());
     } catch (error) {
       console.error("ERROR GET", error);
     }

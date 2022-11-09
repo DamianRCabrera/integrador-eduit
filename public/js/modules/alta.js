@@ -11,6 +11,8 @@ class PageAlta {
   static btnUpdate;
   static btnCancel;
 
+  //sirve
+
   static validators = {
     id: /^[\da-f]{24}$/,
     name: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,30}$/,
@@ -22,7 +24,12 @@ class PageAlta {
     longDescription: /^.{3,2000}$/,
     ageYears: /^(?![0])\d{1,2}$/,
     ageMonths: /^([0-1][0-8]|(\d))$/,
+    ageTo: /./,
+    ageFrom: /./,
+    ageFormat: /./,
   };
+
+  //sirve
 
   static async deleteProduct(e) {
     if (!confirm("¿Estás seguro de querer eliminar el producto?")) {
@@ -37,30 +44,42 @@ class PageAlta {
     return deletedProduct;
   }
 
-  static getProductFromRow(row) {
-    const rowCells = row.children;
-    const product = {};
-    for (const cell of rowCells) {
-      if (cell.dataset.productProperty) {
-        product[cell.dataset.productProperty] = cell.innerHTML;
-      }
-    }
-    return product;
+  // sirve
+
+  static async getProduct(id) {
+    const productToEdit = await productController.getProduct(id);
+    console.log("productToEdit:", productToEdit);
+    return productToEdit;
   }
+
+  // sirve
 
   static emptyForm() {
-    PageAlta.fields.forEach((field) => (field.value = ""));
+    PageAlta.fields.forEach((field) => {
+      if(field.type == "checkbox"){
+        field.checked = false;
+        return
+      }
+      field.value = "";
+    });
   }
 
+  // sirve
+
   static async completeForm(e) {
-    const row = e.target.closest("tr");
-    const productToEdit = PageAlta.getProductFromRow(row);
-    console.log("productToEdit:", productToEdit);
+    const id = e.target.dataset.id;
+    const productToEdit = await PageAlta.getProduct(id);
 
     PageAlta.fields.forEach((field) => {
+      if(field.type == "checkbox"){
+        field.checked = productToEdit[field.name];
+        return
+      }
       field.value = productToEdit[field.name];
     });
   }
+
+  // sirve
 
   static async addTableEvents() {
     PageAlta.productsTableContainer.addEventListener("click", async (e) => {
@@ -70,10 +89,9 @@ class PageAlta {
         if (PageAlta.objectIsEmpty(deletedProduct)) {
           console.error("No se pudo eliminar el producto");
         }
-
         return;
       }
-      if (e.target.classList.contains("btn-edit")) {
+      if (e.target.classList.contains("products-table__body__btn__edit")) {
         PageAlta.prepareFormForEditing();
         PageAlta.completeForm(e);
         return;
@@ -81,20 +99,24 @@ class PageAlta {
     });
   }
 
+  //sirve
+
   static async renderTemplateTable(products) {
-    PageAlta.productsTableContainer.innerHTML = `<h2 class="products-table__loading">Cargando productos...</h2>`;
-    const table = await fetch("http://localhost:8080/api/table").then((r) =>
+    const table = await fetch("/api/table").then((r) =>
       r.text()
     );
-    // console.log(table);
     PageAlta.productsTableContainer.innerHTML = table;
   }
+
+  //sirve
 
   static async loadTable() {
     const products = await productController.getProducts();
     console.log(`Se encontraron ${products.length} productos.`);
     PageAlta.renderTemplateTable(products);
   }
+
+  //sirve
 
   static async prepareTable() {
     PageAlta.productsTableContainer = document.querySelector(
@@ -104,6 +126,8 @@ class PageAlta {
     PageAlta.addTableEvents();
   }
 
+  //sirve
+
   static prepareFormForEditing() {
     PageAlta.productForm.querySelector('[name]:not([name="id"])').focus();
     PageAlta.btnCreate.disabled = true;
@@ -111,11 +135,15 @@ class PageAlta {
     PageAlta.btnCancel.disabled = false;
   }
 
+  //sirve
+
   static prepareFormForCreating() {
     PageAlta.btnCreate.disabled = false;
     PageAlta.btnUpdate.disabled = true;
     PageAlta.btnCancel.disabled = true;
   }
+
+  
 
   static validate(value, validator) {
     return validator.test(value);
@@ -128,9 +156,21 @@ class PageAlta {
 
     for (const field of PageAlta.fields) {
       if (!validators[field.name]) {
+        if(field.type == "checkbox"){
+          productToSave[field.name] = field.checked;
+        }
         continue;
       }
-      const validated = PageAlta.validate(field.value, validators[field.name]);
+      let validated = true;
+      if(field.name == "ageFrom" || field.name == "ageTo"){
+        if(document.getElementById("product-ageFormat").value == "years"){
+          validated = PageAlta.validate(field.value, validators.ageYears);
+        }else if(document.getElementById("product-ageFormat").value == "months"){
+          validated = PageAlta.validate(field.value, validators.ageMonths);
+        }
+      } else{
+          validated = PageAlta.validate(field.value, validators[field.name]);
+      }
       console.warn(field.name);
       console.log(
         `value: ${field.value}\nvalidator: ${
@@ -209,7 +249,6 @@ class PageAlta {
 
     PageAlta.btnCancel.addEventListener("click", (e) => {
       console.error("btn-cancel");
-
       PageAlta.emptyForm();
       PageAlta.prepareFormForCreating();
     });
@@ -223,6 +262,7 @@ class PageAlta {
     PageAlta.productForm = document.getElementById("form-add-product");
     PageAlta.fields = PageAlta.productForm.querySelectorAll("[name]");
     PageAlta.btnCreate = document.getElementById("product-add");
+    console.log(PageAlta.btnCreate);
     PageAlta.btnUpdate = document.getElementById("product-edit");
     PageAlta.btnCancel = document.getElementById("product-reset");
     PageAlta.addFormEvents();

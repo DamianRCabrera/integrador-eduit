@@ -2,19 +2,54 @@ import mongoose from 'mongoose';
 import DBMongoDB from './DB/MongoDB.js';
 
 const productSchema = mongoose.Schema({
-    name: String,
-    brand: String,
-    price: Number,
-    stock: Number,
-    category: String,
-    shortDescription: String,
-    longDescription: String,
-    ageFormat: String,
-    ageFrom: Number,
-    ageTo: Number,
-    image: String,
-    freeShipping: Boolean,
-    image: String
+    name:{
+        type: String,
+        required: true,
+    },
+    brand: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    stock: {
+        type: Number,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    shortDescription: {
+        type: String,
+        required: true
+    },
+    longDescription: {
+        type: String,
+        required: true
+    },
+    ageFormat: {
+        type: String,
+        required: true
+    },
+    ageFrom: {
+        type: Number,
+        required: true
+    },
+    ageTo: {
+        type: Number,
+        required: true
+    },
+    image: {
+        type: String,
+        default: './assets/products/not-found.jpg'
+    },
+    freeShipping: {
+        type: Boolean,
+        default: false
+    },
 });
 
 // Modelo del documento almacenado en la colección

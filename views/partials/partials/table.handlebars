@@ -20,8 +20,8 @@
                     <td class="products-table__body__column u-text-align-center" data-product-property="price">{{price}}</td>
                     <td class="products-table__body__column" data-product-property="description">{{shortDescription}}</td>
                     <td class="products-table__body__column u-text-align-center">
-                        <button title="Editar producto" class="products-table__body__btn__edit"></button>
-                        <button title="Eliminar producto" class="products-table__body__btn__delete"></button>
+                        <button title="Editar producto" class="products-table__body__btn__edit" data-id="{{id}}"></button>
+                        <button title="Eliminar producto" class="products-table__body__btn__delete" data-id="{{id}}"></button>
                     </td>
                 </tr>
             {{/each}}

@@ -46,8 +46,15 @@ class Main {
     }
   }
 
+  hideHamburguer(){
+    const hamburguerToggle = document.getElementById("main-nav-toggle");
+    hamburguerToggle.checked = false;
+  }
+
   async loadTemplate() {
     const id = this.getIdFromHash();
+
+    this.hideHamburguer();
 
     const viewUrl = this.getViewUrlFromId(id);
 
