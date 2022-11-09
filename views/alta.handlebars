@@ -1,12 +1,19 @@
 <header class="banner">
   <div class="banner-info">
     <h1 class="banner-info__title">Juguetería Cósmica</h1>
-    <h2 class="banner-info__description">Envianos tus consultas y sugerencias</h2>
+    <h2 class="banner-info__description">Aquí puedes agregar, editar o borrar productos</h2>
   </div>
   <div class="banner-display">
     <img class="banner-display__image" src="./assets/img/banner.jpg" alt="Foto de niños jugando">
   </div>
 </header>
+
+<div class="show-title">
+  <header class="show-title__header">
+    <h2 class="show-title__header__title">Alta de productos</h2>
+    <p class="show-title__header__description">Por favor completa los datos de la forma más precisa posible</p>
+  </header>
+</div>
 
 <div class="form-container">
   <form class="main-form" id="form-add-product" action="post" autocomplete="off">
@@ -121,7 +128,7 @@
 
       <div class="input-group">
         <label class="input-group__label" for="product-image">Añadir imagen del producto (max: 300px):</label>
-        <input class="input-group__file" type="file" id="product-image"
+        <input class="input-group__file" type="file" name="image" id="product-image"
           accept=".png,.jpg,.jpeg" required>
       </div>
     </div>

@@ -14,6 +14,9 @@ class ControllerProducts {
 
   async postProduct(req, res) {
     const product = req.body;
+    if (req.file) {
+      product.image = `./assets/products/${req.file.filename}`;
+    }
     const newProduct = await api.createProduct(product);
     res.json(newProduct);
   }

@@ -15,13 +15,13 @@ class PageAlta {
 
   static validators = {
     id: /^[\da-f]{24}$/,
-    name: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,30}$/,
+    name: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s0-9\.\,"'\/\-_]{3,30}$/,
     brand: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,40}$/,
     price: /^(?![0])\d{1,7}([\.]\d{1,2})?$/,
     stock: /^\d{1,8}$/,
     category: /^[a-zA-ZÁÉÍÓÚÑáéíóúñ\s\.\,"'\/\-_]{3,50}$/,
-    shortDescription: /^.{3,80}$/,
-    longDescription: /^.{3,2000}$/,
+    shortDescription: /.{3,80}/,
+    longDescription: /.{3,2000}/,
     ageYears: /^(?![0])\d{1,2}$/,
     ageMonths: /^([0-1][0-8]|(\d))$/,
     ageTo: /./,
@@ -37,10 +37,10 @@ class PageAlta {
     }
     const row = e.target.closest("tr");
     const id = row.querySelector('td[data-product-property="id"]').innerHTML;
-    console.log(id)
+    console.log(id);
     const deletedProduct = await productController.deleteProduct(id);
     PageAlta.loadTable();
-    console.log(deletedProduct)
+    console.log(deletedProduct);
     return deletedProduct;
   }
 
@@ -56,9 +56,9 @@ class PageAlta {
 
   static emptyForm() {
     PageAlta.fields.forEach((field) => {
-      if(field.type == "checkbox"){
+      if (field.type == "checkbox") {
         field.checked = false;
-        return
+        return;
       }
       field.value = "";
     });
@@ -71,9 +71,9 @@ class PageAlta {
     const productToEdit = await PageAlta.getProduct(id);
 
     PageAlta.fields.forEach((field) => {
-      if(field.type == "checkbox"){
+      if (field.type == "checkbox") {
         field.checked = productToEdit[field.name];
-        return
+        return;
       }
       field.value = productToEdit[field.name];
     });
@@ -102,9 +102,7 @@ class PageAlta {
   //sirve
 
   static async renderTemplateTable(products) {
-    const table = await fetch("/api/table").then((r) =>
-      r.text()
-    );
+    const table = await fetch("/api/table").then((r) => r.text());
     PageAlta.productsTableContainer.innerHTML = table;
   }
 
@@ -143,33 +141,36 @@ class PageAlta {
     PageAlta.btnCancel.disabled = true;
   }
 
-  
-
   static validate(value, validator) {
     return validator.test(value);
   }
 
   static validateForm(validators) {
     let allValidated = true;
-    const productToSave = {};
+    const productToSave = new FormData;
     console.log("\n\n");
 
     for (const field of PageAlta.fields) {
       if (!validators[field.name]) {
-        if(field.type == "checkbox"){
-          productToSave[field.name] = field.checked;
+        if (field.type == "checkbox") {
+          productToSave.append(field.name, field.checked);
+        } else if (field.type == "file") {
+          productToSave.append(field.name, field.files[0]);
+          console.log(field.files[0]);
         }
         continue;
       }
       let validated = true;
-      if(field.name == "ageFrom" || field.name == "ageTo"){
-        if(document.getElementById("product-ageFormat").value == "years"){
+      if (field.name == "ageFrom" || field.name == "ageTo") {
+        if (document.getElementById("product-ageFormat").value == "years") {
           validated = PageAlta.validate(field.value, validators.ageYears);
-        }else if(document.getElementById("product-ageFormat").value == "months"){
+        } else if (
+          document.getElementById("product-ageFormat").value == "months"
+        ) {
           validated = PageAlta.validate(field.value, validators.ageMonths);
         }
-      } else{
-          validated = PageAlta.validate(field.value, validators[field.name]);
+      } else {
+        validated = PageAlta.validate(field.value, validators[field.name]);
       }
       console.warn(field.name);
       console.log(
@@ -182,7 +183,7 @@ class PageAlta {
         allValidated = false;
         break;
       } else {
-        productToSave[field.name] = field.value;
+        productToSave.append(field.name, field.value);
       }
     }
     console.log("allValidated:", allValidated);
@@ -215,7 +216,10 @@ class PageAlta {
       const productToSave = PageAlta.validateForm(validators);
       console.log("productToSave:", productToSave);
       if (productToSave) {
-        const savedProduct = await PageAlta.saveProduct(productToSave);
+        const savedProduct = await fetch("/api/products/",{
+          method: "POST",
+          body: productToSave
+        }).then((r) => r.json());
         console.log("savedProduct:", savedProduct);
         if (PageAlta.objectIsEmpty(savedProduct)) {
           console.error("No se pudo crear el producto");

@@ -8,6 +8,7 @@ const productSchema = mongoose.Schema({
     },
     brand: {
         type: String,
+        default: "GENERIC",
         required: true
     },
     price: {

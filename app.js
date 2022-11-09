@@ -5,13 +5,20 @@ import routerProducts from "./routers/products.js";
 import routerCart from "./routers/cart.js";
 import routerTable from "./routers/table.js";
 import DBMongoDB from "./models/DB/MongoDB.js";
+import cors from 'cors';
 
 const app = express();
 
 DBMongoDB.connectDB();
 
+////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors());
 
 app.engine("handlebars", engine());
 
