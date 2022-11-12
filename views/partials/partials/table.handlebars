@@ -8,6 +8,8 @@
                 <th class="products-table__head__column" scope="column">NOMBRE</th>
                 <th class="products-table__head__column" scope="column">PRECIO</th>
                 <th class="products-table__head__column" scope="column">DESCRIPCIÓN</th>
+                <th class="products-table__head__column" scope="column">STOCK</th>
+                <th class="products-table__head__column" scope="column">CATEGORÍA</th>
                 <th class="products-table__head__column" scope="column">ACCIONES</th>
             </tr>
         </thead>
@@ -19,6 +21,8 @@
                     <td class="products-table__body__column" data-product-property="name">{{name}}</td>
                     <td class="products-table__body__column u-text-align-center" data-product-property="price">{{price}}</td>
                     <td class="products-table__body__column" data-product-property="description">{{shortDescription}}</td>
+                    <td class="products-table__body__column" data-product-property="stock">{{stock}}</td>
+                    <td class="products-table__body__column" data-product-property="category">{{category}}</td>
                     <td class="products-table__body__column u-text-align-center">
                         <button title="Editar producto" class="products-table__body__btn__edit" data-id="{{id}}"></button>
                         <button title="Eliminar producto" class="products-table__body__btn__delete" data-id="{{id}}"></button>
@@ -28,7 +32,7 @@
         </tbody>
         <tfoot class="products-table__foot">
             <tr class="products-table__foot__row">
-                <td class="products-table__foot__column" colspan="6">Se encontraron {{products.length}} productos</td>
+                <td class="products-table__foot__column" colspan="8">Se encontraron {{products.length}} productos</td>
             </tr>
         </tfoot>
     </table>

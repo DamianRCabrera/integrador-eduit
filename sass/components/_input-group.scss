@@ -158,5 +158,10 @@
         border: 1px solid #de0e15;
         background-color: #d63c40;
         background-image: none;
+        color: white;
+
+        &::placeholder{
+            color: white;
+        }
     }
 }

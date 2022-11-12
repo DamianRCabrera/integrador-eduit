@@ -25,14 +25,14 @@
         <label class="input-group__label" for="product-name" required>
           Nombre del producto:
         </label>
-        <input class="input-group__input" id="product-name" name="name" type="text" placeholder="Ej: Pelota Mundial Qatar 2022">
+        <input class="input-group__input" id="product-name" name="name" type="text" placeholder="Ej: Pelota Mundial Qatar 2022" data-validable="true">
       </div>
       <div class="input-group">
         <label class="input-group__label" for="product-brand">
           Marca del producto:
         </label>
         <input class="input-group__input input-group__input__brand" list="product-brands" id="product-brand"
-          name="brand" placeholder="Ej: Mattel, Hasbro, etc"/>
+          name="brand" placeholder="Ej: Mattel, Hasbro, etc" data-validable="true"/>
         <datalist id="product-brands">
           <option value="HASBRO">
           <option value="MATTEL">
@@ -48,13 +48,13 @@
         <label class="input-group__label" for="product-price">
           Precio
         </label>
-        <input class="input-group__input" id="product-price" name="price" type="number" step=".01" placeholder="Ej: 15000" required>
+        <input class="input-group__input" id="product-price" name="price" type="number" step=".01" placeholder="Ej: 15000" required data-validable="true">
       </div>
       <div class="input-group">
         <label class="input-group__label" for="product-stock">
           Stock
         </label>
-        <input class="input-group__input" id="product-stock" name="stock" type="number" placeholder="Ej: 100" required>
+        <input class="input-group__input" id="product-stock" name="stock" type="number" placeholder="Ej: 100" data-validable="true" required>
       </div>
     </div>
 
@@ -63,7 +63,7 @@
         <label class="input-group__label" for="product-category">
           Categoría:
         </label>
-        <input class="input-group__input" list="product-categories" id="category" name="category" placeholder="Ej: Juego de Construcción"/>
+        <input class="input-group__input" list="product-categories" id="category" name="category" placeholder="Ej: Juego de Construcción" data-validable="true"/>
         <datalist id="product-categories">
           <option value="AIRE LIBRE">
           <option value="ARTE INFANTIL">
@@ -86,7 +86,7 @@
         <label class="input-group__label" for="product-shortDescription">
           Descripción breve:
         </label>
-        <input class="input-group__input" id="product-shortDescription" name="shortDescription" type="text" placeholder="Ingrese una descripción corta" required>
+        <input class="input-group__input" id="product-shortDescription" name="shortDescription" type="text" placeholder="Ingrese una descripción corta" data-validable="true" required>
       </div>
     </div>
 
@@ -94,7 +94,7 @@
       <div class="input-group">
         <label class="input-group__label" for="product-longDescription">Descripción larga: (máx. 2000
           caracteres)</label>
-        <textarea class="input-group__textarea" name="longDescription" id="product-long-description" placeholder="Ingrese la descripción completa del producto" cols="30"
+        <textarea class="input-group__textarea" name="longDescription" id="product-long-description" placeholder="Ingrese la descripción completa del producto" data-validable="true" cols="30"
           rows="10" required></textarea>
       </div>
     </div>
@@ -111,11 +111,11 @@
       </div>
       <div class="input-group">
         <label class="input-group__label" for="product-ageFrom"> Edad desde:</label>
-        <input class="input-group__input" id="product-ageFrom" name="ageFrom" type="number" placeholder="Ej: 0" required>
+        <input class="input-group__input" id="product-ageFrom" name="ageFrom" type="number" placeholder="Ej: 0" required data-validable="true">
       </div>
       <div class="input-group">
         <label class="input-group__label" for="product-ageTo"> Edad hasta:</label>
-        <input class="input-group__input" id="product-ageTo" name="ageTo" type="number" placeholder="Ej: 12" required>
+        <input class="input-group__input" id="product-ageTo" name="ageTo" type="number" placeholder="Ej: 12" required data-validable="true">
       </div>
     </div>
 

@@ -42,6 +42,7 @@ class Main {
       }
       module.init();
     } catch (error) {
+      console.log(error);
       console.error(`No se pudo importar el módulo ${moduleUrl}.`);
     }
   }

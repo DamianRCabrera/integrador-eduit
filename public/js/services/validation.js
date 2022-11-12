@@ -36,9 +36,9 @@ class Validation {
     popUps.forEach((popup) => popup.remove());
   }
 
-  displayCheckOnInput(ev) {
-    ev.target.classList.remove("input__error");
-    ev.target.classList.add("input__check");
+  displayCheckOnInput(field) {
+    field.target.classList.remove("input__error");
+    field.target.classList.add("input__check");
   }
 
   modifyInputBackgroundOnError(ev) {

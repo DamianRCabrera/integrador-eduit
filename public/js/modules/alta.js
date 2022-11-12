@@ -1,4 +1,5 @@
 // import Validation from "../services/validation.js";
+// import e from "cors";
 import productController from "../controllers/product.js";
 
 // const validation = new Validation();
@@ -10,8 +11,6 @@ class PageAlta {
   static btnCreate;
   static btnUpdate;
   static btnCancel;
-
-  //sirve
 
   static validators = {
     id: /^[\da-f]{24}$/,
@@ -29,7 +28,21 @@ class PageAlta {
     ageFormat: /./,
   };
 
-  //sirve
+  static errorMsg = {
+    name: "El nombre debe tener entre 3 y 30 caracteres.",
+    brand: "La marca debe tener entre 3 y 40 caracteres.",
+    price: "El precio debe ser un número entero o decimal entre 1 y 9999999.",
+    stock: "El stock debe ser un número entero entre 1 y 99999999.",
+    category: "La categoría debe tener entre 3 y 50 caracteres.",
+    shortDescription:
+      "La descripción corta debe tener entre 3 y 80 caracteres.",
+    longDescription:
+      "La descripción larga debe tener entre 3 y 2000 caracteres.",
+    ageYears: "La edad en años debe ser un número entero entre 1 y 99.",
+    ageMonths: "La edad en meses debe ser un número entero entre 0 y 18.",
+    ageTo: "La edad máxima debe ser mayor o igual a la edad mínima.",
+    ageFrom: "La edad mínima debe ser menor o igual a la edad máxima.",
+  };
 
   static async deleteProduct(e) {
     if (!confirm("¿Estás seguro de querer eliminar el producto?")) {
@@ -44,15 +57,11 @@ class PageAlta {
     return deletedProduct;
   }
 
-  // sirve
-
   static async getProduct(id) {
     const productToEdit = await productController.getProduct(id);
     console.log("productToEdit:", productToEdit);
     return productToEdit;
   }
-
-  // sirve
 
   static emptyForm() {
     PageAlta.fields.forEach((field) => {
@@ -64,8 +73,6 @@ class PageAlta {
     });
   }
 
-  // sirve
-
   static async completeForm(e) {
     const id = e.target.dataset.id;
     const productToEdit = await PageAlta.getProduct(id);
@@ -74,12 +81,12 @@ class PageAlta {
       if (field.type == "checkbox") {
         field.checked = productToEdit[field.name];
         return;
+      } else if (field.type == "file") {
+        return;
       }
       field.value = productToEdit[field.name];
     });
   }
-
-  // sirve
 
   static async addTableEvents() {
     PageAlta.productsTableContainer.addEventListener("click", async (e) => {
@@ -99,22 +106,16 @@ class PageAlta {
     });
   }
 
-  //sirve
-
-  static async renderTemplateTable(products) {
+  static async renderTemplateTable() {
     const table = await fetch("/api/table").then((r) => r.text());
     PageAlta.productsTableContainer.innerHTML = table;
   }
-
-  //sirve
 
   static async loadTable() {
     const products = await productController.getProducts();
     console.log(`Se encontraron ${products.length} productos.`);
     PageAlta.renderTemplateTable(products);
   }
-
-  //sirve
 
   static async prepareTable() {
     PageAlta.productsTableContainer = document.querySelector(
@@ -124,16 +125,12 @@ class PageAlta {
     PageAlta.addTableEvents();
   }
 
-  //sirve
-
   static prepareFormForEditing() {
     PageAlta.productForm.querySelector('[name]:not([name="id"])').focus();
     PageAlta.btnCreate.disabled = true;
     PageAlta.btnUpdate.disabled = false;
     PageAlta.btnCancel.disabled = false;
   }
-
-  //sirve
 
   static prepareFormForCreating() {
     PageAlta.btnCreate.disabled = false;
@@ -145,9 +142,42 @@ class PageAlta {
     return validator.test(value);
   }
 
+  static displayWarningError(field, msg) {
+    const divError = document.createElement("div");
+    divError.classList.add("error-display__popup");
+    divError.innerHTML = msg;
+    field.insertAdjacentElement("afterend", divError);
+    return divError;
+  }
+
+  static removeAllPopUps() {
+    const popUps = document.querySelectorAll(".error-display__popup");
+    popUps.forEach((popup) => popup.remove());
+  }
+
+  static displayCheckOnInput(field) {
+    if(field.classList.contains("input__error")){
+      field.classList.remove("input__error");
+    }
+    field.classList.add("input__check");
+  }
+
+  static modifyInputBackgroundOnError(field) {
+    field.classList.remove("input__check");
+    field.classList.add("input__error");
+  }
+
+  static removeErrorsOnInput() {
+    PageAlta.fields.forEach((field) => {
+      if (field.classList.contains("input__error")) {
+        field.classList.remove("input__error");
+      }
+    });
+  }
+
   static validateForm(validators) {
     let allValidated = true;
-    const productToSave = new FormData;
+    const productToSave = new FormData();
     console.log("\n\n");
 
     for (const field of PageAlta.fields) {
@@ -171,18 +201,24 @@ class PageAlta {
         }
       } else {
         validated = PageAlta.validate(field.value, validators[field.name]);
+        if (!validated) {
+          if (
+            field.parentElement.querySelector(".error-display__popup") === null
+          ) {
+            PageAlta.displayWarningError(field, PageAlta.errorMsg[field.name]);
+            PageAlta.modifyInputBackgroundOnError(field);
+          }
+        }
       }
-      console.warn(field.name);
-      console.log(
-        `value: ${field.value}\nvalidator: ${
-          validators[field.name]
-        }\nvalidated: ${validated}`
-      );
+      
       if (!validated) {
         field.focus();
         allValidated = false;
         break;
       } else {
+        PageAlta.displayCheckOnInput(field);
+        PageAlta.removeErrorsOnInput();
+        field.parentElement.querySelector(".error-display__popup")?.remove();
         productToSave.append(field.name, field.value);
       }
     }
@@ -190,6 +226,7 @@ class PageAlta {
     if (!allValidated) {
       return false;
     }
+    PageAlta.removeAllPopUps();
     return productToSave;
   }
 
@@ -211,14 +248,11 @@ class PageAlta {
       console.error("btn-create");
       const validators = { ...PageAlta.validators };
       delete validators.id;
-      // console.log(validators);
-      // console.log(PageAlta.validators);
       const productToSave = PageAlta.validateForm(validators);
-      console.log("productToSave:", productToSave);
       if (productToSave) {
-        const savedProduct = await fetch("/api/products/",{
+        const savedProduct = await fetch("/api/products/", {
           method: "POST",
-          body: productToSave
+          body: productToSave,
         }).then((r) => r.json());
         console.log("savedProduct:", savedProduct);
         if (PageAlta.objectIsEmpty(savedProduct)) {
@@ -236,6 +270,7 @@ class PageAlta {
     PageAlta.btnUpdate.addEventListener("click", async (e) => {
       console.error("btn-update");
       const productToSave = PageAlta.validateForm(PageAlta.validators);
+      console.log()
       if (productToSave) {
         const updatedProduct = await PageAlta.updateProduct(productToSave);
         console.log("updatedProduct:", updatedProduct);
@@ -253,20 +288,43 @@ class PageAlta {
 
     PageAlta.btnCancel.addEventListener("click", (e) => {
       console.error("btn-cancel");
+      PageAlta.removeAllPopUps();
+      PageAlta.removeErrorsOnInput();
       PageAlta.emptyForm();
       PageAlta.prepareFormForCreating();
     });
+
+    PageAlta.addChangeEventForm();
   }
 
   static objectIsEmpty(object) {
     return Object.entries(object).length === 0;
   }
 
+  static addChangeEventForm() {
+    PageAlta.fields.forEach((field) => {
+      field.addEventListener("change", (e) => {
+        if (PageAlta.validate(e.target.value, PageAlta.validators[e.target.name])) {
+          PageAlta.displayCheckOnInput(e);
+          PageAlta.removeErrorsOnInput();
+          e.target.parentElement
+            .querySelector(".error-display__popup")
+            ?.remove();
+        } else {
+          PageAlta.displayWarningError(
+            e.target,
+            PageAlta.errorMsg[e.target.name]
+          );
+          PageAlta.modifyInputBackgroundOnError(e.target);
+        }
+      });
+    });
+  }
+
   static prepareForm() {
     PageAlta.productForm = document.getElementById("form-add-product");
     PageAlta.fields = PageAlta.productForm.querySelectorAll("[name]");
     PageAlta.btnCreate = document.getElementById("product-add");
-    console.log(PageAlta.btnCreate);
     PageAlta.btnUpdate = document.getElementById("product-edit");
     PageAlta.btnCancel = document.getElementById("product-reset");
     PageAlta.addFormEvents();
