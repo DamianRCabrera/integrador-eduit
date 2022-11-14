@@ -45,7 +45,6 @@ const productSchema = mongoose.Schema({
     },
     image: {
         type: String,
-        // default: './assets/products/not-found.svg'
     },
     freeShipping: {
         type: Boolean,

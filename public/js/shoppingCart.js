@@ -28,6 +28,7 @@ class ShopCart {
   static url = "/api/cart/";
 
   constructor() {
+    this.client = "Anonymous";
     this.cartIDs = {
       productsID: [{}],
     };
@@ -36,10 +37,10 @@ class ShopCart {
     this.itemsOnCart = 0;
   }
 
-  async ajax(url, method, ids) {
+  async ajax(url, method, body) {
     return await fetch(url, {
       method: method,
-      body: ids,
+      body: body,
       headers: {
         "Content-Type": "application/json",
       },
@@ -68,6 +69,17 @@ class ShopCart {
     const ids = JSON.stringify(this.cartIDs);
     const viewContent = await this.ajax(ShopCart.url, "post", ids);
     container.innerHTML = viewContent;
+  }
+
+  async sendCartToApi() {
+    const newCart = {};
+    newCart.client = this.client;
+    newCart.date = Date.now();
+    newCart.products = this.cart;
+    newCart.total = this.total;
+
+    const response = await this.ajax(`${ShopCart.url}new`, "post", JSON.stringify(newCart));
+    return response;
   }
 
   async renderProductsToCart() {
@@ -184,6 +196,18 @@ class ShopCart {
           await this.renderProductsToCart();
           if (this.cartIDs.productsID.length > 1) {
             this.updateQuantitiesSubtotalsAndBubble();
+          }
+        } else if(e.target.dataset.buy == "true") {
+          e.preventDefault();
+          const response = await this.sendCartToApi();
+          if(response) {
+            console.log(response);
+            this.cart = {};
+            this.cartIDs = { productsID: [] };
+            this.total = 0;
+            this.itemsOnCart = 0;
+            this.displayNumberOfItemsInCartBubble();
+            await this.renderProductsToCart();
           }
         }
       } else if (e.target.className.includes("card__link-add")) {
