@@ -5,3 +5,7 @@ $textAlignValues: ("left", "right", "center", "justify");
         text-align: #{$textAlign}!important;
     }
 }
+
+.hidden {
+    display: none;
+}

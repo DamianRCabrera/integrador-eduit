@@ -388,6 +388,10 @@ body {
   text-align: justify !important;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   font-family: "Inter", sans-serif;
 }
@@ -776,6 +780,10 @@ main {
   gap: 1em;
   padding: 0 1rem;
 }
+.about-brands__card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
 .about-brands__card__img {
   width: 100%;
 }
@@ -1059,6 +1067,10 @@ main {
   color: #878787;
   border-color: #cccccc;
   cursor: not-allowed;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
 }
 
 .contact {

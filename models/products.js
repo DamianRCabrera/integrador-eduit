@@ -45,13 +45,17 @@ const productSchema = mongoose.Schema({
     },
     image: {
         type: String,
-        default: './assets/products/not-found.jpg'
+        // default: './assets/products/not-found.svg'
     },
     freeShipping: {
         type: Boolean,
         default: false
     },
 });
+
+productSchema.pre("save", function(){
+    this.image = this.image || './assets/products/not-found.svg';
+})
 
 // Modelo del documento almacenado en la colección
 const ProductsModel = mongoose.model('products', productSchema);

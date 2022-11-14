@@ -130,6 +130,11 @@
             align-items: center;
             max-width: 150px;
 
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.05);
+            }
+
             &__img{
                 width: 100%;
             }

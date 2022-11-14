@@ -29,6 +29,16 @@ class ControllerProducts {
     res.json(updatedProduct);
   }
 
+  async updateProduct(req, res) {
+    const id = req.params.id;
+    const product = req.body;
+    if (req.file) {
+      product.image = `./assets/products/${req.file.filename}`;
+    }
+    const updatedProduct = await api.updateProduct(id, product);
+    res.json(updatedProduct);
+  }
+
   async deleteProduct(req, res) {
     const id = req.params.id;
     const removedProduct = await api.deleteProduct(id);

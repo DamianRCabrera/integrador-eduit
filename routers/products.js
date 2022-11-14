@@ -11,6 +11,8 @@ router.get("/:id", controller.getProduct);
 
 router.post("/", upload.single('image'), controller.postProduct);
 
+router.post("/:id", upload.single("image"), controller.updateProduct);
+
 router.put('/:id', controller.putProduct);
 
 router.delete('/:id', controller.deleteProduct);

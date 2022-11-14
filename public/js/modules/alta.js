@@ -11,6 +11,7 @@ class PageAlta {
   static btnCreate;
   static btnUpdate;
   static btnCancel;
+  static btnShowTable;
 
   static validators = {
     id: /^[\da-f]{24}$/,
@@ -71,6 +72,7 @@ class PageAlta {
       }
       field.value = "";
     });
+    PageAlta.removeAllChecks();
   }
 
   static async completeForm(e) {
@@ -156,10 +158,15 @@ class PageAlta {
   }
 
   static displayCheckOnInput(field) {
-    if(field.classList.contains("input__error")){
+    if (field.classList.contains("input__error")) {
       field.classList.remove("input__error");
     }
     field.classList.add("input__check");
+  }
+
+  static removeAllChecks () {
+    const checks = document.querySelectorAll(".input__check");
+    checks.forEach((check) => check.classList.remove("input__check"));
   }
 
   static modifyInputBackgroundOnError(field) {
@@ -185,8 +192,10 @@ class PageAlta {
         if (field.type == "checkbox") {
           productToSave.append(field.name, field.checked);
         } else if (field.type == "file") {
-          productToSave.append(field.name, field.files[0]);
-          console.log(field.files[0]);
+          if (field.files.length > 0) {
+            productToSave.append(field.name, field.files[0]);
+            console.log(field.files[0]);
+          }
         }
         continue;
       }
@@ -210,7 +219,7 @@ class PageAlta {
           }
         }
       }
-      
+
       if (!validated) {
         field.focus();
         allValidated = false;
@@ -235,12 +244,25 @@ class PageAlta {
     return savedProduct;
   }
 
-  static async updateProduct(product) {
-    const updatedProduct = await productController.updateProduct(
-      product.id,
-      product
-    );
-    return updatedProduct;
+  // static async updateProduct(product) {
+  //   const updatedProduct = await productController.updateProduct(
+  //     product.id,
+  //     product
+  //   );
+  //   return updatedProduct;
+  // }
+
+  static displayTable() {
+    PageAlta.productsTableContainer.classList.remove("hidden");
+  }
+
+  static async sendFormData(url, formData) {
+    const result = await fetch(url, {
+      method: "POST",
+      body: formData,
+    }).then((r) => r.json());
+
+    return result;
   }
 
   static async addFormEvents() {
@@ -250,10 +272,10 @@ class PageAlta {
       delete validators.id;
       const productToSave = PageAlta.validateForm(validators);
       if (productToSave) {
-        const savedProduct = await fetch("/api/products/", {
-          method: "POST",
-          body: productToSave,
-        }).then((r) => r.json());
+        const savedProduct = await PageAlta.sendFormData(
+          "/api/products/",
+          productToSave
+        );
         console.log("savedProduct:", savedProduct);
         if (PageAlta.objectIsEmpty(savedProduct)) {
           console.error("No se pudo crear el producto");
@@ -269,10 +291,14 @@ class PageAlta {
 
     PageAlta.btnUpdate.addEventListener("click", async (e) => {
       console.error("btn-update");
-      const productToSave = PageAlta.validateForm(PageAlta.validators);
-      console.log()
+      const validators = { ...PageAlta.validators };
+      const productToSave = PageAlta.validateForm(validators);
+      printDataInfo(productToSave);
       if (productToSave) {
-        const updatedProduct = await PageAlta.updateProduct(productToSave);
+        const updatedProduct = await PageAlta.sendFormData(
+          `/api/products/${productToSave.get("id")}`,
+          productToSave
+        );
         console.log("updatedProduct:", updatedProduct);
         if (PageAlta.objectIsEmpty(updatedProduct)) {
           console.error("No se pudo guardar el producto");
@@ -294,6 +320,12 @@ class PageAlta {
       PageAlta.prepareFormForCreating();
     });
 
+    PageAlta.btnShowTable.addEventListener("click", (e) => {
+      console.error("btn-show-table");
+      PageAlta.btnShowTable.classList.add("hidden");
+      PageAlta.displayTable();
+    });
+
     PageAlta.addChangeEventForm();
   }
 
@@ -304,9 +336,13 @@ class PageAlta {
   static addChangeEventForm() {
     PageAlta.fields.forEach((field) => {
       field.addEventListener("change", (e) => {
-        if (PageAlta.validate(e.target.value, PageAlta.validators[e.target.name])) {
-          PageAlta.displayCheckOnInput(e);
-          PageAlta.removeErrorsOnInput();
+        if(e.target.type == "checkbox" || e.target.type == "file") {
+          return;
+        }
+        if (
+          PageAlta.validate(e.target.value, PageAlta.validators[e.target.name])
+        ) {
+          PageAlta.displayCheckOnInput(e.target);
           e.target.parentElement
             .querySelector(".error-display__popup")
             ?.remove();
@@ -327,6 +363,7 @@ class PageAlta {
     PageAlta.btnCreate = document.getElementById("product-add");
     PageAlta.btnUpdate = document.getElementById("product-edit");
     PageAlta.btnCancel = document.getElementById("product-reset");
+    PageAlta.btnShowTable = document.getElementById("product-show-table");
     PageAlta.addFormEvents();
   }
 
@@ -339,3 +376,50 @@ class PageAlta {
 }
 
 export default PageAlta;
+
+
+function printDataInfo(data) {
+  //console.log(data)
+
+  let keys = data.keys();
+  let values = data.values();
+  // console.log(keys);
+  // console.log(values);
+
+  //    let key = keys.next();
+  //    let value = values.next();
+  //
+  //    key = keys.next();
+  //    value = values.next();
+  //    // console.log('key:', key);
+  //    // console.log('value:', value);
+  //    console.log(`${key.value}: ${value.value}`);
+  //
+  //    key = keys.next();
+  //    value = values.next();
+  //    // console.log('key:', key);
+  //    // console.log('value:', value);
+  //    console.log(`${key.value}: ${value.value}`);
+
+  do {
+    let key = keys.next();
+    let value = values.next();
+    // console.log('key:', key);
+    // console.log('value:', value);
+
+    if (key.done || value.done) {
+      // console.error('No hay más contenido');
+      break;
+    }
+
+    // console.log(`${key.value}: ${value.value}`);
+    console.log(
+      `%c${key.value}: %c${value.value.toString() || value.value}`,
+      styleArg1,
+      styleArg2
+    );
+  } while (true);
+}
+
+const styleArg1 = "color: teal; font-weight: bold; font-size: 1.1em;";
+const styleArg2 = "color: pink; background-color: #111; padding: 3px;";
