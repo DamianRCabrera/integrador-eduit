@@ -1,6 +1,9 @@
 {
   "name": "integrador-eduit",
   "type": "module",
+  "engines": {
+    "node": "16.1"
+  },
   "version": "1.0.0",
   "description": "Proyecto Integrador del Bootcamp EducacionIT Fullstack",
   "main": "app.js",

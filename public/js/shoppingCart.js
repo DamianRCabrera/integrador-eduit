@@ -78,7 +78,11 @@ class ShopCart {
     newCart.products = this.cart;
     newCart.total = this.total;
 
-    const response = await this.ajax(`${ShopCart.url}new`, "post", JSON.stringify(newCart));
+    const response = await this.ajax(
+      `${ShopCart.url}new`,
+      "post",
+      JSON.stringify(newCart)
+    );
     return response;
   }
 
@@ -190,17 +194,19 @@ class ShopCart {
         ) {
           const id = e.target.getAttribute("data-delete-id");
           delete this.cart[id];
-          const index = this.cartIDs.productsID.findIndex((obj) => obj.id === id);
+          const index = this.cartIDs.productsID.findIndex(
+            (obj) => obj.id === id
+          );
           this.cartIDs.productsID.splice(index, 1);
           this.displayNumberOfItemsInCartBubble();
           await this.renderProductsToCart();
           if (this.cartIDs.productsID.length > 1) {
             this.updateQuantitiesSubtotalsAndBubble();
           }
-        } else if(e.target.dataset.buy == "true") {
+        } else if (e.target.dataset.buy == "true") {
           e.preventDefault();
           const response = await this.sendCartToApi();
-          if(response) {
+          if (response) {
             console.log(response);
             this.cart = {};
             this.cartIDs = { productsID: [] };

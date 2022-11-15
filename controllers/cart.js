@@ -30,6 +30,7 @@ class ControllerCart {
 
   async postCart(req, res) {
     const cart = req.body;
+    console.log(cart);
     const newCart = await apiCart.createCart(cart);
     res.json(newCart);
   }

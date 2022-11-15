@@ -28,7 +28,6 @@ class ApiCart {
     const removedCart = await model.deleteCart(id);
     return removedCart;
   }
-
 }
 
 export default ApiCart;
