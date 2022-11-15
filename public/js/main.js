@@ -47,6 +47,15 @@ class Main {
     }
   }
 
+  createLoader(){
+    const loaderContainer = document.createElement("div");
+    loaderContainer.classList.add("loader-container");
+    loaderContainer.innerHTML = `
+      <div class="loader"></div>
+    `;
+    return loaderContainer;
+  }
+
   hideHamburguer(){
     const hamburguerToggle = document.getElementById("main-nav-toggle");
     hamburguerToggle.checked = false;
@@ -60,7 +69,7 @@ class Main {
     const viewUrl = this.getViewUrlFromId(id);
 
     //Cargar loader
-    document.querySelector("main").innerHTML = `<h1>Cargando</h1>`;
+    document.querySelector("main").appendChild(this.createLoader());
     //
 
     const viewContent = await this.ajax(viewUrl);

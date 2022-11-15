@@ -9,6 +9,8 @@ router.post("/", controllerCart.displayProducts);
 
 router.get("/", controllerCart.getCarts);
 
+router.get("/success-buy", controllerCart.getSuccessfulBuy);
+
 router.get("/:id", controllerCart.getCart);
 
 router.post("/new", controllerCart.postCart);
@@ -16,5 +18,7 @@ router.post("/new", controllerCart.postCart);
 router.put("/:id", controllerCart.putCart);
 
 router.delete("/:id", controllerCart.deleteCart);
+
+
 
 export default router;

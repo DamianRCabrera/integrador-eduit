@@ -157,6 +157,16 @@ class ShopCart {
     this.displayNumberOfItemsInCartBubble();
   }
 
+  async renderSuccessBuy() {
+    const container = document.querySelector(".shopping-cart-item-container");
+    const successBuy = await this.ajax(
+      `${ShopCart.url}success-buy`,
+      "get",
+      null
+    );
+    container.innerHTML = successBuy;
+  }
+
   async init() {
     await this.renderProductsToCart();
     const modalCheckbox = document.getElementById("main-nav-cart");
@@ -213,7 +223,7 @@ class ShopCart {
             this.total = 0;
             this.itemsOnCart = 0;
             this.displayNumberOfItemsInCartBubble();
-            await this.renderProductsToCart();
+            await this.renderSuccessBuy();
           }
         }
       } else if (e.target.className.includes("card__link-add")) {

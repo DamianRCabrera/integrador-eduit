@@ -1,8 +1,4 @@
-// import Validation from "../services/validation.js";
-// import e from "cors";
 import productController from "../controllers/product.js";
-
-// const validation = new Validation();
 
 class PageAlta {
   static productsTableContainer;
@@ -52,6 +48,7 @@ class PageAlta {
     const row = e.target.closest("tr");
     const id = row.querySelector('td[data-product-property="id"]').innerHTML;
     console.log(id);
+    PageAlta.displayPopup(`Producto ${id} eliminado`, false);
     const deletedProduct = await productController.deleteProduct(id);
     PageAlta.loadTable();
     console.log(deletedProduct);
@@ -107,6 +104,35 @@ class PageAlta {
       }
     });
   }
+  static createPopUp(message, result) {
+    const popUp = document.createElement("div");
+    popUp.classList.add("popup");
+    popUp.classList.add(result ? "popup-success" : "popup-error");
+    popUp.innerHTML = message;
+    return popUp;
+  }
+
+  static removePopUp() {
+    const popUps = document.querySelectorAll(".popup");
+    setTimeout(() => {
+      popUps.forEach((popUp) => popUp.remove());
+    }, 2500);
+  }
+
+  static displayPopup(message, result) {
+    const popUp = PageAlta.createPopUp(message, result);
+    document.body.appendChild(popUp);
+    PageAlta.removePopUp();
+  }
+
+  static createLoader() {
+    const loaderContainer = document.createElement("div");
+    loaderContainer.classList.add("loader-container");
+    loaderContainer.innerHTML = `
+      <div class="loader"></div>
+    `;
+    return loaderContainer;
+  }
 
   static async renderTemplateTable() {
     const table = await fetch("/api/table").then((r) => r.text());
@@ -114,6 +140,7 @@ class PageAlta {
   }
 
   static async loadTable() {
+    PageAlta.productsTableContainer.appendChild(PageAlta.createLoader());
     const products = await productController.getProducts();
     console.log(`Se encontraron ${products.length} productos.`);
     PageAlta.renderTemplateTable(products);
@@ -164,7 +191,7 @@ class PageAlta {
     field.classList.add("input__check");
   }
 
-  static removeAllChecks () {
+  static removeAllChecks() {
     const checks = document.querySelectorAll(".input__check");
     checks.forEach((check) => check.classList.remove("input__check"));
   }
@@ -222,6 +249,7 @@ class PageAlta {
 
       if (!validated) {
         field.focus();
+        PageAlta.displayPopup("Faltan ingresar datos", false);
         allValidated = false;
         break;
       } else {
@@ -279,12 +307,13 @@ class PageAlta {
         console.log("savedProduct:", savedProduct);
         if (PageAlta.objectIsEmpty(savedProduct)) {
           console.error("No se pudo crear el producto");
+          PageAlta.displayPopup("No se pudo crear el producto", false);
           return;
         }
+        PageAlta.displayPopup("Producto creado con éxito", true);
         const products = await productController.getProducts();
         console.log(`Ahora hay ${products.length} productos`);
         PageAlta.renderTemplateTable(products);
-
         PageAlta.emptyForm();
       }
     });
@@ -293,7 +322,6 @@ class PageAlta {
       console.error("btn-update");
       const validators = { ...PageAlta.validators };
       const productToSave = PageAlta.validateForm(validators);
-      printDataInfo(productToSave);
       if (productToSave) {
         const updatedProduct = await PageAlta.sendFormData(
           `/api/products/${productToSave.get("id")}`,
@@ -302,9 +330,11 @@ class PageAlta {
         console.log("updatedProduct:", updatedProduct);
         if (PageAlta.objectIsEmpty(updatedProduct)) {
           console.error("No se pudo guardar el producto");
+          PageAlta.displayPopup("No se pudo guardar el producto", false);
           return;
         }
         const products = await productController.getProducts();
+        PageAlta.displayPopup("Producto guardado", true);
         console.log(`Ahora hay ${products.length} productos`);
         PageAlta.renderTemplateTable(products);
         PageAlta.emptyForm();
@@ -336,7 +366,7 @@ class PageAlta {
   static addChangeEventForm() {
     PageAlta.fields.forEach((field) => {
       field.addEventListener("change", (e) => {
-        if(e.target.type == "checkbox" || e.target.type == "file") {
+        if (e.target.type == "checkbox" || e.target.type == "file") {
           return;
         }
         if (
@@ -376,50 +406,3 @@ class PageAlta {
 }
 
 export default PageAlta;
-
-
-function printDataInfo(data) {
-  //console.log(data)
-
-  let keys = data.keys();
-  let values = data.values();
-  // console.log(keys);
-  // console.log(values);
-
-  //    let key = keys.next();
-  //    let value = values.next();
-  //
-  //    key = keys.next();
-  //    value = values.next();
-  //    // console.log('key:', key);
-  //    // console.log('value:', value);
-  //    console.log(`${key.value}: ${value.value}`);
-  //
-  //    key = keys.next();
-  //    value = values.next();
-  //    // console.log('key:', key);
-  //    // console.log('value:', value);
-  //    console.log(`${key.value}: ${value.value}`);
-
-  do {
-    let key = keys.next();
-    let value = values.next();
-    // console.log('key:', key);
-    // console.log('value:', value);
-
-    if (key.done || value.done) {
-      // console.error('No hay más contenido');
-      break;
-    }
-
-    // console.log(`${key.value}: ${value.value}`);
-    console.log(
-      `%c${key.value}: %c${value.value.toString() || value.value}`,
-      styleArg1,
-      styleArg2
-    );
-  } while (true);
-}
-
-const styleArg1 = "color: teal; font-weight: bold; font-size: 1.1em;";
-const styleArg2 = "color: pink; background-color: #111; padding: 3px;";

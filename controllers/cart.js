@@ -47,6 +47,12 @@ class ControllerCart {
     const removedCart = await apiCart.deleteCart(id);
     res.json(removedCart);
   }
+
+  async getSuccessfulBuy(req, res) {
+    res.render("partials/partials/successBuy", {
+      layout: false
+    });
+  }
 }
 
 export default ControllerCart;

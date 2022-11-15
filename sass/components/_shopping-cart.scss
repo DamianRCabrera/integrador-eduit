@@ -15,6 +15,10 @@
   max-height: 60vh;
   overflow-y: auto;
 
+  &-item-container{
+    flex: 1;
+  }
+
   @media (min-width: 768px) {
     width: 95%;
   }

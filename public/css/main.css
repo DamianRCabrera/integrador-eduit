@@ -1329,6 +1329,9 @@ main {
   max-height: 60vh;
   overflow-y: auto;
 }
+.shopping-cart-item-container {
+  flex: 1;
+}
 @media (min-width: 768px) {
   .shopping-cart {
     width: 95%;
@@ -1678,4 +1681,90 @@ main {
   font-size: 2rem;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
+}
+
+.loader-container {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader:before {
+  content: "";
+  display: block;
+  height: 50px;
+  width: 50px;
+  -webkit-animation: spin 0.5s infinite linear;
+  animation: spin 0.5s infinite linear;
+  border: 6px #2E2C59 solid;
+  border-left-color: #69fbc4;
+  border-radius: 100%;
+}
+
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.popup {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: top 1s;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+.popup-success {
+  background-color: #43c554;
+  border: 2px solid #ffffff;
+}
+.popup-error {
+  background-color: #ff5a5f;
+  border: 2px solid #c81d25;
+}
+
+.successBuy {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.successBuy__image {
+  width: 7rem;
+}
+.successBuy__image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.successBuy__title {
+  font-size: 1.5rem;
+  color: #2e2c59;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+}
+.successBuy__text {
+  color: #616161;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
 }/*# sourceMappingURL=main.css.map */

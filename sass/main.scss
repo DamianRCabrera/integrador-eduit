@@ -39,6 +39,9 @@
 @use 'components/main-cart-toggle';
 @use 'components/table-products';
 @use 'components/show-title';
+@use 'components/loader';
+@use 'components/popup';
+@use 'components/successBuy';
 
 // 6. Page-specific styles
 
