@@ -6,6 +6,7 @@ import routerCart from "./routers/cart.js";
 import routerTable from "./routers/table.js";
 import DBMongoDB from "./models/DB/MongoDB.js";
 import cors from 'cors';
+import config from "./config.js";
 
 const app = express();
 
@@ -39,7 +40,7 @@ app.use("/api/cart", routerCart);
 
 app.use("/api/table", routerTable);
 
-const PORT = 8080;
+const PORT = config.PORT;
 const server = app.listen(PORT, () =>
   console.log(`Servidor Express escuchando en el puerto ${PORT}`)
 );
