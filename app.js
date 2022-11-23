@@ -41,7 +41,7 @@ app.use("/api/cart", routerCart);
 
 app.use("/api/table", routerTable);
 
-app.use("/api/message", routerMessage);
+app.use("/api/messages", routerMessage);
 
 const PORT = config.PORT;
 const server = app.listen(PORT, () =>

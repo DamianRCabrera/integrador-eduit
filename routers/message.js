@@ -1,5 +1,6 @@
 import express from "express";
 import Controller from "../controllers/message.js";
+import upload from "../middlewares/multer.js";
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.get("/", controller.getMessages);
 
 router.get("/:id", controller.getMessage);
 
-router.post("/", controller.postMessage);
+router.post("/", upload.fields([]),controller.postMessage);
 
 router.put("/:id", controller.putMessage);
 

@@ -16,11 +16,7 @@ const messageSchema = mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  products: {
-    type: Object,
-    required: true,
-  },
-  phoneNumber: {
+  telephone: {
     type: String,
     required: true,
   },
@@ -42,7 +38,7 @@ class messageModelMongoDB {
       return {};
     }
     try {
-      const newMessage = new messageModel(cart);
+      const newMessage = new messageModel(message);
       await newMessage.save();
       return DBMongoDB.getObjectWithId(newMessage.toObject());
     } catch (error) {
@@ -77,7 +73,7 @@ class messageModelMongoDB {
     return {};
   }
 
-  async updateMessage(id, cart) {
+  async updateMessage(id, message) {
     if (!(await DBMongoDB.connectDB())) {
       return {};
     }

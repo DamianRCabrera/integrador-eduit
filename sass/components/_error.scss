@@ -4,18 +4,18 @@
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     position: absolute;
-    top: 70px;
+    top: 98%;
     left: 0px;
     padding: 0.5em;
     @media (min-width: 425px) {
-        top: 45px;
+        top: 98%;
 
         &--address {
             top: 75px;
         }
     }
     @media (min-width: 768px) {
-        top: 70px;
-        font-size: 0.9em;
+        top: 85%;
+        font-size: 0.85em;
     }
 }

@@ -15,6 +15,7 @@ class ControllerMessage {
   async postMessage(req, res) {
     const message = req.body;
     const newMessage = await api.createMessage(message);
+    console.log("Mensaje enviado:", newMessage);
     res.json(newMessage);
   }
 

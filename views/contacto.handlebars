@@ -22,13 +22,13 @@
         <label class="input-group__label" for="user-name">
           Nombre:<sup>&ast;</sup>
         </label>
-        <input class="input-group__input" id="user-name" type="text" placeholder="Ej: Nombre">
+        <input class="input-group__input" name="name" id="user-name" type="text" placeholder="Ej: Nombre">
       </div>
       <div class="input-group">
         <label class="input-group__label" for="user-lastname">
           Apellido:<sup>&ast;</sup>
         </label>
-        <input class="input-group__input" id="user-lastname" type="text" placeholder="Ej: Apellido">
+        <input class="input-group__input" name="lastName" id="user-lastname" type="text" placeholder="Ej: Apellido">
       </div>
     </div>
 
@@ -37,25 +37,25 @@
         <label class="input-group__label" for="user-telephone">
           Teléfono:<sup>&ast;</sup>
         </label>
-        <input class="input-group__input" id="user-telephone" type="text" placeholder="Ej: 3412273492">
+        <input class="input-group__input" name="telephone" id="user-telephone" type="text" placeholder="Ej: 3412273492">
       </div>
       <div class="input-group">
         <label class="input-group__label" for="user-email">
           Correo Electrónico:<sup>&ast;</sup>
         </label>
-        <input type="email" class="input-group__input" id="user-email" name="user-email" placeholder="Ej: ejemplo@ejemplo.com.ar" required />
+        <input type="email" class="input-group__input" name="email" id="user-email" placeholder="Ej: ejemplo@ejemplo.com.ar" required />
       </div>
     </div>
 
     <div class="main-form-comment">
       <div class="input-group">
         <label class="input-group__label" for="user-comment">Dejanos tu comentario: (máx. 300 caracteres)</label>
-        <textarea class="input-group__textarea" name="user-comment" id="user-comment" cols="30" rows="10" placeholder="Dejanos tu mensaje"></textarea>
+        <textarea class="input-group__textarea" name="message" id="user-comment" cols="30" rows="10" placeholder="Dejanos tu mensaje"></textarea>
       </div>
     </div>
 
     <div class="main-form-buttons">
-      <button class="btn" id="send-comment">Enviar</button>
+      <button class="btn" id="btn-submit">Enviar</button>
     </div>
 
   </form>

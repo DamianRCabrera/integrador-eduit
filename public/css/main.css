@@ -646,7 +646,7 @@ main {
 .main-form-group {
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
+  gap: 2em;
 }
 @media (min-width: 768px) {
   .main-form-group {
@@ -1267,13 +1267,13 @@ main {
   font-weight: 600;
   font-family: "Poppins", sans-serif;
   position: absolute;
-  top: 70px;
+  top: 98%;
   left: 0px;
   padding: 0.5em;
 }
 @media (min-width: 425px) {
   .error-display__popup {
-    top: 45px;
+    top: 98%;
   }
   .error-display__popup--address {
     top: 75px;
@@ -1281,8 +1281,8 @@ main {
 }
 @media (min-width: 768px) {
   .error-display__popup {
-    top: 70px;
-    font-size: 0.9em;
+    top: 85%;
+    font-size: 0.85em;
   }
 }
 
