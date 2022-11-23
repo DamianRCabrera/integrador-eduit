@@ -27,7 +27,7 @@ const messageSchema = mongoose.Schema({
   message: {
     type: String,
     required: true,
-  }
+  },
 });
 
 const messageModel = mongoose.model("message", messageSchema);
@@ -79,13 +79,15 @@ class messageModelMongoDB {
     }
     try {
       const updatedMessage =
-        (await messageModel.findByIdAndUpdate(
-          id,
-          { $set: message },
-          {
-            returnDocument: "after",
-          }
-        ).lean()) || {};
+        (await messageModel
+          .findByIdAndUpdate(
+            id,
+            { $set: message },
+            {
+              returnDocument: "after",
+            }
+          )
+          .lean()) || {};
       return DBMongoDB.getObjectWithId(updatedMessage);
     } catch (error) {
       console.error(
@@ -101,7 +103,8 @@ class messageModelMongoDB {
       return {};
     }
     try {
-      const deletedMessage = (await messageModel.findByIdAndDelete(id).lean()) || {};
+      const deletedMessage =
+        (await messageModel.findByIdAndDelete(id).lean()) || {};
       return DBMongoDB.getObjectWithId(deletedMessage);
     } catch (error) {
       console.error(

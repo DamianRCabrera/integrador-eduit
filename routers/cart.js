@@ -19,6 +19,4 @@ router.put("/:id", controllerCart.putCart);
 
 router.delete("/:id", controllerCart.deleteCart);
 
-
-
 export default router;

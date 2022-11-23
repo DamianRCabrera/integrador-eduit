@@ -47,7 +47,7 @@ class Main {
     }
   }
 
-  createLoader(){
+  createLoader() {
     const loaderContainer = document.createElement("div");
     loaderContainer.classList.add("loader-container");
     loaderContainer.innerHTML = `
@@ -56,7 +56,7 @@ class Main {
     return loaderContainer;
   }
 
-  hideHamburguer(){
+  hideHamburguer() {
     const hamburguerToggle = document.getElementById("main-nav-toggle");
     hamburguerToggle.checked = false;
   }

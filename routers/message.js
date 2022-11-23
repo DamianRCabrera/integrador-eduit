@@ -10,7 +10,7 @@ router.get("/", controller.getMessages);
 
 router.get("/:id", controller.getMessage);
 
-router.post("/", upload.fields([]),controller.postMessage);
+router.post("/", upload.fields([]), controller.postMessage);
 
 router.put("/:id", controller.putMessage);
 

@@ -107,11 +107,19 @@ class PageContacto {
     let allValidated = true;
     const messageToSave = new FormData();
 
-    for (const field of PageContacto.fields){
-      let validated =  PageContacto.validate(field.value, validators[field.name]);
-      if(!validated){
-        if(field.parentElement.querySelector(".error-display__popup") === null){
-          PageContacto.displayWarningError(field, PageContacto.errorMsg[field.name]);
+    for (const field of PageContacto.fields) {
+      let validated = PageContacto.validate(
+        field.value,
+        validators[field.name]
+      );
+      if (!validated) {
+        if (
+          field.parentElement.querySelector(".error-display__popup") === null
+        ) {
+          PageContacto.displayWarningError(
+            field,
+            PageContacto.errorMsg[field.name]
+          );
           PageContacto.modifyInputBackgroundOnError(field);
         }
         field.focus();
@@ -127,8 +135,8 @@ class PageContacto {
 
     console.log("allValidated:", allValidated);
 
-    if(!allValidated){
-      return false
+    if (!allValidated) {
+      return false;
     }
     PageContacto.removeAllPopUps();
     return messageToSave;
@@ -158,7 +166,7 @@ class PageContacto {
           "/api/messages/",
           messageToSave
         );
-        console.log("Mensaje enviado:",savedMessage);
+        console.log("Mensaje enviado:", savedMessage);
 
         if (PageContacto.objectIsEmpty(savedMessage)) {
           console.error("Error al guardar el mensaje");

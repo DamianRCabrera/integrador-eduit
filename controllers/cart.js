@@ -50,7 +50,7 @@ class ControllerCart {
 
   async getSuccessfulBuy(req, res) {
     res.render("partials/partials/successBuy", {
-      layout: false
+      layout: false,
     });
   }
 }

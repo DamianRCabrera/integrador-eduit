@@ -1,4 +1,3 @@
-import config from "../config.js";
 import Model from "../models/products.js";
 
 const model = new Model();
