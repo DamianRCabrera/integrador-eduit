@@ -8,9 +8,8 @@
   "description": "Proyecto Integrador del Bootcamp EducacionIT Fullstack",
   "main": "app.js",
   "scripts": {
-    "dev": "node app.js",
-    "watch": "nodemon app.js",
     "start": "node app.js",
+    "watch": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

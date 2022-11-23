@@ -4,6 +4,7 @@ import routerPage from "./routers/page.js";
 import routerProducts from "./routers/products.js";
 import routerCart from "./routers/cart.js";
 import routerTable from "./routers/table.js";
+import routerMessage from "./routers/message.js";
 import DBMongoDB from "./models/DB/MongoDB.js";
 import cors from 'cors';
 import config from "./config.js";
@@ -39,6 +40,8 @@ app.use("/api/products", routerProducts);
 app.use("/api/cart", routerCart);
 
 app.use("/api/table", routerTable);
+
+app.use("/api/message", routerMessage);
 
 const PORT = config.PORT;
 const server = app.listen(PORT, () =>
