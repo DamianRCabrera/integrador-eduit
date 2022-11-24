@@ -26,6 +26,8 @@ class CartItem {
 
 class ShopCart {
   static url = "/api/cart/";
+  static addingToCart = false;
+  static deletingFromCart = false;
 
   constructor() {
     this.client = "Anonymous";
@@ -55,6 +57,8 @@ class ShopCart {
   }
 
   async addProductToCart(id) {
+    if (ShopCart.addingToCart) return;
+    ShopCart.addingToCart = true;
     if (!this.cart[id]) {
       this.cartIDs.productsID.push({ id: id });
       const product = await this.getProductFromApi(id);
@@ -62,6 +66,21 @@ class ShopCart {
     } else {
       this.cart[id].addOne();
     }
+    ShopCart.addingToCart = false;
+  }
+
+  async deleteProductFromCart(id) {
+    if (ShopCart.deletingFromCart) return;
+    ShopCart.deletingFromCart = true;
+    delete this.cart[id];
+    const index = this.cartIDs.productsID.findIndex((obj) => obj.id === id);
+    this.cartIDs.productsID.splice(index, 1);
+    this.displayNumberOfItemsInCartBubble();
+    await this.renderProductsToCart();
+    if (this.cartIDs.productsID.length > 1) {
+      this.updateQuantitiesSubtotalsAndBubble();
+    }
+    ShopCart.deletingFromCart = false;
   }
 
   async loadProductToCart() {
@@ -203,16 +222,7 @@ class ShopCart {
           e.target.className.includes("shopping-cart__item__buttons__delete")
         ) {
           const id = e.target.getAttribute("data-delete-id");
-          delete this.cart[id];
-          const index = this.cartIDs.productsID.findIndex(
-            (obj) => obj.id === id
-          );
-          this.cartIDs.productsID.splice(index, 1);
-          this.displayNumberOfItemsInCartBubble();
-          await this.renderProductsToCart();
-          if (this.cartIDs.productsID.length > 1) {
-            this.updateQuantitiesSubtotalsAndBubble();
-          }
+          this.deleteProductFromCart(id);
         } else if (e.target.dataset.buy == "true") {
           e.preventDefault();
           const response = await this.sendCartToApi();
@@ -229,12 +239,13 @@ class ShopCart {
       } else if (e.target.className.includes("card__link-add")) {
         e.preventDefault();
         const btn = e.target;
+        btn.innerHTML = "...";
+        const id = e.target.getAttribute("data-id");
+        await this.addProductToCart(id);
         btn.innerHTML = "Agregado";
         setTimeout(() => {
           btn.innerHTML = "Agregar";
-        }, 2000);
-        const id = e.target.getAttribute("data-id");
-        await this.addProductToCart(id);
+        }, 1000);
         await this.renderProductsToCart();
         this.updateQuantitiesSubtotalsAndBubble();
       }
