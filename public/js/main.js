@@ -56,6 +56,14 @@ class Main {
     return loaderContainer;
   }
 
+  //function to scroll up to the top of the page with in a smooth way
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }
+
   hideHamburguer() {
     const hamburguerToggle = document.getElementById("main-nav-toggle");
     hamburguerToggle.checked = false;
@@ -87,7 +95,10 @@ class Main {
 
   async loadTemplates() {
     this.loadTemplate();
-    window.addEventListener("hashchange", () => this.loadTemplate());
+    window.addEventListener("hashchange", () => {
+      this.loadTemplate();
+      this.scrollToTop();
+    });
   }
 
   async start() {
